@@ -15,6 +15,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +28,28 @@ public class MainPage implements Initializable {
     AnchorPane topBar;
     @FXML
     ImageView img_Pic;
+    @FXML
+    public AnchorPane ap_home;
+    @FXML
+    public AnchorPane ap_leaderBoard;
+    @FXML
+    public AnchorPane ap_modules;
+    @FXML
+    public AnchorPane ap_analytics;
+    @FXML
+    public ImageView img_home;
+    @FXML
+    ImageView img_modules;
+    @FXML
+    ImageView img_analytics;
+    @FXML
+    javafx.scene.control.Label lbl_home;
+    @FXML
+    javafx.scene.control.Label lbl_leaderBoard;
+    @FXML
+    javafx.scene.control.Label lbl_modules;
+    @FXML
+    javafx.scene.control.Label lbl_analytics;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,6 +74,70 @@ public class MainPage implements Initializable {
 
         // store the rounded image in the imageView.
         img_Pic.setImage(image);
+
+    }
+
+    @FXML
+    public void NavHomeEnter(MouseEvent mouseEvent)
+    {
+        ap_home.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
+    }
+    @FXML
+    public void NavHomeExit(MouseEvent mouseEvent)
+    {
+        ap_home.setStyle("-fx-background-color : #636363; ");
+    }
+
+
+    public void NavHomeClick(MouseEvent mouseEvent)
+    {
+
+    }
+
+
+    public void NavLeaderBoardEnter(MouseEvent mouseEvent)
+    {
+        ap_leaderBoard.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
+    }
+
+
+    public void NavLeaderBoardExit(MouseEvent mouseEvent)
+    {
+        ap_leaderBoard.setStyle("-fx-background-color : #636363;");
+    }
+
+
+    public void NavLeaderBoardClick(MouseEvent mouseEvent)
+    {
+
+    }
+    public void NavModulesEnter(MouseEvent mouseEvent)
+    {
+        ap_modules.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
+    }
+
+    public void NavModulesExit(MouseEvent mouseEvent)
+    {
+        ap_modules.setStyle("-fx-background-color : #636363;");
+    }
+
+    public void NavModulesClick(MouseEvent mouseEvent)
+    {
+
+    }
+
+    public void NavAnalyticsEnter(MouseEvent mouseEvent)
+    {
+        ap_analytics.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
+    }
+
+    public void NavAnalyticsExit(MouseEvent mouseEvent)
+    {
+        ap_analytics.setStyle("-fx-background-color : #636363;");
+    }
+
+    public void NavAnalyticsClick(MouseEvent mouseEvent)
+    {
 
     }
 }
