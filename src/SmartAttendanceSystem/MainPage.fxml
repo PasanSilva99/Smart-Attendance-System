@@ -70,45 +70,45 @@
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="151.0" prefHeight="463.0" prefWidth="121.0" style="-fx-background-color: #636363; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="-20.0">
          <children>
-            <AnchorPane layoutX="33.0" layoutY="127.0" prefHeight="70.0" prefWidth="70.0">
+            <AnchorPane fx:id="ap_leaderBoard" layoutX="33.0" layoutY="130.0" onMouseEntered="#NavLeaderBoardEnter" onMouseExited="#NavLeaderBoardExit" onMousePressed="#NavLeaderBoardClick" onTouchPressed="#NavLeaderBoardClick" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
                <children>
-                  <ImageView fitHeight="44.0" fitWidth="35.0" layoutX="19.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="7.0">
+                  <ImageView fx:id="img_leaderBoard" fitHeight="44.0" fitWidth="35.0" layoutX="20.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="8.0">
                      <image>
                         <Image url="@Images/leaderboard.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="1.0" layoutY="49.0" text="Leader Board" textFill="WHITE" AnchorPane.bottomAnchor="4.0" />
+                  <Label fx:id="lbl_leaderBoard" layoutX="1.0" layoutY="49.0" text="Leader Board" textFill="WHITE" AnchorPane.bottomAnchor="9.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="34.0" layoutY="212.0" prefHeight="70.0" prefWidth="70.0">
+            <AnchorPane fx:id="ap_modules" layoutX="34.0" layoutY="212.0" onMouseEntered="#NavModulesEnter" onMouseExited="#NavModulesExit" onMousePressed="#NavModulesClick" onTouchPressed="#NavModulesClick" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
                <children>
-                  <ImageView fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="6.0">
+                  <ImageView fx:id="img_modules" fitHeight="44.0" fitWidth="35.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
                      <image>
                         <Image url="@Images/modules.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="13.0" layoutY="43.0" text="Modules" textFill="WHITE" AnchorPane.bottomAnchor="10.0" />
+                  <Label fx:id="lbl_modules" layoutX="15.0" layoutY="48.0" text="Modules" textFill="WHITE" AnchorPane.bottomAnchor="10.0" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="34.0" layoutY="298.0" prefHeight="70.0" prefWidth="70.0">
+            <AnchorPane fx:id="ap_analytics" layoutX="34.0" layoutY="294.0" onMouseEntered="#NavAnalyticsEnter" onMouseExited="#NavAnalyticsExit" onMousePressed="#NavAnalyticsClick" onTouchPressed="#NavAnalyticsEnter" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
                <children>
-                  <ImageView fitHeight="44.0" fitWidth="35.0" layoutX="18.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="0.0">
+                  <ImageView fx:id="img_analytics" fitHeight="44.0" fitWidth="35.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="10.0">
                      <image>
                         <Image url="@Images/analytics.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="12.0" layoutY="35.0" text="Analytics" textFill="WHITE" AnchorPane.bottomAnchor="18.0" />
+                  <Label fx:id="lbl_analytics" layoutX="14.0" layoutY="47.0" text="Analytics" textFill="WHITE" AnchorPane.bottomAnchor="11.0" />
                </children>
             </AnchorPane>
          </children></AnchorPane>
-      <AnchorPane layoutX="13.0" layoutY="205.0" prefHeight="70.0" prefWidth="70.0" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="205.0">
+      <AnchorPane fx:id="ap_home" layoutX="13.0" layoutY="205.0" onMouseEntered="#NavHomeEnter" onMouseExited="#NavHomeExit" onMousePressed="#NavHomeClick" onTouchPressed="#NavHomeClick" prefHeight="75.0" prefWidth="75.0" style="-fx-background-color: #6B6B6B; -fx-border-radius: 20; -fx-background-radius: 20;" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="205.0">
          <children>
-            <ImageView fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="6.0">
+            <ImageView fx:id="img_home" fitHeight="44.0" fitWidth="35.0" layoutX="21.0" layoutY="9.0" onMouseEntered="#NavHomeEnter" onMouseExited="#NavHomeExit" onMousePressed="#NavHomeClick" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="9.0">
                <image>
                   <Image url="@Images/home.png" />
                </image>
             </ImageView>
-            <Label layoutX="19.0" layoutY="41.0" text="Home" textFill="WHITE" AnchorPane.bottomAnchor="12.0" />
+            <Label fx:id="lbl_home" layoutX="22.0" layoutY="49.0" onMouseEntered="#NavHomeEnter" onMouseExited="#NavHomeExit" onMousePressed="#NavHomeClick" text="Home" textFill="WHITE" AnchorPane.bottomAnchor="9.0" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="241.0" fitWidth="275.0" layoutX="101.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0">
