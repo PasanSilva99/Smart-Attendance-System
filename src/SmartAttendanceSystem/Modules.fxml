@@ -14,9 +14,9 @@
          </font>
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <Image>
-                  <Image url="Images/"/>
-               </Image>
+               <image>
+                  <Image url="@Images/edit.png"/>
+               </image>
             </ImageView>
          </graphic>
       </Button>
