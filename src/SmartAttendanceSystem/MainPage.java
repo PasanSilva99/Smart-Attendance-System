@@ -27,6 +27,8 @@ public class MainPage implements Initializable {
     @FXML
     AnchorPane topBar;
     @FXML
+    AnchorPane base;
+    @FXML
     ImageView img_Pic;
     @FXML
     public AnchorPane ap_home;
@@ -120,10 +122,11 @@ public class MainPage implements Initializable {
     {
         ap_modules.setStyle("-fx-background-color : #636363;");
     }
-
-    public void NavModulesClick(MouseEvent mouseEvent)
-    {
-
+    @FXML
+    public void NavModulesClick(MouseEvent mouseEvent) throws IOException {
+        AnchorPane page = FXMLLoader.load(getClass().getResource("Modules.fxml"));
+        base.getChildren().clear();
+        base.getChildren().setAll(page);
     }
 
     public void NavAnalyticsEnter(MouseEvent mouseEvent)
