@@ -19,11 +19,6 @@
                   <Image url="@Images/bell.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="674.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="392.0" AnchorPane.topAnchor="28.0">
-               <image>
-                  <Image url="@Images/settings.png" />
-               </image>
-            </ImageView>
             <Label layoutX="451.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="42.0">
                <font>
                   <Font name="System Bold" size="12.0" />
