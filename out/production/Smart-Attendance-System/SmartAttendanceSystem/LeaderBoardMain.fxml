@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="463.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.LeaderBoardMain">
+   <children>
+      <Label layoutX="275.0" layoutY="26.0" prefHeight="54.0" prefWidth="357.0" text="LEADERBOARD">
+         <font>
+            <Font name="Felix Titling" size="44.0" />
+         </font>
+      </Label>
+      <Label layoutX="351.0" layoutY="64.0" prefHeight="54.0" prefWidth="221.0" text="- Select a module -">
+         <font>
+            <Font name="Century" size="20.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="168.0" layoutY="130.0" prefHeight="287.0" prefWidth="586.0" style="-fx-border-color: #ffffff; -fx-background-color: transparent;">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

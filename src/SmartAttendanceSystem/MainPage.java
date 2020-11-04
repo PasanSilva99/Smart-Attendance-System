@@ -3,20 +3,14 @@ package SmartAttendanceSystem;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.ImageCursor;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -103,16 +97,14 @@ public class MainPage implements Initializable {
     }
 
 
-    public void NavLeaderBoardExit(MouseEvent mouseEvent)
-    {
-        ap_leaderBoard.setStyle("-fx-background-color : #636363;");
+    public void NavLeaderBoardExit(MouseEvent mouseEvent) { ap_leaderBoard.setStyle("-fx-background-color : #636363;"); }
+    @FXML
+    public void NavLeaderBoardClick(MouseEvent mouseEvent) throws IOException{
+        AnchorPane page = FXMLLoader.load(getClass().getResource("LeaderBoardMain.fxml"));
+        base.getChildren().clear();
+        base.getChildren().setAll(page);
     }
 
-
-    public void NavLeaderBoardClick(MouseEvent mouseEvent)
-    {
-
-    }
     public void NavModulesEnter(MouseEvent mouseEvent)
     {
         ap_modules.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
