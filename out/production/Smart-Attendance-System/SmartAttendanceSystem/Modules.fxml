@@ -15,7 +15,7 @@
             <Font name="Felix Titling" size="44.0" />
          </font>
       </Label>
-      <ScrollPane hbarPolicy="NEVER" layoutX="127.0" layoutY="106.0" pannable="true" prefHeight="326.0" prefWidth="641.0" style="-fx-border-color: #ffffff; -fx-background-color: transparent;">
+      <ScrollPane hbarPolicy="NEVER" layoutX="127.0" layoutY="106.0" pannable="true" prefHeight="326.0" prefWidth="641.0" style="-fx-border-color: transparent; -fx-background-color: transparent;">
         <content>
           <VBox>
               <GridPane fx:id="ModuleView" alignment="CENTER" hgap="10" prefHeight="0.0" prefWidth="641.0" vgap="10">
