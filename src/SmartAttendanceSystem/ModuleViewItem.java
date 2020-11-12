@@ -1,39 +1,62 @@
 package SmartAttendanceSystem;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.text.Font;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.File;
 
-public class ModuleViewItem extends VBox {
+public class ModuleViewItem extends AnchorPane {
 
-    @FXML
-    Label Details;
-    @FXML
-    ImageView ModuleImage;
+    private String ModuleName;
+    private String Batch;
+    private String ImagePath;
 
-    public ModuleViewItem() {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "ModuleViewItem.fxml"));
-        //fxmlLoader.setRoot(this);
-        //fxmlLoader.setController(this);
-
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-
-        Details.setText("Testing 1\nTesting 2\nDone...");
-        Image image = new Image("@Images/profile.jpg");
-        ModuleImage.setImage(image);
+    public ModuleViewItem(String ModuleName, String Batch, String ImagePath) {
+        this.ModuleName = ModuleName;
+        this.Batch = Batch;
+        this.ImagePath = ImagePath;
     }
+
+    public AnchorPane Create(){
+
+        AnchorPane btn;
+
+        btn = new AnchorPane();
+        btn.setStyle("-fx-background-color:#DEDDDD; -fx-border-radius:20px; -fx-background-radius:20px; -fx-border-color: gray; -fx-border-width: 0px 0px 1px 0px");
+        btn.setPrefWidth(275);
+        btn.setPrefHeight(100);
+
+        ImageView ModuleImage = new ImageView();
+        File file = new File(ImagePath);
+        ModuleImage.setImage(new Image(file.toURI().toString()));
+        ModuleImage.setFitWidth(60);
+        ModuleImage.setFitHeight(60);
+        ModuleImage.setLayoutX(6.0);
+        ModuleImage.setLayoutY(4.0);
+        ModuleImage.setPickOnBounds(false);
+        btn.setTopAnchor(ModuleImage, 9.0);
+        btn.setLeftAnchor(ModuleImage, 12.0);
+        btn.setBottomAnchor(ModuleImage, 9.0);
+
+        Label ModuleDetails = new Label();
+        ModuleDetails.setPrefWidth(180);
+        ModuleDetails.setPrefHeight(80);
+        ModuleDetails.setFont(new Font("Felix Titling", 11));
+        btn.setTopAnchor(ModuleDetails, 9.0);
+        btn.setRightAnchor(ModuleDetails, 10.0);
+        btn.setBottomAnchor(ModuleDetails, 9.0);
+
+        ModuleDetails.setText(ModuleName+"\n"+Batch);
+
+        btn.getChildren().addAll(ModuleImage, ModuleDetails);
+
+        return btn;
+    }
+
+
+
 }
