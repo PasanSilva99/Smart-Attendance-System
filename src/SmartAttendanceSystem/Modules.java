@@ -26,8 +26,7 @@ public class Modules implements Initializable {
     GridPane ModuleView;
     @FXML
     ImageView testImage;
-    @FXML
-    Label pathtxt;
+
 
 
     List<ModuleViewItem> Modules;
@@ -52,7 +51,6 @@ public class Modules implements Initializable {
             ModuleView.add(crModule, c, r);
             ModuleView.setMargin(crModule, new Insets(0,40,20,0));
             if(c>1) {
-                pathtxt.setText("Set");
                 r++;
                 c=0;
             }

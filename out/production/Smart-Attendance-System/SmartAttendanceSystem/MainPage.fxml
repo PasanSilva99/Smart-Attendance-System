@@ -21,12 +21,12 @@
             </ImageView>
             <Label layoutX="451.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="42.0">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Felix Titling" size="14.0" />
                </font>
             </Label>
             <Label layoutX="533.0" layoutY="42.0" text="08:56:03 AM" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="42.0">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="Felix Titling" size="14.0" />
                </font>
             </Label>
          </children>

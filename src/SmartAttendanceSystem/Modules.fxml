@@ -26,6 +26,5 @@
         </content>
       </ScrollPane>
       <ImageView fx:id="testImage" fitHeight="95.0" fitWidth="111.0" layoutX="603.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="pathtxt" layoutX="737.0" layoutY="29.0" text="Label" />
    </children>
 </AnchorPane>
