@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="1100.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.MainPage">
    <children>
@@ -112,7 +116,7 @@
             <Image url="@Images/shapeRight.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="base" layoutX="106.0" layoutY="114.0" prefHeight="463.0" prefWidth="909.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="85.0" />
+      <AnchorPane fx:id="base" layoutX="106.0" layoutY="114.0" prefHeight="463.0" prefWidth="978.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="16.0" />
 
    </children>
 </AnchorPane>

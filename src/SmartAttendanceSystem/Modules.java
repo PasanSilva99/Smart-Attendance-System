@@ -1,20 +1,12 @@
 package SmartAttendanceSystem;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,27 +19,26 @@ public class Modules implements Initializable {
     @FXML
     ImageView testImage;
 
-
-
-    List<ModuleViewItem> Modules;
+    List<ViewItem> Modules;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Modules = new ArrayList<ModuleViewItem>();
-        Modules.add(new ModuleViewItem("Bsc in Software Engineering", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ModuleViewItem("Bsc in Cyber Security", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ModuleViewItem("Bsc in Computer Networks", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ModuleViewItem("Bsc in Network Engineering", "20.1 Batch Ply", "Images/modules.png"));
-        Modules.add(new ModuleViewItem("Bsc in Software Engineering", "20.1 Batch Ply", "Images/modules.png"));
+        Modules = new ArrayList<ViewItem>();
+        Modules.add(new ViewItem("Bsc in Software Engineering", "19.2 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("Bsc in Cyber Security", "19.2 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("Bsc in Computer Networks", "19.2 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("Bsc in Network Engineering", "20.1 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("Bsc in Software Engineering", "20.1 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("MIS", "20.1 Batch Ply", "Images/modules.png"));
 
 
         //Load the modules
 
         int r=0, c=0;
-        for (ModuleViewItem module:Modules) {
+        for (ViewItem module:Modules) {
             c++;
-            Node crModule = module.Create();
+            Node crModule = module.CreateModuleItem();
             ModuleView.add(crModule, c, r);
             ModuleView.setMargin(crModule, new Insets(0,40,20,0));
             if(c>1) {
