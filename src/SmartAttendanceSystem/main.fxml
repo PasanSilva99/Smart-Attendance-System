@@ -66,6 +66,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+            <Label layoutX="200.0" layoutY="483.0" textFill="#b91515" AnchorPane.bottomAnchor="86.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="262.0" AnchorPane.topAnchor="483.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="Anchor4" layoutX="12.0" layoutY="667.0" prefHeight="263.0" prefWidth="225.0">
