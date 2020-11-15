@@ -1,12 +1,17 @@
 package SmartAttendanceSystem;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+import javax.swing.text.View;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +23,9 @@ public class Modules implements Initializable {
     GridPane ModuleView;
     @FXML
     ImageView testImage;
-
+    @FXML
+    Label title_;
+    
     List<ViewItem> Modules;
 
     @Override
@@ -39,6 +46,19 @@ public class Modules implements Initializable {
         for (ViewItem module:Modules) {
             c++;
             Node crModule = module.CreateModuleItem();
+
+            EventHandler<MouseEvent> ItemClickedEvent = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    ItemClickedF(module);
+                }
+
+            };
+
+            crModule.addEventFilter(MouseEvent.MOUSE_CLICKED, ItemClickedEvent);
+
+
+
             ModuleView.add(crModule, c, r);
             ModuleView.setMargin(crModule, new Insets(0,40,20,0));
             if(c>1) {
@@ -48,5 +68,9 @@ public class Modules implements Initializable {
 
         }
 
+    }
+
+    public void ItemClickedF(ViewItem ClickedItem){
+        title_.setText("Clicked On " + ClickedItem.getModuleName());
     }
 }

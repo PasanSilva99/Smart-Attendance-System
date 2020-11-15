@@ -8,9 +8,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.geometry.Insets?>
 <AnchorPane prefHeight="463.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.Modules">
    <children>
-      <Label layoutX="354.0" layoutY="38.0" text="MODULES">
+      <Label fx:id="title_" layoutX="354.0" layoutY="38.0" text="MODULES">
          <font>
             <Font name="Felix Titling" size="44.0" />
          </font>
@@ -18,7 +19,8 @@
       <ScrollPane hbarPolicy="NEVER" layoutX="127.0" layoutY="106.0" pannable="true" prefHeight="326.0" prefWidth="641.0" style="-fx-border-color: transparent; -fx-background-color: transparent;">
         <content>
           <VBox>
-              <GridPane fx:id="ModuleView" alignment="CENTER" hgap="10" prefHeight="0.0" prefWidth="641.0" vgap="10">
+              <GridPane fx:id="ModuleView" alignment="CENTER" hgap="10" prefHeight="0.0" prefWidth="641.0" vgap="10" >
+                  <padding><Insets top="10" right="5" bottom="5" left="5"/></padding>
 
               </GridPane>
 
