@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane prefHeight="600.0" prefWidth="1100.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.MainPage">
    <children>
       <AnchorPane fx:id="topBar" layoutX="251.0" layoutY="100.0" prefHeight="100.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -33,20 +40,19 @@
       </AnchorPane>
       <AnchorPane layoutX="793.0" prefHeight="120.0" prefWidth="344.0" style="-fx-background-color: #BFC0C4; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="-20.0">
          <children>
-            <MenuButton layoutX="119.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #BFC0C4;" text="MenuButton" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="55.0">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </MenuButton>
             <ImageView fx:id="img_Pic" fitHeight="70.0" fitWidth="70.0" layoutX="36.0" layoutY="36.0" pickOnBounds="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="36.0">
                <image>
                   <Image url="@Images/profile.jpg" />
                </image>
             </ImageView>
+            <ComboBox fx:id="cb_accountSettings" layoutX="117.0" layoutY="59.0" prefHeight="25.0" prefWidth="187.0" promptText="User Name" style="-fx-background-color: #BFC0C4;" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="59.0" >
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Two"/>
+                     <String fx:value="One"/>
+                  </FXCollections>
+               </items>
+            </ComboBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="187.0" layoutY="27.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="27.0">
