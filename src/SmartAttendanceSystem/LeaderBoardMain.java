@@ -31,12 +31,12 @@ public class LeaderBoardMain implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         LeaderBoardModules = new ArrayList<ViewItem>();
-        LeaderBoardModules.add(new ViewItem("Bsc in Software Engineering", "19.2 Batch Ply", "Images/modules.png"));
-        LeaderBoardModules.add(new ViewItem("Bsc in Cyber Security", "19.2 Batch Ply", "Images/modules.png"));
-        LeaderBoardModules.add(new ViewItem("Bsc in Computer Networks", "19.2 Batch Ply", "Images/modules.png"));
-        LeaderBoardModules.add(new ViewItem("Bsc in Network Engineering", "20.1 Batch Ply", "Images/modules.png"));
-        LeaderBoardModules.add(new ViewItem("Bsc in Software Engineering", "20.1 Batch Ply", "Images/modules.png"));
-        LeaderBoardModules.add(new ViewItem("MIS", "20.1 Batch Ply", "Images/modules.png"));
+        LeaderBoardModules.add(new ViewItem("SE01", "Bsc in Software Engineering", "19.2 Batch Ply", "Images/modules.png"));
+        LeaderBoardModules.add(new ViewItem("CS01", "Bsc in Cyber Security", "19.2 Batch Ply", "Images/modules.png"));
+        LeaderBoardModules.add(new ViewItem("CN01", "Bsc in Computer Networks", "19.2 Batch Ply", "Images/modules.png"));
+        LeaderBoardModules.add(new ViewItem("NE02","Bsc in Network Engineering", "20.1 Batch Ply", "Images/modules.png"));
+        LeaderBoardModules.add(new ViewItem("SE02","Bsc in Software Engineering", "20.1 Batch Ply", "Images/modules.png"));
+        LeaderBoardModules.add(new ViewItem("MIS02", "MIS", "20.1 Batch Ply", "Images/modules.png"));
 
 
         //Load the modules
