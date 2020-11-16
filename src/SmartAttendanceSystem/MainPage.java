@@ -21,7 +21,7 @@ public class MainPage implements Initializable {
     @FXML
     AnchorPane topBar;
     @FXML
-    AnchorPane base;
+    public AnchorPane base;
     @FXML
     ImageView img_Pic;
     @FXML
@@ -116,9 +116,13 @@ public class MainPage implements Initializable {
     }
     @FXML
     public void NavModulesClick(MouseEvent mouseEvent) throws IOException {
-        AnchorPane page = FXMLLoader.load(getClass().getResource("Modules.fxml"));
+        FXMLLoader loder = new FXMLLoader();
+        loder.setLocation(getClass().getResource("Modules.fxml"));
+        AnchorPane page = loder.load();
         base.getChildren().clear();
         base.getChildren().setAll(page);
+        Modules Mpage = loder.getController();
+        Mpage.setMainPage(this);
     }
 
     public void NavAnalyticsEnter(MouseEvent mouseEvent)

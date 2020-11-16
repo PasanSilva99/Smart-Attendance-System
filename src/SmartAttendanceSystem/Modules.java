@@ -2,6 +2,7 @@ package SmartAttendanceSystem;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -12,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 import javax.swing.text.View;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +30,18 @@ public class Modules implements Initializable {
     
     List<ViewItem> Modules;
 
+    MainPage mainPage;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Modules = new ArrayList<ViewItem>();
-        Modules.add(new ViewItem("Bsc in Software Engineering", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("Bsc in Cyber Security", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("Bsc in Computer Networks", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("Bsc in Network Engineering", "20.1 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("Bsc in Software Engineering", "20.1 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("MIS", "20.1 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("SE01", "Bsc in Software Engineering", "19.2 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("CS01", "Bsc in Cyber Security", "19.2 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("CN01", "Bsc in Computer Networks", "19.2 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("NE02","Bsc in Network Engineering", "20.1 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("SE02","Bsc in Software Engineering", "20.1 Batch Ply", "Images/modules.png"));
+        Modules.add(new ViewItem("MIS02", "MIS", "20.1 Batch Ply", "Images/modules.png"));
 
 
         //Load the modules
@@ -50,7 +54,11 @@ public class Modules implements Initializable {
             EventHandler<MouseEvent> ItemClickedEvent = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    ItemClickedF(module);
+                    try {
+                        ItemClickedF(module);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             };
@@ -69,8 +77,20 @@ public class Modules implements Initializable {
         }
 
     }
+    public void setMainPage(MainPage mainPage){
+        this.mainPage = mainPage;
+    }
 
-    public void ItemClickedF(ViewItem ClickedItem){
-        title_.setText("Clicked On " + ClickedItem.getModuleName());
+    public void ItemClickedF(ViewItem ClickedItem) throws IOException {
+        FXMLLoader loder = new FXMLLoader();
+        loder.setLocation(getClass().getResource("SessionSelection.fxml"));
+        AnchorPane page = loder.load();
+        SessionSelection Mpage = loder.getController();
+        Mpage.getBase(mainPage);
+        Mpage.setModule(ClickedItem);
+        mainPage.base.getChildren().clear();
+        mainPage.base.getChildren().setAll(page);
+
+
     }
 }

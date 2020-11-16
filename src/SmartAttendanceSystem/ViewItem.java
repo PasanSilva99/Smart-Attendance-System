@@ -19,6 +19,8 @@ import java.io.File;
 
 public class ViewItem extends AnchorPane {
 
+    public String ModuleCode;
+
     public String ModuleName;
     public String Batch;
     public String ImagePath;
@@ -26,6 +28,14 @@ public class ViewItem extends AnchorPane {
     public String SessionDate;
     public boolean isHovering;
     public boolean isClicked;
+
+    public String getModuleCode() {
+        return ModuleCode;
+    }
+
+    public void setModuleCode(String moduleCode) {
+        ModuleCode = moduleCode;
+    }
 
     public String getBatch() {
         return Batch;
@@ -86,7 +96,8 @@ public class ViewItem extends AnchorPane {
     @Override
     public String toString() {
         return "ViewItem{" +
-                "ModuleName='" + ModuleName + '\'' +
+                "ModuleCode='"+ModuleCode+ '\'' +
+                ", ModuleName='" + ModuleName + '\'' +
                 ", Batch='" + Batch + '\'' +
                 ", ImagePath='" + ImagePath + '\'' +
                 ", SessionName='" + SessionName + '\'' +
@@ -96,7 +107,8 @@ public class ViewItem extends AnchorPane {
                 '}';
     }
 
-    public ViewItem(String ModuleName, String Batch, String ImagePath) {
+    public ViewItem(String ModuleCode, String ModuleName, String Batch, String ImagePath) {
+        this.ModuleCode = ModuleCode;
         this.ModuleName = ModuleName;
         this.Batch = Batch;
         this.ImagePath = ImagePath;
