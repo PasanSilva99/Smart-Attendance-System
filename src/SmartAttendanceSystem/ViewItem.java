@@ -389,7 +389,7 @@ public class ViewItem extends AnchorPane {
             error.setRightAnchor(ModuleDetails, 10.0);
             error.setBottomAnchor(ModuleDetails, 9.0);
 
-            ModuleDetails.setText("Error Setting Module");
+            ModuleDetails.setText("Error Setting Session");
 
             error.getChildren().addAll(ModuleImage, ModuleDetails);
 
