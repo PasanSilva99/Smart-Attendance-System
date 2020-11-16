@@ -33,5 +33,10 @@
             </VBox>
          </content>
       </ScrollPane>
+      <Label fx:id="title_" layoutX="626.0" layoutY="83.0" prefHeight="36.0" prefWidth="157.0" text="Label">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
