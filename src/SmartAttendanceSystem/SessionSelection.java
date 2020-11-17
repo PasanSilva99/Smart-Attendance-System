@@ -1,14 +1,21 @@
 package SmartAttendanceSystem;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
-import java.awt.event.MouseEvent;
+import javax.accessibility.AccessibleValue;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,6 +30,8 @@ public class SessionSelection implements Initializable {
 
     @FXML
     Label lbl_selectedItem;
+    @FXML
+    GridPane scrl_sessionItem;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,6 +51,24 @@ public class SessionSelection implements Initializable {
     public void setModule(ViewItem ClickedItem){
         this.ClickedItem=ClickedItem;
         lbl_selectedItem.setText(ClickedItem.ModuleName);
+
+        List<Session> AvailableSessions;
+
+        AvailableSessions = new SessionLoder().LoadSessions(ClickedItem.ModuleCode, LocalDate.now().format(DateTimeFormatter.ofPattern("dd:MM:yyyy")));
+
+        int c=0,r=0;
+        for (Session _session:AvailableSessions){
+            c++;
+            ViewItem item = new ViewItem(_session.SessionName, _session.getStartTime() + " - " + _session.getEndTime());
+            Node sessionItem = item.CreateSessionItem();
+            scrl_sessionItem.add(sessionItem,c,r);
+            scrl_sessionItem.setMargin(sessionItem, new Insets(0,40,20,0));
+            if(c>1) {
+                r++;
+                c=0;
+            }
+        }
+
     }
 
     public void getBase(MainPage base){

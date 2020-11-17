@@ -23,7 +23,7 @@ public class ViewItem extends AnchorPane {
 
     public String ModuleName;
     public String Batch;
-    public String ImagePath;
+    public String ImagePath = "Images/modules.png";
     public String SessionName;
     public String SessionDate;
     public boolean isHovering;
@@ -273,7 +273,7 @@ public class ViewItem extends AnchorPane {
             ViewItemBack = new AnchorPane();
             ViewItemBack.setStyle("-fx-background-color:#DEDDDD; -fx-border-radius:20px; -fx-background-radius:20px; -fx-border-color: gray; -fx-border-width: 0px 0px 1px 0px");
             ViewItemBack.setPrefWidth(275);
-            ViewItemBack.setPrefHeight(100);
+            ViewItemBack.setPrefHeight(80);
 
             ImageView ModuleImage = new ImageView();
             File file = new File(ImagePath);
@@ -373,6 +373,7 @@ public class ViewItem extends AnchorPane {
 
 
             return ViewItemBack;
+
         }
         catch (Exception e){
 
@@ -382,6 +383,7 @@ public class ViewItem extends AnchorPane {
             error.setPrefHeight(100);
 
             ImageView ModuleImage = new ImageView();
+
             File file = new File(ImagePath);
             ModuleImage.setImage(new Image(file.toURI().toString()));
             ModuleImage.setFitWidth(60);

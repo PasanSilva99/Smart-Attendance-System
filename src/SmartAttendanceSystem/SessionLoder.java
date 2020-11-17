@@ -28,7 +28,16 @@ public class SessionLoder {
     }
 
     public List<Session> LoadSessions(String ModuleCode, String Date){
-        List<Session> sessionList = new ArrayList<>();
+
+        List<Session> allSessions = GetAllSessions(); // Store all the sessions
+        List<Session> sessionList = new ArrayList<>(); // Valid sessions
+
+        for (Session session:allSessions) {
+            if(session.ModuleCode == ModuleCode && session.Date == Date)
+                sessionList.add(session);
+        }
+
+
 
         return sessionList;
     }
