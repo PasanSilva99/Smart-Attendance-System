@@ -47,5 +47,5 @@ public class SessionSelection implements Initializable {
     public void getBase(MainPage base){
         this.base = base;
     }
-}//
+}
 
