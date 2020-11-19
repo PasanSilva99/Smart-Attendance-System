@@ -1,0 +1,12 @@
+
+#IntelliJ Generated Files
+.idea/libraries/lib.xml
+
+#Generated Binary Files
+*.class
+*.class
+out/production/Smart-Attendance-System/SmartAttendanceSystem/ViewItem$1.class
+
+#Generated Output
+/out/
+*.class
