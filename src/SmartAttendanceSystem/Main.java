@@ -13,8 +13,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         primaryStage.setTitle("Student");
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root, 600, 200));
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setScene(new Scene(root, 1100, 600));
         primaryStage.show();
     }
 
