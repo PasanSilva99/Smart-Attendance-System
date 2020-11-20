@@ -59,7 +59,7 @@ public class SessionSelection implements Initializable {
         int c=0,r=0;
         for (Session _session:AvailableSessions){
             c++;
-            ViewItem item = new ViewItem(_session.SessionName, _session.getStartTime() + " - " + _session.getEndTime());
+            ViewItem item = new ViewItem(_session.SessionName, _session.getDate() + " "+_session.getStartTime() + " - " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd:MM:yyyy")));
             Node sessionItem = item.CreateSessionItem();
             scrl_sessionItem.add(sessionItem,c,r);
             scrl_sessionItem.setMargin(sessionItem, new Insets(0,40,20,0));
