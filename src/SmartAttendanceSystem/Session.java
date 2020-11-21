@@ -39,7 +39,7 @@ public class Session {
     }
 
     public void setStartTime(String hours, String minutes) {
-        StartTime = hours+":"+minutes+":00";
+        StartTime = hours+":"+minutes;
     }
 
     public String getEndTime() {
@@ -47,7 +47,7 @@ public class Session {
     }
 
     public void setEndTime(String hours, String minutes) {
-        EndTime = hours+":"+minutes+":00";
+        EndTime = hours+":"+minutes;
     }
 
     public void setDate(String Day, String Month, String Year){
