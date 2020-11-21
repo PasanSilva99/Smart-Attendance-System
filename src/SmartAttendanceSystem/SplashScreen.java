@@ -52,7 +52,7 @@ public class SplashScreen implements Initializable {
         };
 
 
-        TestTimer.schedule(testTask, 100, 1000);
+        TestTimer.schedule(testTask, 100, 500);
     }
     
     public void startApplication() {
