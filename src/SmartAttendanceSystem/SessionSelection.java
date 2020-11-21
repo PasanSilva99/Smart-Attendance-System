@@ -54,7 +54,7 @@ public class SessionSelection implements Initializable {
 
         List<Session> AvailableSessions;
 
-        AvailableSessions = new SessionLoder().LoadSessions(ClickedItem.ModuleCode, LocalDate.now().format(DateTimeFormatter.ofPattern("dd:MM:yyyy")));
+        AvailableSessions = new SessionLoder().LoadSessions(ClickedItem.ModuleCode);
 
         int c=0,r=0;
         for (Session _session:AvailableSessions){
