@@ -38,7 +38,7 @@ public class Modules implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //Load the modules
-        Modules = ModulesDAO.getModules();
+        Modules = ModulesDAO.ModuleList;
 
         int r=0, c=0;
         for (ViewItem module:Modules) {
