@@ -36,6 +36,7 @@ public class ModulesDAO {
             ResultSet rs=stmt.executeQuery("select * from module");
             while(rs.next()) {
 
+                //Fetch Details
                 String ModuleCode = rs.getString(1);
                 String ModuleName = rs.getString(2);
                 String ImagePath = rs.getString(3);
