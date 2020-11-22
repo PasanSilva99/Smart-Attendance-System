@@ -12,12 +12,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-import javax.swing.text.View;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
 
 public class Modules implements Initializable {
 
@@ -27,7 +27,9 @@ public class Modules implements Initializable {
     ImageView testImage;
     @FXML
     Label title_;
-    
+
+    String Batch = "19.2";
+
     List<ViewItem> Modules;
 
     MainPage mainPage;
@@ -35,16 +37,8 @@ public class Modules implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Modules = new ArrayList<ViewItem>();
-        Modules.add(new ViewItem("SE01", "Bsc in Software Engineering", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("CS01", "Bsc in Cyber Security", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("CN01", "Bsc in Computer Networks", "19.2 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("NE02","Bsc in Network Engineering", "20.1 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("SE02","Bsc in Software Engineering", "20.1 Batch Ply", "Images/modules.png"));
-        Modules.add(new ViewItem("MIS02", "MIS", "20.1 Batch Ply", "Images/modules.png"));
-
-
         //Load the modules
+        Modules = ModulesDAO.getModules();
 
         int r=0, c=0;
         for (ViewItem module:Modules) {
