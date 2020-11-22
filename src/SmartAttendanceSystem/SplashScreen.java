@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,25 +27,25 @@ public class SplashScreen implements Initializable {
     ProgressBar pgb_status;
     @FXML
     Label lbl_status;
+    @FXML
+    ProgressIndicator pgi_ind;
 
-    Double statusProgress = 0.0;
+    Double progress = 0.0;
 
     Stage rootStage;
 
-    public void updateProgress(Double statusProgress){
-        Platform.runLater(() ->lbl_status.setText(statusProgress.toString()));
-        Platform.runLater(() ->pgb_status.setProgress(statusProgress));
-    }
+    Double Shift = (double)1/1.0;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void updateProgress(String statusProgress,Double ShiftBy){
+        Platform.runLater(() ->lbl_status.setText(statusProgress));
+        this.progress+=ShiftBy;
+        Platform.runLater(() ->pgb_status.setProgress(this.progress));
+
         Timer TestTimer = new Timer();
         TimerTask testTask = new TimerTask() {
             @Override
             public void run() {
-                statusProgress+=0.1;
-                updateProgress(statusProgress);
-                if(statusProgress>=1){
+                if(progress >= 1){
                     Platform.runLater(() ->startApplication());
                     TestTimer.cancel();
                 }
@@ -52,7 +54,20 @@ public class SplashScreen implements Initializable {
         };
 
 
-        TestTimer.schedule(testTask, 100, 500);
+        TestTimer.schedule(testTask, 3000);
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(ModulesDAO.checkModules()){
+            updateProgress("Connection Succeeded", Shift);
+        }
+        else {
+            updateProgress("SERVER ERROR!: Connection Failed", 1.0);
+            pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
+            pgi_ind.setStyle("-fx-accent: orange;");
+        }
     }
     
     public void startApplication() {

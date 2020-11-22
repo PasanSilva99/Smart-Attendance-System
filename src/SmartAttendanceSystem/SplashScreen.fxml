@@ -16,7 +16,7 @@
             <Image url="@Images/SplashScreen.png" />
          </image>
       </ImageView>
-      <ProgressIndicator layoutX="274.0" layoutY="186.0" prefHeight="100.0" prefWidth="134.0" style="-fx-accent: green;" />
+      <ProgressIndicator fx:id="pgi_ind" layoutX="274.0" layoutY="186.0" prefHeight="100.0" prefWidth="134.0" style="-fx-accent: green;" />
       <ProgressBar fx:id="pgb_status" blendMode="DARKEN" cache="true" layoutX="14.0" layoutY="274.0" prefHeight="14.0" prefWidth="574.0" style="-fx-accent: green; -fx-border-color: white;" />
       <Label fx:id="lbl_status" layoutX="19.0" layoutY="253.0" prefHeight="17.0" prefWidth="566.0" text="Initializing...">
          <font>
