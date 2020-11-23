@@ -40,32 +40,30 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="Anchor6" layoutY="203.0" prefHeight="469.0" prefWidth="481.0">
-         <children>
-            <TextField fx:id="TextSID" layoutX="75.0" layoutY="31.0" prefHeight="31.0" prefWidth="320.0" promptText="Student ID" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="31.0" style="-fx-background-color: #d3d3d3;-fx-background-radius: 30;-fx-border-radius: 25" />
-            <TextField fx:id="TextFirstName" layoutX="75.0" layoutY="87.0" prefHeight="31.0" prefWidth="320.0" promptText="First Name" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" style="-fx-background-color:#D3D3D3;-fx-background-radius:30;-fx-border-radius:25; "/>
-            <TextField fx:id="TextSurname" layoutX="75.0" layoutY="163.0" prefHeight="31.0" prefWidth="320.0" promptText="Surname" AnchorPane.bottomAnchor="296.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" style="-fx-background-color: #D3D3D3;-fx-background-radius: 30;-fx-border-radius: 25;/>
+      <TextField fx:id="TextSID" layoutX="75.0" layoutY="31.0" prefHeight="31.0" prefWidth="320.0" promptText="Student ID" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="31.0" style="-fx-background-color: #d3d3d3;-fx-background-radius: 30;-fx-border-radius: 25; />
+            <TextField fx:id="TextFirstName" layoutX="75.0" layoutY="87.0" prefHeight="31.0" prefWidth="320.0" promptText="First Name" AnchorPane.bottomAnchor="352.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" style="-fx-background-color:#D3D3D3;-fx-background-radius:30;-fx-border-radius: 25;/>
+      <TextField fx:id="TextSurname" layoutX="75.0" layoutY="163.0" prefHeight="31.0" prefWidth="320.0" promptText="Surname" AnchorPane.bottomAnchor="296.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" style="-fx-background-color: #D3D3D3;-fx-background-radius: 30;-fx-border-radius: 25;/>
             <TextField fx:id="TextEmail" layoutX="75.0" layoutY="201.0" prefHeight="31.0" prefWidth="320.0" promptText="Email" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="201.0"/>
-            <MenuButton fx:id="MenuDegree" layoutX="75.0" layoutY="263.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="126.0" text="Degree" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="75.0">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Software Engineering" />
-                <MenuItem mnemonicParsing="false" text="Computer Networking" />
-              </items>
-            </MenuButton>
-            <MenuButton fx:id="MenuBatch" layoutX="75.0" layoutY="358.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="126.0" text="Batch" AnchorPane.bottomAnchor="128.0">
-              <items>
-                <MenuItem mnemonicParsing="false" text="19.1" />
-                <MenuItem mnemonicParsing="false" text="19.2" />
-              </items>
-            </MenuButton>
-            <Button fx:id="ButtonCheckDevice" layoutX="75.0" layoutY="427.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="Check Device" textAlignment="CENTER">
+      <MenuButton fx:id="MenuDegree" layoutX="75.0" layoutY="263.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="126.0" text="Degree" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="75.0">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Software Engineering" />
+            <MenuItem mnemonicParsing="false" text="Computer Networking" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="MenuBatch" layoutX="75.0" layoutY="358.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="126.0" text="Batch" AnchorPane.bottomAnchor="128.0">
+         <items>
+            <MenuItem mnemonicParsing="false" text="19.1" />
+            <MenuItem mnemonicParsing="false" text="19.2" />
+         </items>
+      </MenuButton>
+      <Button fx:id="ButtonCheckDevice" layoutX="75.0" layoutY="427.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="Check Device" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="ButtonRegister" layoutX="293.0" layoutY="428.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="113.0" text="Register" textAlignment="CENTER" textFill="" style="-fx-background-color:#f54c4c; -fx-background-radius:20;/>
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="ButtonRegister" layoutX="293.0" layoutY="428.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="113.0" text="Register" textAlignment="CENTER" textFill="" style="-fx-background-color:#f54c4c; -fx-background-radius:20;>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Label fx:id="LabelCorrect" layoutX="194.0" layoutY="428.0" prefHeight="31.0" prefWidth="53.0" />
+      <Label fx:id="LabelCorrect" layoutX="194.0" layoutY="428.0" prefHeight="31.0" prefWidth="53.0" />
          </children>
       </AnchorPane>
    </children>
