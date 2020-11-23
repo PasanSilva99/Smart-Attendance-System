@@ -76,7 +76,7 @@ public class MainScene  implements Initializable {
     public void module_Click(ViewItem2 ClickedItem) throws IOException {
 
         if (ClickedItem.id == "ISEN2002") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizView1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
             AnchorPane pane =loader.load();
             SecondController controller = (SecondController) loader.getController();
             controller.setdate("ISEN2002","9AM-11PM","L102");
@@ -86,7 +86,7 @@ public class MainScene  implements Initializable {
 
 
         if (ClickedItem.id == "SOFT255SL") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizView1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
             AnchorPane pane =loader.load();
             SecondController controller = (SecondController) loader.getController();
             controller.setdate("SOFT255","12PM-2PM","L101");
@@ -96,7 +96,7 @@ public class MainScene  implements Initializable {
 
         }
         if (ClickedItem.id == "ISEN253") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizView1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
             AnchorPane pane =loader.load();
             SecondController controller = (SecondController) loader.getController();
             controller.setdate("ISEN253","3PM-4PM","L001");
@@ -106,7 +106,7 @@ public class MainScene  implements Initializable {
 
         }
         if (ClickedItem.id == "PUSL233SL") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QuizView1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
             AnchorPane pane =loader.load();
             SecondController controller = (SecondController) loader.getController();
             controller.setdate("SOFT253SL","4PM-5PM","L009");

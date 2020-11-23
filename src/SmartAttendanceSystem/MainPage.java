@@ -84,10 +84,12 @@ public class MainPage implements Initializable {
         ap_home.setStyle("-fx-background-color : #636363; ");
     }
 
-
-    public void NavHomeClick(MouseEvent mouseEvent)
+    @FXML
+    public void NavHomeClick(MouseEvent mouseEvent) throws IOException
     {
-
+        AnchorPane page = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        base.getChildren().clear();
+        base.getChildren().setAll(page);
     }
 
 
