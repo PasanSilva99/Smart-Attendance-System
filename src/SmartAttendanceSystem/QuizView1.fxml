@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="base3" prefHeight="463.0" prefWidth="937.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.SecondController">
+   <children>
+      <Button fx:id="btnquiz1" layoutX="196.0" layoutY="162.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: #32CD32;" text="Quiz 01">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnconfirm" layoutX="296.0" layoutY="311.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="350.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: #32CD32;" text="Confirm" textAlignment="CENTER">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnquiz2" layoutX="526.0" layoutY="162.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-background-color: #32CD32;" text="Quiz 02">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnstatus1" layoutX="183.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Status">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblstatus1" layoutX="273.0" layoutY="260.0" prefHeight="21.0" prefWidth="163.0" style="-fx-background-color: transparent;" text="Yet To Complete" textFill="#e10505">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblstatus2" layoutX="603.0" layoutY="260.0" style="-fx-background-color: transparent;" text="Yet To Complete" textFill="#e10505">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnstatus2" layoutX="513.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Status">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font></Button>
+      <Button fx:id="btnback" layoutX="881.0" layoutY="58.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="52.0" style="-fx-background-color: #C0C0C0; -fx-background-radius: 10; -fx-border-radius: 10;" />
+      <ImageView fx:id="backimage" fitHeight="23.0" fitWidth="28.0" layoutX="896.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@SmartAttendanceSystem/Images/back.png" />
+         </image></ImageView>
+      <Label fx:id="lblsub" layoutX="-2.0" layoutY="45.0" style="-fx-border-width: 0; -fx-background-color: #D3D3D3; -fx-border-color: #808080; -fx-background-radius: 10; -fx-border-radius: 10;" text="Label" />
+   </children>
+</AnchorPane>
