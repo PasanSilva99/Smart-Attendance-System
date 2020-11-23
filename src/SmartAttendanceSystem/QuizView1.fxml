@@ -44,7 +44,7 @@
       <Button fx:id="btnback" layoutX="881.0" layoutY="58.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="52.0" style="-fx-background-color: #C0C0C0; -fx-background-radius: 10; -fx-border-radius: 10;" />
       <ImageView fx:id="backimage" fitHeight="23.0" fitWidth="28.0" layoutX="896.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@SmartAttendanceSystem/Images/back.png" />
+            <Image url="@Images/ww.png" />
          </image></ImageView>
       <Label fx:id="lblsub" layoutX="-2.0" layoutY="45.0" style="-fx-border-width: 0; -fx-background-color: #D3D3D3; -fx-border-color: #808080; -fx-background-radius: 10; -fx-border-radius: 10;" text="Label" />
    </children>

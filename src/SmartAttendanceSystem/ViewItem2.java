@@ -41,7 +41,7 @@ public class ViewItem2 extends AnchorPane {
             ModuleItem.setPrefHeight(50.0);
             ModuleItem.setPrefWidth(230.0);
             ModuleItem.setStyle("-fx-background-color:#DEDDDD; -fx-border-radius:20px; -fx-background-radius:20px; -fx-border-color: gray; -fx-border-width: 0px 0px 1px 0px");
-            File file = new File(System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\info.png");
+            File file = new File(System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\info.png");
             TopInfoImage = new ImageView(new Image(file.toURI().toString()));
             TopInfoImage.setFitHeight(20.0);
             TopInfoImage.setFitWidth(20.0);
