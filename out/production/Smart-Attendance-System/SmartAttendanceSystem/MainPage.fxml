@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,17 +17,17 @@
                   <Image url="@Images/javaLogo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="716.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="28.0">
+            <ImageView fx:id="btn_bell" fitHeight="38.0" fitWidth="34.0" layoutX="716.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="28.0">
                <image>
                   <Image url="@Images/bell.png" />
                </image>
             </ImageView>
-            <Label layoutX="451.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_date" layoutX="451.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="42.0">
                <font>
                   <Font name="Felix Titling" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="533.0" layoutY="42.0" text="08:56:03 AM" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_time" layoutX="533.0" layoutY="42.0" text="08:56:03 AM" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="42.0">
                <font>
                   <Font name="Felix Titling" size="14.0" />
                </font>
@@ -37,30 +36,24 @@
       </AnchorPane>
       <AnchorPane layoutX="793.0" prefHeight="120.0" prefWidth="344.0" style="-fx-background-color: #BFC0C4; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="-20.0">
          <children>
-            <MenuButton layoutX="119.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="169.0" style="-fx-background-color: #BFC0C4;" text="MenuButton" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="55.0">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </MenuButton>
             <ImageView fx:id="img_Pic" fitHeight="70.0" fitWidth="70.0" layoutX="36.0" layoutY="36.0" pickOnBounds="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="36.0">
                <image>
                   <Image url="@Images/profile.jpg" />
                </image>
             </ImageView>
+            <ComboBox fx:id="cmb_menu" layoutX="114.0" layoutY="59.0" prefHeight="25.0" prefWidth="187.0" promptText="User Name" style="-fx-background-color: #BFC0C4;" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="59.0" >
+
+            </ComboBox>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="187.0" layoutY="27.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="27.0">
+      <AnchorPane fx:id="pnl_search" layoutX="187.0" layoutY="27.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="27.0">
          <children>
             <ImageView fitHeight="24.0" fitWidth="21.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="6.0">
                <image>
                   <Image url="@Images/search.png" />
                </image>
             </ImageView>
-            <TextField layoutX="38.0" layoutY="4.0" promptText="Search..." style="-fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="4.0" />
+            <TextField fx:id="tb_search" layoutX="38.0" layoutY="4.0" promptText="Search..." style="-fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="4.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="151.0" prefHeight="463.0" prefWidth="121.0" style="-fx-background-color: #636363; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="-20.0">

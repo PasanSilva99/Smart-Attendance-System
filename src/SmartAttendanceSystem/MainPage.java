@@ -1,9 +1,12 @@
 package SmartAttendanceSystem;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.ComboBox;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -18,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class MainPage implements Initializable {
 
+    public ComboBox cmb_menu;
     @FXML
     AnchorPane topBar;
     @FXML
@@ -47,12 +51,15 @@ public class MainPage implements Initializable {
     @FXML
     javafx.scene.control.Label lbl_analytics;
 
+    String UserName;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set a clip to apply rounded border to the original image.
         Rectangle clip = new Rectangle(
                 img_Pic.getFitWidth(), img_Pic.getFitHeight()
         );
+
         clip.setArcWidth(img_Pic.getFitHeight());
         clip.setArcHeight(img_Pic.getFitHeight());
         img_Pic.setClip(clip);
@@ -70,6 +77,17 @@ public class MainPage implements Initializable {
 
         // store the rounded image in the imageView.
         img_Pic.setImage(image);
+
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "Login",
+                        "SignUp",
+                        "Register Device",
+                        "Settings",
+                        "Logout"
+                );
+
+        cmb_menu.setItems(options);
 
     }
 
