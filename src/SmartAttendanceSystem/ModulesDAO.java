@@ -25,7 +25,6 @@ public class ModulesDAO {
 
         Connection con = null;
         try{
-            try{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
@@ -50,9 +49,6 @@ public class ModulesDAO {
             }
             con.close();
 
-            }catch(SQLException e){
-                System.out.println(e);
-                }
 
     isConnected = true;
 
@@ -68,5 +64,42 @@ public class ModulesDAO {
         fetchModules();
         return isConnected;
 
+    }
+
+    public static void AddModule(String moduleCode, String moduleName, String imagePath){
+        Connection con = null;
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+
+            System.out.println("Connection to SAS_DB Succeeded.");
+
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery("select * from module");
+            while(rs.next()) {
+
+                //Fetch Details
+                String ModuleCode = rs.getString(1);
+                String ModuleName = rs.getString(2);
+                String ImagePath = rs.getString(3);
+
+                System.out.println("Fetching : " + ModuleCode + "  " + ModuleName + "  " + ImagePath);
+
+                if (ImagePath == null)
+                    ImagePath = "Images/modules.png";
+
+                ModuleList.add(new ViewItem(ModuleCode, ModuleName, "", ImagePath));
+            }
+            con.close();
+
+
+            isConnected = true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("SEVER ERROR!!! Connection to SAS_DB Failed!\n"+e);
+            isConnected = false;
+        }
     }
 }
