@@ -1,6 +1,8 @@
 package SmartAttendanceSystem;
 
 public class Module {
-    private String ModuleName;
-    private String ModuleCode;
+    public String ModuleCode;
+    public String ModuleName;
+    public String LecturerName;
+    public String DegreeProgram;
 }

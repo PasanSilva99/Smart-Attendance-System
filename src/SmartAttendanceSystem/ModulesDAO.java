@@ -1,7 +1,5 @@
 package SmartAttendanceSystem;
 
-import com.sun.glass.ui.View;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +9,7 @@ public class ModulesDAO {
     public static List<ViewItem> ModuleList;
     public static boolean isConnected = false;
 
-    public List<ViewItem> getModules(){
+    public List<ViewItem> getModules() throws SQLException {
         if(ModuleList!=null){
             return ModuleList;
         }else{
@@ -20,12 +18,13 @@ public class ModulesDAO {
         }
     }
 
-    public static void fetchModules(){
+    public static void fetchModules() throws SQLException {
         ModuleList = new ArrayList<ViewItem>();
 
         Connection con = null;
+
         try{
-            try{
+
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
@@ -47,26 +46,49 @@ public class ModulesDAO {
                     ImagePath = "Images/modules.png";
 
                 ModuleList.add(new ViewItem(ModuleCode, ModuleName, "", ImagePath));
+
             }
-            con.close();
-
-            }catch(SQLException e){
-                System.out.println(e);
-                }
-
-    isConnected = true;
+            isConnected = true;
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("SEVER ERROR!!! Connection to SAS_DB Failed!\n"+e);
             isConnected = false;
+        }  finally {
+            con.close();
         }
 
     }
 
-    public static boolean checkModules(){
+    public static boolean checkModules() throws SQLException {
         fetchModules();
         return isConnected;
+    }
 
+    public static void addModule(Module module) throws SQLException {
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            String sql = "INSERT INTO module (module_code, module_name, lecturer_name, degree_program) VALUES (?, ?, ?, ?)";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, module.ModuleCode);
+            statement.setString(2, module.ModuleName);
+            statement.setString(3, module.LecturerName);
+            statement.setString(4, module.DegreeProgram);
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new module was inserted successfully!");
+            }
+        }catch (Exception e){
+
+        }finally {
+            if(!con.isClosed())
+            {
+                con.close();
+            }
+        }
     }
 }

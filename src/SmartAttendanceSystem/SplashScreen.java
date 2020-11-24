@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -60,13 +61,17 @@ public class SplashScreen implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(ModulesDAO.checkModules()){
-            updateProgress("Connection Succeeded", Shift);
-        }
-        else {
-            updateProgress("SERVER ERROR!: Connection Failed", 1.0);
-            pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
-            pgi_ind.setStyle("-fx-accent: orange;");
+        try {
+            if(ModulesDAO.checkModules()){
+                updateProgress("Connection Succeeded", Shift);
+            }
+            else {
+                updateProgress("SERVER ERROR!: Connection Failed", 1.0);
+                pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
+                pgi_ind.setStyle("-fx-accent: orange;");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
     
