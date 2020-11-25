@@ -103,8 +103,8 @@ public class UserDAO {
     public static void RemoveUser(String nsbm_id) throws SQLException {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             String sql = "DELETE FROM user WHERE nsbm_id="+nsbm_id;
 
             PreparedStatement statement = con.prepareStatement(sql);
