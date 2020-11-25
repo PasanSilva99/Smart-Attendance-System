@@ -64,7 +64,7 @@ public class ModulesDAO {
         return isConnected;
     }
 
-    public static void addModule(Module module) throws SQLException {
+    public void addModule(Module module) throws SQLException {
         Connection con = null;
         try {
             Class.forName(DAO.SqlDriverClass);
@@ -93,7 +93,7 @@ public class ModulesDAO {
         }
     }
 
-    public static void RemoveModule(String moduleCode) throws SQLException {
+    public void RemoveModule(String moduleCode) throws SQLException {
         Connection con = null;
         try {
             Class.forName(DAO.SqlDriverClass);
@@ -114,7 +114,7 @@ public class ModulesDAO {
         }
     }
 
-    public static void UpdateModule(String moduleCode, Module module) throws SQLException {
+    public void UpdateModule(String moduleCode, Module module) throws SQLException {
         Connection con = null;
         try {
             Class.forName(DAO.SqlDriverClass);

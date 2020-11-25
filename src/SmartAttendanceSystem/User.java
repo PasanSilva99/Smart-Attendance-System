@@ -13,6 +13,9 @@ public class User {
     private String priviladgeLevel;
     public List<Module> moduleList;
 
+    public User() {
+    }
+
     public User(String nsbm_id, String first_name, String last_name,
                 String nsbm_email, String password_hash, String degree_program,
                 String batch, String priviladgeLevel) {
@@ -26,9 +29,6 @@ public class User {
         this.batch = batch;
         this.priviladgeLevel = priviladgeLevel;
 
-    }
-
-    public User() {
     }
 
     public String getNsbm_id() {
@@ -93,5 +93,13 @@ public class User {
 
     public void setPriviladgeLevel(String priviladgeLevel) {
         this.priviladgeLevel = priviladgeLevel;
+    }
+
+    public List<Module> getModuleList() {
+        return moduleList;
+    }
+
+    public void setModuleList(List<Module> moduleList) {
+        this.moduleList = moduleList;
     }
 }
