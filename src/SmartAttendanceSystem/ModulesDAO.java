@@ -88,6 +88,52 @@ public class ModulesDAO {
             if(!con.isClosed())
             {
                 con.close();
+
+            }
+        }
+    }
+
+    public static void RemoveModule(String moduleCode) throws SQLException {
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            String sql = "DELETE FROM module WHERE module_code="+moduleCode;
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.execute();
+        }catch (Exception e){
+
+        }finally {
+            if(!con.isClosed())
+            {
+                con.close();
+            }
+        }
+    }
+
+    public static void UpdateModule(String moduleCode, Module module) throws SQLException {
+        Connection con = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            String sql = "UPDATE module SET module_name=?, lecturer_name=?, degree_program=?)";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, module.ModuleName);
+            statement.setString(2, module.LecturerName);
+            statement.setString(3, module.DegreeProgram);
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("A new module was inserted successfully!");
+            }
+        }catch (Exception e){
+
+        }finally {
+            if(!con.isClosed())
+            {
+                con.close();
             }
         }
     }
