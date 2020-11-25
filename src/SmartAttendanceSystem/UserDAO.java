@@ -8,6 +8,10 @@ public class UserDAO {
     public static List<User> UsersList;
     public static boolean isConnected = false;
 
+    public static String SqlDriverClass = DAO.SqlDriverClass;
+    public static String DatabaseUrl = DAO.DatabaseUrl;
+    public static String DBuser = DAO.DBuser;
+    public static String DBpass = DAO.DBpass;
     public List<User> getUsers() throws SQLException {
         if (UsersList == null) {
             fetchUsers();
@@ -22,9 +26,8 @@ public class UserDAO {
 
         try{
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            Class.forName(SqlDriverClass);  // get the driver class
+            con = DriverManager.getConnection(DatabaseUrl, DBuser, DBpass);  // Connect to the database
 
             System.out.println("Connection to SAS_DB Succeeded.");
 
@@ -150,6 +153,19 @@ public class UserDAO {
     }
 
     public static void getModules(User user){
-        
+        Connection con = null;
+        try{
+            Class.forName(SqlDriverClass);
+            con = DriverManager.getConnection(DatabaseUrl, DBuser, DBpass);  // Connect to the database
+
+            System.out.println("Connection to SAS_DB Succeeded.");
+
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery("SELECT * FROM user");
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
