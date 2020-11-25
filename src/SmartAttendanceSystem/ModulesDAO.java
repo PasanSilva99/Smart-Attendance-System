@@ -10,16 +10,14 @@ public class ModulesDAO {
     public static boolean isConnected = false;
 
     public List<ViewItem> getModules() throws SQLException {
-        if(ModuleList!=null){
-            return ModuleList;
-        }else{
+        if (ModuleList == null) {
             fetchModules();
-            return ModuleList;
         }
+        return ModuleList;
     }
 
     public static void fetchModules() throws SQLException {
-        ModuleList = new ArrayList<ViewItem>();
+        ModuleList = new ArrayList<>();
 
         Connection con = null;
 
@@ -55,6 +53,7 @@ public class ModulesDAO {
             System.out.println("SEVER ERROR!!! Connection to SAS_DB Failed!\n"+e);
             isConnected = false;
         }  finally {
+            assert con != null;
             con.close();
         }
 
@@ -73,18 +72,19 @@ public class ModulesDAO {
             String sql = "INSERT INTO module (module_code, module_name, lecturer_name, degree_program) VALUES (?, ?, ?, ?)";
 
             PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, module.ModuleCode);
-            statement.setString(2, module.ModuleName);
-            statement.setString(3, module.LecturerName);
-            statement.setString(4, module.DegreeProgram);
+            statement.setString(1, module.getModuleCode());
+            statement.setString(2, module.getModuleName());
+            statement.setString(3, module.getLecturerName());
+            statement.setString(4, module.getDegreeProgram());
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("A new module was inserted successfully!");
             }
         }catch (Exception e){
-
+            System.out.println("New module insertion Error");
         }finally {
+            assert con != null;
             if(!con.isClosed())
             {
                 con.close();
@@ -102,9 +102,11 @@ public class ModulesDAO {
 
             PreparedStatement statement = con.prepareStatement(sql);
             statement.execute();
+            System.out.println("Successfully Removed the module");
         }catch (Exception e){
-
+            System.out.println("Error removing module");
         }finally {
+            assert con != null;
             if(!con.isClosed())
             {
                 con.close();
@@ -126,14 +128,15 @@ public class ModulesDAO {
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("A new module was inserted successfully!");
+                System.out.println("Module was Updated successfully!");
             }
         }catch (Exception e){
-
+            System.out.println("Failed to Update the module");
         }finally {
-            if(!con.isClosed())
+            assert con != null;  // con may produce a nullEx
+            if(!con.isClosed())  // if the connection is not closed
             {
-                con.close();
+                con.close();     // close the connection
             }
         }
     }

@@ -35,41 +35,50 @@ public class SplashScreen implements Initializable {
 
     Stage rootStage;
 
-    Double Shift = (double)1/1.0;
+    Double Shift = (double)0.5;
 
     public void updateProgress(String statusProgress,Double ShiftBy){
         Platform.runLater(() ->lbl_status.setText(statusProgress));
         this.progress+=ShiftBy;
         Platform.runLater(() ->pgb_status.setProgress(this.progress));
 
-        Timer TestTimer = new Timer();
-        TimerTask testTask = new TimerTask() {
-            @Override
-            public void run() {
-                if(progress >= 1){
-                    Platform.runLater(() ->startApplication());
-                    TestTimer.cancel();
-                }
-
-            }
-        };
-
-
-        TestTimer.schedule(testTask, 3000);
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            if(ModulesDAO.checkModules()){
-                updateProgress("Connection Succeeded", Shift);
+            if(ModulesDAO.checkModules()) {
+                updateProgress("Server Connection Succeeded", Shift);
             }
             else {
-                updateProgress("SERVER ERROR!: Connection Failed", 1.0);
+                updateProgress("SERVER ERROR!: Connection Failed", 0.0);
                 pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
                 pgi_ind.setStyle("-fx-accent: orange;");
             }
+
+            if(UserDAO.CheckUsers()) {
+                updateProgress("User Connection Succeeded", Shift);
+            }
+            else {
+                updateProgress("SERVER ERROR!: Connection to User Failed", 0.0);
+                pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
+                pgi_ind.setStyle("-fx-accent: orange;");
+            }
+
+            Timer TestTimer = new Timer();
+            TimerTask testTask = new TimerTask() {
+                @Override
+                public void run() {
+                    if(progress >= 1){
+                        Platform.runLater(() ->startApplication());
+                        TestTimer.cancel();
+                    }
+
+                }
+            };
+
+
+            TestTimer.schedule(testTask, 3000);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

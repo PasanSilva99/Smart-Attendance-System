@@ -15,3 +15,5 @@ out/production/Smart-Attendance-System/SmartAttendanceSystem/ViewItem$1.class
 /.idea/
 out/production/Smart-Attendance-System/SmartAttendanceSystem/MainPage.class
 *.class
+*.class
+out/production/Smart-Attendance-System/SmartAttendanceSystem/Module.class
