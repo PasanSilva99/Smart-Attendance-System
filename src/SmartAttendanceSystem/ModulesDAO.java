@@ -23,9 +23,9 @@ public class ModulesDAO {
 
         try{
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(DAO.SqlDriverClass);
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
 
             System.out.println("Connection to SAS_DB Succeeded.");
 
@@ -67,8 +67,8 @@ public class ModulesDAO {
     public static void addModule(Module module) throws SQLException {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             String sql = "INSERT INTO module (module_code, module_name, lecturer_name, degree_program) VALUES (?, ?, ?, ?)";
 
             PreparedStatement statement = con.prepareStatement(sql);
@@ -96,8 +96,8 @@ public class ModulesDAO {
     public static void RemoveModule(String moduleCode) throws SQLException {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             String sql = "DELETE FROM module WHERE module_code="+moduleCode;
 
             PreparedStatement statement = con.prepareStatement(sql);
@@ -117,8 +117,8 @@ public class ModulesDAO {
     public static void UpdateModule(String moduleCode, Module module) throws SQLException {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             String sql = "UPDATE module SET module_name=?, lecturer_name=?, degree_program=?)";
 
             PreparedStatement statement = con.prepareStatement(sql);
