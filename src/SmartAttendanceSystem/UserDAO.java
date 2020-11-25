@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    public static List<User> UsersList;
-    public static boolean isConnected = false;
+    public List<User> UsersList;
+    public boolean isConnected = false;
 
     public List<User> getUsers() throws SQLException {
         if (UsersList == null) {
@@ -15,16 +15,16 @@ public class UserDAO {
         return UsersList;
     }
 
-    public static void fetchUsers() throws SQLException {
+    public void fetchUsers() throws SQLException {
         UsersList = new ArrayList<>();
 
         Connection con = null;
 
         try{
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(DAO.SqlDriverClass);
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
 
             System.out.println("Connection to SAS_DB Succeeded.");
 
@@ -60,16 +60,16 @@ public class UserDAO {
 
     }
 
-    public static boolean CheckUsers() throws SQLException {
+    public boolean CheckUsers() throws SQLException {
         fetchUsers();
         return isConnected;
     }
 
-    public static void AddUser(User user) throws SQLException {
+    public void AddUser(User user) throws SQLException {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             String sql = "INSERT INTO user (nsbm_id, first_name, last_name, nsbm_email, password_hash, degree_program, batch, privilege_level) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement statement = con.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class UserDAO {
         }
     }
 
-    public static void RemoveUser(String nsbm_id) throws SQLException {
+    public void RemoveUser(String nsbm_id) throws SQLException {
         Connection con = null;
         try {
             Class.forName(DAO.SqlDriverClass);
@@ -117,11 +117,11 @@ public class UserDAO {
         }
     }
 
-    public static void UpdateUser(User user) throws SQLException {
+    public void UpdateUser(User user) throws SQLException {
         Connection con = null;
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sas_db", "root", "root");
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             String sql = "UPDATE user SET first_name=?, last_name=?, nsbm_email=?, password_hash=?, degree_program=?, batch=?, privilege_level=? WHERE nsbm_id=?";
 
             PreparedStatement statement = con.prepareStatement(sql);
@@ -149,7 +149,7 @@ public class UserDAO {
         }
     }
 
-    public static void getModules(User user){
+    public void getModules(User user){
         
     }
 }

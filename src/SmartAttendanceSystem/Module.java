@@ -1,10 +1,10 @@
 package SmartAttendanceSystem;
 
 public class Module {
-    public static String ModuleCode;
-    public static String ModuleName;
-    public static String LecturerName;
-    public static String DegreeProgram;
+    public String ModuleCode;
+    public String ModuleName;
+    public String LecturerName;
+    public String DegreeProgram;
 
     public String getModuleCode() {
         return ModuleCode;

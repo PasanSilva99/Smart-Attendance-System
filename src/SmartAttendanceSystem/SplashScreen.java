@@ -47,7 +47,7 @@ public class SplashScreen implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            if(ModulesDAO.checkModules()) {
+            if(new ModulesDAO().checkModules()) {
                 updateProgress("Server Connection Succeeded", Shift);
             }
             else {
@@ -56,7 +56,7 @@ public class SplashScreen implements Initializable {
                 pgi_ind.setStyle("-fx-accent: orange;");
             }
 
-            if(UserDAO.CheckUsers()) {
+            if(new UserDAO().CheckUsers()) {
                 updateProgress("User Connection Succeeded", Shift);
             }
             else {
