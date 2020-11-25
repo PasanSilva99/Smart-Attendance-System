@@ -50,7 +50,7 @@ public class DeviceDAO {
      */
     public Device GetDeviceNamebyMac(String MacAddress){return null;}
 
-    /**
+    /** 
      * Search Device Mac Address by NickName
      * @param DeviceName Name of the Device
      * @return Device
