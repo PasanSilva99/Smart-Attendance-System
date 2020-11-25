@@ -13,7 +13,9 @@ public class User {
     private String priviladgeLevel;
     public List<Module> moduleList;
 
-    public User(String nsbm_id, String first_name, String last_name, String nsbm_email, String password_hash, String degree_program, String batch, String priviladgeLevel) {
+    public User(String nsbm_id, String first_name, String last_name,
+                String nsbm_email, String password_hash, String degree_program,
+                String batch, String priviladgeLevel) {
         this.nsbm_id = nsbm_id;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -23,6 +25,7 @@ public class User {
         this.degree_program = degree_program;
         this.batch = batch;
         this.priviladgeLevel = priviladgeLevel;
+
     }
 
     public User() {

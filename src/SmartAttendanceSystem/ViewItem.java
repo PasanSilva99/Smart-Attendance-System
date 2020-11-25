@@ -146,11 +146,14 @@ public class ViewItem extends AnchorPane {
             ModuleDetails.setPrefWidth(180);
             ModuleDetails.setPrefHeight(80);
             ModuleDetails.setFont(new Font("Felix Titling", 11));
+            ModuleDetails.setWrapText(true);
+            ModuleDetails.setMaxWidth(175);
             ViewItemBack.setTopAnchor(ModuleDetails, 9.0);
             ViewItemBack.setRightAnchor(ModuleDetails, 10.0);
             ViewItemBack.setBottomAnchor(ModuleDetails, 9.0);
 
             ModuleDetails.setText(ModuleName + "\n" + Batch);
+
 
             ViewItemBack.getChildren().addAll(ModuleImage, ModuleDetails);
 
