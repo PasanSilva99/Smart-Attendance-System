@@ -1,21 +1,16 @@
 package SmartAttendanceSystem;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-import javax.accessibility.AccessibleValue;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -44,7 +39,7 @@ public class SessionSelection implements Initializable {
         AnchorPane page = loder.load();
         base.base.getChildren().clear();
         base.base.getChildren().setAll(page);
-        Modules Mpage = loder.getController();
+        ModulesPage Mpage = loder.getController();
         Mpage.setMainPage(base);
     }
 

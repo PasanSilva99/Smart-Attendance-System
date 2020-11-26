@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.geometry.Insets?>
-<AnchorPane prefHeight="463.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.Modules">
+<AnchorPane prefHeight="463.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.ModulesPage">
    <children>
       <Label fx:id="title_" layoutX="354.0" layoutY="38.0" text="MODULES">
          <font>

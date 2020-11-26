@@ -141,7 +141,7 @@ public class MainPage implements Initializable {
         AnchorPane page = loder.load();
         base.getChildren().clear();
         base.getChildren().setAll(page);
-        Modules Mpage = loder.getController();
+        ModulesPage Mpage = loder.getController();
         Mpage.setMainPage(this);
     }
 
