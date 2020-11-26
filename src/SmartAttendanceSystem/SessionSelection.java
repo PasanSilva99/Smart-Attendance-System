@@ -35,7 +35,7 @@ public class SessionSelection implements Initializable {
 
     public void BackRequested() throws IOException {
         FXMLLoader loder = new FXMLLoader();
-        loder.setLocation(getClass().getResource("Modules.fxml"));
+        loder.setLocation(getClass().getResource("ModulesPage.fxml"));
         AnchorPane page = loder.load();
         base.base.getChildren().clear();
         base.base.getChildren().setAll(page);

@@ -3,6 +3,7 @@ package SmartAttendanceSystem;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 public class UserDAO {
     public List<User> UsersList;
@@ -42,11 +43,12 @@ public class UserDAO {
                 String Batch = rs.getString(7);
                 String PrivilegeLevel = rs.getString(8);
 
-                System.out.println("Fetching Users : " + NSBM_ID + "  " + FirstName + "  " + LastName + "  " + Email + "  " + DegreeProgram + "  " + Batch + "  " + PrivilegeLevel);
+                if(!(NSBM_ID==null)) {
+                    System.out.println("Fetching Users : " + NSBM_ID + "  " + FirstName + "  " + LastName + "  " + Email + "  " + DegreeProgram + "  " + Batch + "  " + PrivilegeLevel);
 
 
-                UsersList.add(new User(NSBM_ID, FirstName, LastName, Email, PasswordHash, DegreeProgram, Batch, PrivilegeLevel));
-
+                    UsersList.add(new User(NSBM_ID, FirstName, LastName, Email, PasswordHash, DegreeProgram, Batch, PrivilegeLevel));
+                }
             }
             isConnected = true;
 
@@ -151,5 +153,10 @@ public class UserDAO {
 
     public void getModules(User user){
         
+    }
+
+    public boolean checkLoggedUser(){
+
+        return true;
     }
 }
