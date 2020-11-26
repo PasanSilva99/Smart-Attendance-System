@@ -3,6 +3,8 @@ package SmartAttendanceSystem;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeviceDAO {
 
@@ -184,33 +186,215 @@ public class DeviceDAO {
      */
     public void RecordLogin(Device device, String ipAddress) throws SQLException {
         LocalDateTime now = LocalDateTime.now();
-        RecordLogin(device.mac_address, ipAddress, Format_TimeSTamp.format(now));
+        RecordLogin(device.Mac_address, ipAddress, Format_TimeSTamp.format(now));
         device.UpdateIPList();
+    }
+
+    private String GetDeviceType(int id) throws SQLException {
+        String type="Not Registered";
+
+        //SQL Connection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            // SQL Statement
+            String sql = "SELECT type FROM device_type WHERE id=?";
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            // Executing and retrieving the Result Set
+            ResultSet resultSet = statement.executeQuery();
+
+            // While reads
+            while(resultSet.next()){
+                type = resultSet.getString(2);
+            }
+
+        }catch (Exception e){
+            System.out.println("ERROR <!> Fetching Device Types !!! "+ e.getMessage());
+        }finally {
+            // if the connection is not null and the connection is not closed
+            if(con!=null&&!con.isClosed()){
+                con.close();  // Close the Connection
+            }
+        }
+        return type;
     }
 
     /**
      * Fetch all device types from the database
      */
-    private void GetDeviceTypes(){}
+    private List<DeviceType> GetDeviceTypes() throws SQLException {
+        List<DeviceType> types = new ArrayList<>();
+
+        //SQL Connection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            // SQL Statement
+            String sql = "SELECT * FROM device_type";
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            // Executing and retrieving the Result Set
+            ResultSet resultSet = statement.executeQuery();
+
+            // While reads
+            while(resultSet.next()){
+             int id = resultSet.getInt(1);
+             String type = resultSet.getString(2);
+
+             types.add(new DeviceType(id, type));
+            }
+
+        }catch (Exception e){
+            System.out.println("ERROR <!> Fetching Device Types !!! "+ e.getMessage());
+        }finally {
+            // if the connection is not null and the connection is not closed
+            if(con!=null&&!con.isClosed()){
+                con.close();  // Close the Connection
+            }
+        }
+        return types;
+    }
 
     /**
      * Add a new device type to the database
      */
-    private void AddDeviceTypes(){}
+    private void AddDeviceTypes(String newType) throws SQLException {
+        // SQL Connection Variable
+        Connection con = null;
+        try {
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "INSERT INTO device_type (type) VALUES(?)";
+            // SQL statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            // Adding Values
+            statement.setString(1, newType);
+
+            // Executing the variable with a variable to collect how many rows updated
+            int rowsInserted = statement.executeUpdate();
+
+            if(rowsInserted>0){
+                System.out.println("A new Devices Type Added Successfully");
+            }
+            else {
+                System.out.println("Unknown Error at Adding new Device Type");
+            }
+
+        }catch (Exception e){
+            System.out.println("ERROR <!> Adding New Device Type !!! "+e.getMessage());
+        }finally {
+            // if the connection is not null and the connection is not closed
+            if(con!=null&&!con.isClosed()){
+                con.close();  // Close the Connection
+            }
+        }
+
+    }
 
     /**
      * Search Device NickName By Mac Address
-     * @param MacAddress Mac Address of the logged in device
+     * @param macAddress Mac Address of the logged in device
      *
      * @return Device
      */
-    public Device GetDeviceNamebyMac(String MacAddress){return null;}
+    public Device GetDeviceNamebyMac(String macAddress) throws SQLException {
+        Device device = null;
+
+        //SQL Connection
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Statement
+            String sql = "SELECT * FROM device WHERE mac_address=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, macAddress);
+
+            // Executing the statement while saving to a result set
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                String MacAddress = resultSet.getString(1);
+                String DeviceName = resultSet.getString(2);
+                int DeviceType = resultSet.getInt(3);
+                device = new Device(MacAddress, DeviceName, DeviceType);
+                System.out.println("Fetching: "+device+" --> "+MacAddress);
+            }
+
+        }catch (Exception e){
+            System.out.println("ERROR <!> Finding Device for "+ macAddress+ " !!! ");
+        }finally {
+            // if the connection is not null and the connection is not closed
+            if(con!=null&&!con.isClosed()){
+                con.close();  // Close the Connection
+            }
+        }
+
+        return device;
+    }
 
     /** 
      * Search Device Mac Address by NickName
-     * @param DeviceName Name of the Device
+     * @param deviceName Name of the Device
      * @return Device
      */
-    public Device GetDeviceMacByName(String DeviceName){return null;}
+    public Device GetDeviceMacByName(String deviceName) throws SQLException {
+        Device device = null;
+
+        //SQL Connection
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Statement
+            String sql = "SELECT * FROM device WHERE mac_address=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, deviceName);
+
+            // Executing the statement while saving to a result set
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                String MacAddress = resultSet.getString(1);
+                String DeviceName = resultSet.getString(2);
+                int DeviceType = resultSet.getInt(3);
+                device = new Device(MacAddress, DeviceName, DeviceType);
+                System.out.println("Fetching: "+device+" --> "+MacAddress);
+            }
+
+        }catch (Exception e){
+            System.out.println("ERROR <!> Finding Device for "+ deviceName+ " !!! ");
+        }finally {
+            // if the connection is not null and the connection is not closed
+            if(con!=null&&!con.isClosed()){
+                con.close();  // Close the Connection
+            }
+        }
+
+        return device;
+    }
 }
 

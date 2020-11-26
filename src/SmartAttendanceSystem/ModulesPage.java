@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class Modules implements Initializable {
+public class ModulesPage implements Initializable {
 
     @FXML
     GridPane ModuleView;
