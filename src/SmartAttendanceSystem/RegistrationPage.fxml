@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane fx:id="Anchor1" prefHeight="752.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.RegistrationPage">
    <children>
       <AnchorPane fx:id="Anchor2" layoutX="14.0" layoutY="14.0" prefHeight="43.0" prefWidth="40.0">
@@ -55,7 +54,7 @@
             <TextField fx:id="txtSurname" layoutX="167.0" layoutY="160.0" prefHeight="30.0" promptText="Surname" AnchorPane.bottomAnchor="372.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
             <TextField fx:id="txtEmail" layoutX="167.0" layoutY="213.0" prefHeight="30.0" promptText="Email" AnchorPane.bottomAnchor="317.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
             <ComboBox fx:id="comboDegree" layoutX="113.0" layoutY="267.0" prefHeight="30.0" prefWidth="150.0" promptText="Degree" AnchorPane.bottomAnchor="262.0" />
-            <ComboBox fx:id="comboBatch" layoutX="113.0" layoutY="320.0" prefHeight="30.0" prefWidth="150.0" promptText="Batch" AnchorPane.bottomAnchor="207.0" />
+            <ComboBox fx:id="comboBatch" layoutX="290.0" layoutY="267.0" prefHeight="30.0" prefWidth="131.0" promptText="Batch" AnchorPane.bottomAnchor="262.0" />
             <Button fx:id="btnRegister" layoutX="362.0" layoutY="454.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: #ff4d4d; -fx-font-style: Bold; -fx-background-radius: 10;" text="Register" textFill="#fcf7f7">
                <font>
                   <Font size="13.0" />
@@ -67,6 +66,8 @@
                </font>
             </Button>
             <Label fx:id="lblStatus" layoutX="221.0" layoutY="457.0" prefHeight="25.0" prefWidth="40.0" />
+            <TextField fx:id="txtPswd" layoutX="113.0" layoutY="321.0" prefHeight="30.0" promptText="Password" AnchorPane.bottomAnchor="207.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
+            <TextField fx:id="txtConPswd" layoutX="113.0" layoutY="363.0" prefHeight="30.0" promptText="Confirm Password" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
          </children>
       </AnchorPane>
    </children>
