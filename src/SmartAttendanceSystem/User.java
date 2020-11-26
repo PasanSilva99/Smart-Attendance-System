@@ -13,9 +13,6 @@ public class User {
     private String priviladgeLevel;
     public List<Module> moduleList;
 
-    public User() {
-    }
-
     public User(String nsbm_id, String first_name, String last_name,
                 String nsbm_email, String password_hash, String degree_program,
                 String batch, String priviladgeLevel) {

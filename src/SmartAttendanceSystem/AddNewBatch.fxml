@@ -11,8 +11,8 @@
 
 <AnchorPane prefHeight="223.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SmartAttendanceSystem.AddNewBatch">
    <children>
-      <Button fx:id="btn_save" layoutX="295.0" layoutY="220.0" mnemonicParsing="false" style="-fx-background-color: #008a00;" text="Save" textFill="WHITE" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="14.0" />
-      <Button fx:id="btn_cancel" layoutX="238.5" layoutY="220.0" mnemonicParsing="false" style="-fx-background-color: #a20025;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="60.0" />
+      <Button fx:id="btn_save" layoutX="295.0" layoutY="220.0" mnemonicParsing="false" style="-fx-background-color: #008a00;" text="Save" textFill="WHITE" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="14.0" onAction="#btn_save_Click"/>
+      <Button fx:id="btn_cancel" layoutX="238.5" layoutY="220.0" mnemonicParsing="false" style="-fx-background-color: #a20025;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="17.0" AnchorPane.rightAnchor="60.0" onAction="#btn_cancel_Click" />
       <ImageView fitHeight="117.0" fitWidth="125.0" layoutX="225.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Images/signInShapeUp.png" />

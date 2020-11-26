@@ -137,7 +137,7 @@ public class MainPage implements Initializable {
     @FXML
     public void NavModulesClick(MouseEvent mouseEvent) throws IOException {
         FXMLLoader loder = new FXMLLoader();
-        loder.setLocation(getClass().getResource("Modules.fxml"));
+        loder.setLocation(getClass().getResource("ModulesPage.fxml"));
         AnchorPane page = loder.load();
         base.getChildren().clear();
         base.getChildren().setAll(page);

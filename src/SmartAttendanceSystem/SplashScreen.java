@@ -35,7 +35,7 @@ public class SplashScreen implements Initializable {
 
     Stage rootStage;
 
-    Double Shift = (double)0.5;
+    Double Shift = (double)0.3;
 
     public void updateProgress(String statusProgress,Double ShiftBy){
         Platform.runLater(() ->lbl_status.setText(statusProgress));
@@ -63,6 +63,14 @@ public class SplashScreen implements Initializable {
                 updateProgress("SERVER ERROR!: Connection to User Failed", 0.0);
                 pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
                 pgi_ind.setStyle("-fx-accent: orange;");
+            }
+            if(new UserDAO().checkLoggedUser()) {
+                updateProgress("Logged In", 0.4);
+            }
+            else {
+                updateProgress("No User Logged in", 0.0);
+                pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
+                pgi_ind.setStyle("-fx-accent: yellow;");
             }
 
             Timer TestTimer = new Timer();
