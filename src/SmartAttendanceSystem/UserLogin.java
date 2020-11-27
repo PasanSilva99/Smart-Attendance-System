@@ -70,7 +70,7 @@ public class UserLogin {
         Process p = Runtime.getRuntime().exec(command);
 
         BufferedReader inn = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        Pattern pattern = Pattern.compile(".*Default Gateway.*: (.*)");
+        Pattern pattern = Pattern.compile(".*DHCP Server.*: (.*)");
 
         while (true) {
             String line = inn.readLine();
