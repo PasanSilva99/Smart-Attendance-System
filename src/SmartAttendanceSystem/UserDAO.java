@@ -1,8 +1,11 @@
 package SmartAttendanceSystem;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.prefs.Preferences;
 
 public class UserDAO {
@@ -155,8 +158,92 @@ public class UserDAO {
         
     }
 
-    public boolean checkLoggedUser(){
+    public boolean checkLoggedUser() throws FileNotFoundException, SQLException {
 
-        return true;
+        File file = new File("User.bin");
+        if(file.exists())
+        {
+            Scanner scan = new Scanner(file);
+            if (scan.hasNext()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public String GetPrivilege(String UserId) throws SQLException {
+        String privilege_level  = null;
+        // Sql connection
+        Connection con = null;
+        try{
+
+            Class.forName(DAO.SqlDriverClass);
+            con= DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            String sql = "SELECT privilege_level FROM user WHERE nsbm_id=?";
+
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+              preparedStatement.setString(1, UserId);
+
+              try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()){
+                    privilege_level = resultSet.getString(1);
+                }
+              }
+            }
+
+
+        }catch (Exception e){
+            return null;
+        }finally {
+            con.close();
+        }
+
+        return privilege_level;
+    }
+
+    public User getUser(String email, String password) throws SQLException {
+        User user = null;
+        // SQL Connection Variable
+        Connection con = null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "SELECT * FROM user WHERE nsbm_email=? AND password_hash=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, email);
+            statement.setString(2, password);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+              while (resultSet.next()){
+                  String nsbm_id = resultSet.getString(1);
+                  String first_name = resultSet.getString(2);
+                  String last_name = resultSet.getString(3);
+                  String nsbm_emails = resultSet.getString(4);
+                  String password_hash = resultSet.getString(5);
+                  String degree_program = resultSet.getString(6);
+                  String batch = resultSet.getString(7);
+                  String privilege_level = resultSet.getString(8);
+
+                  user = new User(nsbm_id, first_name, last_name, nsbm_emails, password_hash, degree_program, batch, privilege_level);
+              }
+            }
+
+        }catch (Exception e){
+
+        }finally {
+            assert con != null;
+            con.close();
+        }
+
+        return user;
     }
 }

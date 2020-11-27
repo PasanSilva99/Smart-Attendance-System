@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -66,32 +68,78 @@ public class SplashScreen implements Initializable {
             }
             if(new UserDAO().checkLoggedUser()) {
                 updateProgress("Logged In", 0.4);
+
             }
             else {
                 updateProgress("No User Logged in", 0.0);
                 pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
                 pgi_ind.setStyle("-fx-accent: yellow;");
+
+                Timer LoginTimer = new Timer();
+                TimerTask LoginTask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if(progress <= 1){
+                            Platform.runLater(() -> startLoginProcess());
+                            Platform.runLater(() -> closeApp(pgb_status));
+                            LoginTimer.cancel();
+                        }
+
+                    }
+                };
+
+                System.out.println("Starting Login Progress");
+                LoginTimer.schedule(LoginTask, 3000);
             }
 
-            Timer TestTimer = new Timer();
-            TimerTask testTask = new TimerTask() {
+            Timer AppTimer = new Timer();
+            TimerTask AppTask = new TimerTask() {
                 @Override
                 public void run() {
                     if(progress >= 1){
                         Platform.runLater(() ->startApplication());
-                        TestTimer.cancel();
+                        AppTimer.cancel();
                     }
 
                 }
             };
 
 
-            TestTimer.schedule(testTask, 3000);
-        } catch (SQLException throwables) {
+            AppTimer.schedule(AppTask, 3000);
+        } catch (SQLException | FileNotFoundException throwables) {
             throwables.printStackTrace();
         }
     }
-    
+
+    public void closeApp(Node node){
+        Stage stage = (Stage) node.getScene().getWindow();
+        stage.close();
+    }
+
+    public void startLoginProcess(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("UserLogin.fxml"));
+            /*
+             * if "fx:controller" is not set in fxml
+             * fxmlLoader.setController(NewWindowController);
+             */
+            Scene scene = new Scene(fxmlLoader.load(), 366, 301);
+            Stage stage = new Stage();
+            stage.setTitle("Login");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.show();
+
+            Stage thisStage = (Stage) lbl_status.getScene().getWindow();
+            // do what you have to do
+            thisStage.close();
+
+        } catch (IOException e) {
+            System.out.println("Starting new Login");
+        }
+    }
+
     public void startApplication() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
