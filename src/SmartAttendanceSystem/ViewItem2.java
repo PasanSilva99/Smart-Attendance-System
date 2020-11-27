@@ -69,7 +69,7 @@ public class ViewItem2 extends AnchorPane {
             Label ModuleDetails = new Label();
             ModuleDetails.setPrefWidth(180);
             ModuleDetails.setPrefHeight(50);
-            ModuleDetails.setFont(new Font("Sans-serif", 12));
+            ModuleDetails.setFont(new Font("Felix Titling", 12));
             btn.setTopAnchor(ModuleDetails, 9.0);
             btn.setRightAnchor(ModuleDetails, 12.0);
             btn.setBottomAnchor(ModuleDetails, 9.0);
