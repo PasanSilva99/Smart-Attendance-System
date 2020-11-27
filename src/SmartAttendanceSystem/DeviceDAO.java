@@ -12,12 +12,11 @@ public class DeviceDAO {
      * Registers the device on to the database for further use
      * @param macAddress Mac Address of the Device
      * @param deviceName NickName For the device
-     * @param deviceType The type of the device (1-Laptop, 2-MobilePhone, 3-TabletPC, 4-Tablet, 5-Other)
      */
     DateTimeFormatter Format_TimeSTamp = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 
-    public void RegisterDevice(String macAddress, String deviceName, int deviceType) throws SQLException {
+    public void RegisterDevice(String macAddress, String deviceName) throws SQLException {
         //SQL Connection
         Connection con =null;
         try{
@@ -26,7 +25,7 @@ public class DeviceDAO {
             // SQL COnnection
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             // SQL Statement
-            String sql = "INSERT INTO device (mac_address, device_name, device_type) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO device (mac_address, device_name) VALUES (?, ?)";
 
             // Preparing a statemment
             PreparedStatement statement = con.prepareStatement(sql);
@@ -34,7 +33,6 @@ public class DeviceDAO {
             //                                (1, 2, 3)
             statement.setString(1, macAddress); // mac_address
             statement.setString(2, deviceName); // device_name
-            statement.setInt(3, deviceType); // device_type
 
             // Executing the statement with a variable to get how many records were updated
             int rowsInserted = statement.executeUpdate();
@@ -190,120 +188,6 @@ public class DeviceDAO {
         device.UpdateIPList();
     }
 
-    private String GetDeviceType(int id) throws SQLException {
-        String type="Not Registered";
-
-        //SQL Connection Variable
-        Connection con = null;
-        try{
-            // SQL Driver Class
-            Class.forName(DAO.SqlDriverClass);
-            // SQL Connection
-            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
-            // SQL Statement
-            String sql = "SELECT type FROM device_type WHERE id=?";
-            // SQL Statement
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, id);
-
-            // Executing and retrieving the Result Set
-            ResultSet resultSet = statement.executeQuery();
-
-            // While reads
-            while(resultSet.next()){
-                type = resultSet.getString(2);
-            }
-
-        }catch (Exception e){
-            System.out.println("ERROR <!> Fetching Device Types !!! "+ e.getMessage());
-        }finally {
-            // if the connection is not null and the connection is not closed
-            if(con!=null&&!con.isClosed()){
-                con.close();  // Close the Connection
-            }
-        }
-        return type;
-    }
-
-    /**
-     * Fetch all device types from the database
-     */
-    private List<DeviceType> GetDeviceTypes() throws SQLException {
-        List<DeviceType> types = new ArrayList<>();
-
-        //SQL Connection Variable
-        Connection con = null;
-        try{
-            // SQL Driver Class
-            Class.forName(DAO.SqlDriverClass);
-            // SQL Connection
-            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
-            // SQL Statement
-            String sql = "SELECT * FROM device_type";
-            // SQL Statement
-            PreparedStatement statement = con.prepareStatement(sql);
-            // Executing and retrieving the Result Set
-            ResultSet resultSet = statement.executeQuery();
-
-            // While reads
-            while(resultSet.next()){
-             int id = resultSet.getInt(1);
-             String type = resultSet.getString(2);
-
-             types.add(new DeviceType(id, type));
-            }
-
-        }catch (Exception e){
-            System.out.println("ERROR <!> Fetching Device Types !!! "+ e.getMessage());
-        }finally {
-            // if the connection is not null and the connection is not closed
-            if(con!=null&&!con.isClosed()){
-                con.close();  // Close the Connection
-            }
-        }
-        return types;
-    }
-
-    /**
-     * Add a new device type to the database
-     */
-    private void AddDeviceTypes(String newType) throws SQLException {
-        // SQL Connection Variable
-        Connection con = null;
-        try {
-            // SQL Driver Class
-            Class.forName(DAO.SqlDriverClass);
-            // SQL Connection
-            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
-
-            // SQL Quarry
-            String sql = "INSERT INTO device_type (type) VALUES(?)";
-            // SQL statement
-            PreparedStatement statement = con.prepareStatement(sql);
-            // Adding Values
-            statement.setString(1, newType);
-
-            // Executing the variable with a variable to collect how many rows updated
-            int rowsInserted = statement.executeUpdate();
-
-            if(rowsInserted>0){
-                System.out.println("A new Devices Type Added Successfully");
-            }
-            else {
-                System.out.println("Unknown Error at Adding new Device Type");
-            }
-
-        }catch (Exception e){
-            System.out.println("ERROR <!> Adding New Device Type !!! "+e.getMessage());
-        }finally {
-            // if the connection is not null and the connection is not closed
-            if(con!=null&&!con.isClosed()){
-                con.close();  // Close the Connection
-            }
-        }
-
-    }
-
     /**
      * Search Device NickName By Mac Address
      * @param macAddress Mac Address of the logged in device
@@ -334,8 +218,7 @@ public class DeviceDAO {
             while (resultSet.next()){
                 String MacAddress = resultSet.getString(1);
                 String DeviceName = resultSet.getString(2);
-                int DeviceType = resultSet.getInt(3);
-                device = new Device(MacAddress, DeviceName, DeviceType);
+                device = new Device(MacAddress, DeviceName);
                 System.out.println("Fetching: "+device+" --> "+MacAddress);
             }
 
@@ -380,8 +263,7 @@ public class DeviceDAO {
             while (resultSet.next()){
                 String MacAddress = resultSet.getString(1);
                 String DeviceName = resultSet.getString(2);
-                int DeviceType = resultSet.getInt(3);
-                device = new Device(MacAddress, DeviceName, DeviceType);
+                device = new Device(MacAddress, DeviceName);
                 System.out.println("Fetching: "+device+" --> "+MacAddress);
             }
 

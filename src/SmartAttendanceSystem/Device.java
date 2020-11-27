@@ -6,13 +6,11 @@ import java.util.List;
 public class Device {
     public String Mac_address;
     public String DeviceName;
-    public int DeviceType;
     public List<String> IPaddressList;
 
-    public Device(String macAddress, String deviceName, int deviceType) {
+    public Device(String macAddress, String deviceName) {
         Mac_address = macAddress;
         DeviceName = deviceName;
-        DeviceType = deviceType;
     }
 
     /* Getters and Setters  */
@@ -31,14 +29,7 @@ public class Device {
     public void setDeviceName(String deviceName) {
         DeviceName = deviceName;
     }
-    /* Getters and Setters  */
-    public int getDeviceType() {
-        return DeviceType;
-    }
-    /* Getters and Setters  */
-    public void setDeviceType(int deviceType) {
-        DeviceType = deviceType;
-    }
+
 
     /**
      * This method updated the IP address list according to the device mac address
