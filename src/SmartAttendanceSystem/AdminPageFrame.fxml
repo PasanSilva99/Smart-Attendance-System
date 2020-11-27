@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="SmartAttendanceSystem.AdminPage"
+            fx:controller="SmartAttendanceSystem.AdminPageFrame"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>
