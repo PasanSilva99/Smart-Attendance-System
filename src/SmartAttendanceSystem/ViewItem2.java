@@ -1,12 +1,15 @@
 package SmartAttendanceSystem;
 
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 
 import java.io.File;
+import java.io.IOException;
 
 public class ViewItem2 extends AnchorPane {
 
@@ -20,12 +23,11 @@ public class ViewItem2 extends AnchorPane {
     ImageView TopInfoImage;
     AnchorPane ModuleItem;
 
-    public ViewItem2(String ModuleName, String Time, String ImagePath, String id, String icon) {
+    public ViewItem2(String ModuleName, String Time, String ImagePath, String id) {
         this.ModuleName = ModuleName;
         this.Time = Time;
         this.ImagePath = ImagePath;
         this.id = id;
-        this.icon = icon;
 
     }
 
@@ -36,8 +38,6 @@ public class ViewItem2 extends AnchorPane {
     public AnchorPane CreateModuleItem() {
         try {
             ModuleItem = new AnchorPane();
-
-            // BackGround
             ModuleItem.setPrefHeight(50.0);
             ModuleItem.setPrefWidth(230.0);
             ModuleItem.setStyle("-fx-background-color:#DEDDDD; -fx-border-radius:20px; -fx-background-radius:20px; -fx-border-color: gray; -fx-border-width: 0px 0px 1px 0px");
@@ -47,6 +47,8 @@ public class ViewItem2 extends AnchorPane {
             TopInfoImage.setFitWidth(20.0);
             ModuleItem.setTopAnchor(TopInfoImage, -7.0);
             ModuleItem.setRightAnchor(TopInfoImage, 0.0);
+            TopInfoImage.setPickOnBounds(true);
+
 
             AnchorPane btn;
             btn = new AnchorPane();
@@ -69,10 +71,11 @@ public class ViewItem2 extends AnchorPane {
             Label ModuleDetails = new Label();
             ModuleDetails.setPrefWidth(180);
             ModuleDetails.setPrefHeight(50);
-            ModuleDetails.setFont(new Font("Felix Titling", 12));
+            ModuleDetails.setFont(new Font("Felix Titling", 11));
             btn.setTopAnchor(ModuleDetails, 9.0);
             btn.setRightAnchor(ModuleDetails, 12.0);
             btn.setBottomAnchor(ModuleDetails, 9.0);
+
 
             ModuleDetails.setText(id + "\n" + ModuleName + "\n" + Time);
             btn.getChildren().addAll(ModuleDetails, ModuleImage);
@@ -82,7 +85,6 @@ public class ViewItem2 extends AnchorPane {
             return ModuleItem;
         } catch (Exception e) {
             ModuleItem = new AnchorPane();
-            // BackGround
             ModuleItem.setPrefHeight(70.0);
             ModuleItem.setPrefWidth(230.0);
             ModuleItem.setStyle("-fx-background-color: lightgrey;");
@@ -115,7 +117,7 @@ public class ViewItem2 extends AnchorPane {
             Label ModuleDetails = new Label();
             ModuleDetails.setPrefWidth(200);
             ModuleDetails.setPrefHeight(50);
-            ModuleDetails.setFont(new Font("Sans-serif", 12));
+            ModuleDetails.setFont(new Font("Felix Titling", 11));
             btn.setTopAnchor(ModuleDetails, 9.0);
             btn.setRightAnchor(ModuleDetails, 12.0);
             btn.setBottomAnchor(ModuleDetails, 9.0);
@@ -128,15 +130,6 @@ public class ViewItem2 extends AnchorPane {
 
         }
     }
-
-    public String getModuleName() {
-        return ModuleName;
-    }
-
-    public void setModuleName(String moduleName) {
-        ModuleName = moduleName;
-    }
-
 
 }
 

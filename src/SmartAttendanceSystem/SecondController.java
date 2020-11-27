@@ -49,7 +49,7 @@ public class SecondController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lblsub.setPrefWidth(250);
+        lblsub.setPrefWidth(200);
         lblsub.setPrefHeight(70);
         lblsub.setStyle("-fx-text-alignment: Center; -fx-background-color: #C0C0C0\t; -fx-border-radius: 10; -fx-background-radius: 10");
         lblsub.setFont(Font.font("fantasy", FontWeight.BOLD, 15));

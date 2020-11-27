@@ -34,17 +34,16 @@ public class MainScene  implements Initializable {
 
 
     List<ViewItem2> Modules;
-    List<ViewItem2> samples;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Modules = new ArrayList<ViewItem2>();
-        Modules.add(new ViewItem2("Web development PlatformsL", "9AM - 11AM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "ISEN2002","1"));
-        Modules.add(new ViewItem2("Network Security", "12PM - 2PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "SOFT255SL","2"));
-        Modules.add(new ViewItem2("Lab Session Java", "3PM - 4PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "ISEN253","3"));
-        Modules.add(new ViewItem2("It Leg And Ethics Tutorial", "4PM - 5PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "PUSL233SL","4"));
+        Modules.add(new ViewItem2("Web development PlatformsL", "9AM - 11AM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "ISEN2002"));
+        Modules.add(new ViewItem2("Network Security", "12PM - 2PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "SOFT255SL"));
+        Modules.add(new ViewItem2("Lab Session Java", "3PM - 4PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "ISEN253"));
+        Modules.add(new ViewItem2("It Leg And Ethics Tutorial", "4PM - 5PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "PUSL233SL"));
 
         int r = 0, c = 0;
         for (ViewItem2 module : Modules) {
