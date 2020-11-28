@@ -85,9 +85,9 @@ public class SplashScreen implements Initializable {
                 // Retrieves the User Profile from the Database
                 user = userDAO.getUser(userEmail);
 
-                if(user!=null) {
+
                     // Checks if the user Valid
-                    if (user.getNsbm_id() != null) {
+                    if (user != null) {
                         // User is Valid
                         // Checks if the Device is Valid
                         UserLogin userLogin = new UserLogin();
@@ -129,7 +129,7 @@ public class SplashScreen implements Initializable {
                     }
                 }
 
-            }
+
             else {
                 updateProgress("No User Logged in", 0.0);
                 pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
