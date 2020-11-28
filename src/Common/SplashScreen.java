@@ -1,5 +1,8 @@
 package Common;
 
+import AdminPanel.MainPageAdmin;
+import SmartAttendanceSystem.MainPageAdmin;
+import StudentApplication.MainPage;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
