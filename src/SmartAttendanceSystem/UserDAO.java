@@ -1,9 +1,11 @@
 package SmartAttendanceSystem;
 
+import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 import java.util.prefs.Preferences;
@@ -68,6 +70,43 @@ public class UserDAO {
     public boolean CheckUsers() throws SQLException {
         fetchUsers();
         return isConnected;
+    }
+
+    public boolean CheckUser(String email, String passwordHash) throws SQLException {
+        // SQL Connection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+           // SQL Quarry
+            String sql = "SELECT COUNT(*) FROM user WHERE nsbm_email=?";
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+              while (resultSet.next())
+              {
+                  int count = resultSet.getInt(1);
+                  if(count>0)
+                  {
+                      System.out.println("User Valid");
+                      return true;
+                  }
+              }
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            assert con != null;
+            con.close();
+        }
+        return false;
     }
 
     public void AddUser(User user) throws SQLException {
@@ -245,5 +284,49 @@ public class UserDAO {
         }
 
         return user;
+    }
+
+    public User getUser(String emailAddress) throws SQLException {
+        User user = null;
+        // SQL Connection Variable
+        Connection con = null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "SELECT * FROM user WHERE nsbm_email=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, emailAddress);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()){
+                    String nsbm_id = resultSet.getString(1);
+                    String first_name = resultSet.getString(2);
+                    String last_name = resultSet.getString(3);
+                    String nsbm_emails = resultSet.getString(4);
+                    String password_hash = resultSet.getString(5);
+                    String degree_program = resultSet.getString(6);
+                    String batch = resultSet.getString(7);
+                    String privilege_level = resultSet.getString(8);
+
+                    user = new User(nsbm_id, first_name, last_name, nsbm_emails, password_hash, degree_program, batch, privilege_level);
+                }
+            }
+
+        }catch (Exception e){
+
+        }finally {
+            assert con != null;
+            con.close();
+        }
+
+        return user;
+
     }
 }

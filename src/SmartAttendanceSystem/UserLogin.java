@@ -1,20 +1,23 @@
 package SmartAttendanceSystem;
 
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,18 +34,54 @@ public class UserLogin {
 
         User user = new UserDAO().getUser(UserEmailAddress, PasswordHash);
 
-        getMacAddress();
+        String DeviceMac = getDeviceMacAddress();
+        String RouterMac = getRouterMacAddress();
+
+        if(new UserDAO().CheckUser(UserEmailAddress, PasswordHash)){
+
+            System.out.println("User Identified");
+
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            String ipAddress = getDeviceIPAddress().toString();
+            String macAddress = getDeviceMacAddress();
+            int dev = ipAddress.indexOf("/");
+
+            String deviceName = "UnNamed";
+            if (dev != -1)
+            {
+                deviceName= ipAddress.substring(0 , dev);
+            }
+
+            new DeviceDAO().RecordLogin(DeviceMac, getDeviceIPAddress().toString(), UserEmailAddress, timestamp);
+            new DeviceDAO().RegisterDevice(getDeviceMacAddress(), deviceName, UserEmailAddress);
+
+            File file = new File("User.bin");
+            FileWriter writer = new FileWriter(file);
+            writer.write(UserEmailAddress);
+            writer.close();
+        }
+        else {
+            Alert.AlertType alertAlertType = AlertType.ERROR;
+            Alert alert= new Alert(alertAlertType);
+            alert.setTitle("Login Error");
+            alert.setContentText("Please make user you entered the email and password correctly");
+            alert.setHeaderText("Cannot find user");
+            alert.show();
+        }
 
     }
+    public InetAddress getDeviceIPAddress() throws UnknownHostException {
+        InetAddress ip = InetAddress.getLocalHost();
+        System.out.println("Current IP address : " + ip.getHostAddress());
 
-    public String getMacAddress() throws IOException {
-        InetAddress ip;
+        return ip;
+
+    }
+    public String getDeviceMacAddress() throws IOException {
+        InetAddress ip = getDeviceIPAddress();
         StringBuilder sb = null;
         try {
-            
-            ip = InetAddress.getLocalHost();
-            System.out.println("Current IP address : " + ip.getHostAddress());
-
             NetworkInterface network = NetworkInterface.getByInetAddress(ip);
 
             byte[] mac = network.getHardwareAddress();
@@ -59,12 +98,11 @@ public class UserLogin {
 
             e.printStackTrace();
         }
-        getRouterAddress();
+        getRouterIPAddress();
 
         return sb.toString();
     }
-
-    public void getRouterAddress() throws IOException {
+    public String getRouterIPAddress() throws IOException {
         String routerIpAddress=null;
         String command = "ipconfig /all";
         Process p = Runtime.getRuntime().exec(command);
@@ -86,19 +124,18 @@ public class UserLogin {
         }
         System.out.println("Router IP Address: " + routerIpAddress);
 
-        getRouterMac(routerIpAddress);
+        return routerIpAddress;
 
     }
-
-    public void getRouterMac(String ipAddress) throws IOException {
-        System.out.println("1-----------------------");
+    public String getRouterMacAddress() throws IOException {
+        String ipAddress = getRouterIPAddress();
+        String routerMacAddress = null;
         String commandM = "arp -a";
         Process pM = Runtime.getRuntime().exec(commandM);
 
         BufferedReader innM = new BufferedReader(new InputStreamReader(pM.getInputStream()));
         Pattern patternM = Pattern.compile(".*"+ipAddress+" (.*)");
 
-        System.out.println("2-----------------------");
         while (true) {
             String lineM = innM.readLine();
 
@@ -107,13 +144,12 @@ public class UserLogin {
 
             Matcher mmM = patternM.matcher(lineM);
             if (mmM.matches()) {
-                System.out.println("3-----------------------");
-                System.out.println(mmM.group(1).replaceAll("\\s+","").substring(0, 17));
-                System.out.println("4-----------------------");
+                routerMacAddress = mmM.group(1).replaceAll("\\s+","").substring(0, 17);
+                System.out.println("Routuer Mac Address : " + routerMacAddress);
             }
         }
+        return routerMacAddress;
     }
-
     public String getHash(String passwordToHash){
         String generatedPassword = null;
         try {
@@ -142,12 +178,10 @@ public class UserLogin {
         return generatedPassword;
 
     }
-
     public void closeApp(Node node){
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
-
     public void btnClose_Click(){
         closeApp(btn_cancel);
     }
