@@ -39,14 +39,14 @@ public class SplashScreen implements Initializable {
 
     Stage rootStage;
 
-    Double Shift = (double)0.3;
+    Double Shift = (double) 0.3;
     User user;
 
 
-    public void updateProgress(String statusProgress,Double ShiftBy){
-        Platform.runLater(() ->lbl_status.setText(statusProgress));
-        this.progress+=ShiftBy;
-        Platform.runLater(() ->pgb_status.setProgress(this.progress));
+    public void updateProgress(String statusProgress, Double ShiftBy) {
+        Platform.runLater(() -> lbl_status.setText(statusProgress));
+        this.progress += ShiftBy;
+        Platform.runLater(() -> pgb_status.setProgress(this.progress));
 
     }
 
@@ -55,30 +55,32 @@ public class SplashScreen implements Initializable {
         UserDAO userDAO = new UserDAO();
         DeviceDAO deviceDAO = new DeviceDAO();
         try {
-            if(new ModulesDAO().checkModules()) {
+            // Check for the modules
+            if (new ModulesDAO().checkModules()) {
                 updateProgress("Server Connection Succeeded", Shift);
-            }
-            else {
+            } else {
                 updateProgress("SERVER ERROR!: Connection Failed", 0.0);
                 pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
                 pgi_ind.setStyle("-fx-accent: orange;");
             }
 
-            if(userDAO.CheckUsers()) {
+            // Check for available users
+            if (userDAO.CheckUsers()) {
                 updateProgress("User Connection Succeeded", Shift);
-            }
-            else {
+            } else {
                 updateProgress("SERVER ERROR!: Connection to User Failed", 0.0);
                 pgb_status.setStyle("-fx-accent: red; -fx-border-color: white;");
                 pgi_ind.setStyle("-fx-accent: orange;");
             }
-            if(userDAO.checkLoggedUser()) {
+
+            // Check for the user that previously logged in
+            if (userDAO.checkLoggedUser()) {
 
                 // Gets User Email from the File If Exists
                 String userEmail = null;
                 File file = new File("User.bin");
-                if(file.exists()){
-                    Scanner scan= new Scanner(file);
+                if (file.exists()) {
+                    Scanner scan = new Scanner(file);
                     userEmail = scan.nextLine().replaceAll("\\s", "");
                 }
 
@@ -86,46 +88,21 @@ public class SplashScreen implements Initializable {
                 user = userDAO.getUser(userEmail);
 
 
-                    // Checks if the user Valid
-                    if (user != null) {
-                        // User is Valid
-                        // Checks if the Device is Valid
-                        UserLogin userLogin = new UserLogin();
-                        String macAddress = userLogin.getDeviceMacAddress();
-                        System.out.println("Auto Login Fetching Mac Address :" + macAddress);
-                        // CHeck the mac address has saved with the users email
-                        if (deviceDAO.checkOwnership(userEmail, macAddress)) {
-                            // Ownership is Valid
-                            System.out.println("Auto Login Successfull");
-                            updateProgress("Logged in as " + userEmail, 0.4);
-                            System.out.println("Progress: " + progress);
-                        } else {
-                            // Ownership is Invalid
-                            // Re login to record
-                            updateProgress("Auto Login Failed. Re-Login", 0.0);
-                            pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
-                            pgi_ind.setStyle("-fx-accent: yellow;");
-
-                            Timer LoginTimer = new Timer();
-                            TimerTask LoginTask = new TimerTask() {
-                                @Override
-                                public void run() {
-                                    if (progress <= 1) {
-                                        Platform.runLater(() -> startLoginProcess());
-                                        Platform.runLater(() -> closeApp(pgb_status));
-                                        LoginTimer.cancel();
-                                    }
-
-                                }
-                            };
-
-                            System.out.println("Starting Login Progress");
-                            LoginTimer.schedule(LoginTask, 3000);
-                        }
-
+                // Checks if the user Valid
+                if (user != null) {
+                    // User is Valid
+                    // Checks if the Device is Valid
+                    UserLogin userLogin = new UserLogin();
+                    String macAddress = userLogin.getDeviceMacAddress();
+                    System.out.println("Auto Login Fetching Mac Address :" + macAddress);
+                    // CHeck the mac address has saved with the users email
+                    if (deviceDAO.checkOwnership(userEmail, macAddress)) {
+                        // Ownership is Valid
+                        System.out.println("Auto Login Successfull");
+                        updateProgress("Logged in as " + userEmail, 0.4);
+                        System.out.println("Progress: " + progress);
                     } else {
-                        // User is Not Valid
-                        // Login Again to Record the Device with the User
+                        // Ownership is Invalid
                         // Re login to record
                         updateProgress("Auto Login Failed. Re-Login", 0.0);
                         pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
@@ -146,11 +123,35 @@ public class SplashScreen implements Initializable {
 
                         System.out.println("Starting Login Progress");
                         LoginTimer.schedule(LoginTask, 3000);
-
                     }
+
                 }
+                else {
+                    // User is Not Valid
+                    // Login Again to Record the Device with the User
+                    // Re login to record
+                    updateProgress("Auto Login Failed. Re-Login", 0.0);
+                    pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
+                    pgi_ind.setStyle("-fx-accent: yellow;");
 
+                    Timer LoginTimer = new Timer();
+                    TimerTask LoginTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            if (progress <= 1) {
+                                Platform.runLater(() -> startLoginProcess());
+                                Platform.runLater(() -> closeApp(pgb_status));
+                                LoginTimer.cancel();
+                            }
 
+                        }
+                    };
+
+                    System.out.println("Starting Login Progress");
+                    LoginTimer.schedule(LoginTask, 3000);
+
+                }
+            }
             else {
                 updateProgress("No User Logged in", 0.0);
                 pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
@@ -160,7 +161,7 @@ public class SplashScreen implements Initializable {
                 TimerTask LoginTask = new TimerTask() {
                     @Override
                     public void run() {
-                        if(progress <= 1){
+                        if (progress <= 1) {
                             Platform.runLater(() -> startLoginProcess());
                             Platform.runLater(() -> closeApp(pgb_status));
                             LoginTimer.cancel();
@@ -173,35 +174,38 @@ public class SplashScreen implements Initializable {
                 LoginTimer.schedule(LoginTask, 3000);
             }
 
+
             Timer AppTimer = new Timer();
             TimerTask AppTask = new TimerTask() {
                 @Override
                 public void run() {
-                    if(progress >= 1){
-                        Platform.runLater(() ->startApplication());
+                    if (progress >= 1) {
+                        Platform.runLater(() -> startApplication());
                         AppTimer.cancel();
                     }
 
                 }
             };
 
-
             AppTimer.schedule(AppTask, 3000);
+
 
         } catch (SQLException | FileNotFoundException throwables) {
             throwables.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 
-    public void closeApp(Node node){
+    public void closeApp(Node node) {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
 
-    public void startLoginProcess(){
+    public void startLoginProcess() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("UserLogin.fxml"));
@@ -242,7 +246,9 @@ public class SplashScreen implements Initializable {
             // do what you have to do
             thisStage.close();
 
-        } catch (IOException e) {}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
