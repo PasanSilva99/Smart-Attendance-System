@@ -61,7 +61,7 @@ public class MainPage implements Initializable {
 
     public void setUser(User user){
         this.user = user;
-        if(user.getNsbm_id() != null){
+        if(user != null){
             cmb_menu.setText(user.getFirst_name() + " " + user.getLast_name());
         }
     }
