@@ -25,7 +25,7 @@ public class DeviceDAO {
             // SQL COnnection
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             // SQL Statement
-            String sql = "INSERT INTO device (mac_address, device_name, owner_email) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO device (mac_address, device_name, owner_email) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE mac_address=?, device_name=?, owner_email=?";
 
             // Preparing a statemment
             PreparedStatement statement = con.prepareStatement(sql);
@@ -34,6 +34,10 @@ public class DeviceDAO {
             statement.setString(1, macAddress); // mac_address
             statement.setString(2, deviceName); // device_name
             statement.setString(3, emailAddress); // owner_email
+            statement.setString(4, macAddress); // mac_address
+            statement.setString(5, deviceName); // device_name
+            statement.setString(6, emailAddress); // owner_email
+
             // Executing the statement with a variable to get how many records were updated
             int rowsInserted = statement.executeUpdate();
 
@@ -278,7 +282,7 @@ public class DeviceDAO {
         }finally {
             con.close();
         }
-        System.out.println(macAddress + " is not a owned by " + emailAddress);
+        System.out.println(macAddress + " is not owned by " + emailAddress);
         return false;
     }
 }
