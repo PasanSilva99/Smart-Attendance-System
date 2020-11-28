@@ -1,6 +1,10 @@
-package Common;
+package StudentApplication;
 
+import Common.User;
 import StudentApplication.ModulesPage;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -103,6 +107,43 @@ public class MainPage implements Initializable {
 
         cmb_menu.getItems().addAll(options);
 
+        //Event Handler for Menu Item Device Settings
+        EventHandler<ActionEvent> deviceSettingsClicked = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        };
+
+        //Event Handler for Menu Item Logout
+        EventHandler<ActionEvent> logoutClicked = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+            }
+        };
+
+        // Event Handler for Menu Item Exit
+        EventHandler<ActionEvent> exitClicked = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                exitApplication();
+            }
+        };
+
+        options.get(0).setOnAction(deviceSettingsClicked);
+        options.get(1).setOnAction(logoutClicked);
+        options.get(2).setOnAction(exitClicked);
+
+    }
+
+    public void logoutApplication(){
+
+    }
+
+    public void exitApplication(){
+        Platform.exit();
+        System.exit(0);
     }
 
     @FXML
@@ -119,7 +160,7 @@ public class MainPage implements Initializable {
     @FXML
     public void NavHomeClick(MouseEvent mouseEvent) throws IOException
     {
-        AnchorPane page = FXMLLoader.load(getClass().getResource("../StudentApplication/MainScene.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
         base.getChildren().clear();
         base.getChildren().setAll(page);
     }
@@ -134,7 +175,7 @@ public class MainPage implements Initializable {
     public void NavLeaderBoardExit(MouseEvent mouseEvent) { ap_leaderBoard.setStyle("-fx-background-color : #636363;"); }
     @FXML
     public void NavLeaderBoardClick(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("../StudentApplication/LeaderBoardMain.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("LeaderBoardMain.fxml"));
         base.getChildren().clear();
         base.getChildren().setAll(page);
     }

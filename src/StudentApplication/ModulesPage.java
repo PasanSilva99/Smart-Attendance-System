@@ -1,6 +1,5 @@
 package StudentApplication;
 
-import Common.MainPage;
 import Common.ModulesDAO;
 import Common.SessionSelection;
 import Common.ViewItem;
