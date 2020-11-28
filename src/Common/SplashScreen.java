@@ -1,7 +1,6 @@
 package Common;
 
 import AdminPanel.MainPageAdmin;
-import SmartAttendanceSystem.MainPageAdmin;
 import StudentApplication.MainPage;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -223,7 +222,7 @@ public class SplashScreen implements Initializable {
             Scene scene = new Scene(fxmlLoader.load(), 1100, 600);
             Stage stage = new Stage();
             MainPageAdmin controler = fxmlLoader.getController();
-            controler.setUser(user);
+            controler.setUserAdmin(user);
             stage.setTitle("MainPage");
             stage.setScene(scene);
             stage.show();
