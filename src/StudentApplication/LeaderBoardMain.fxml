@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="463.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentApplication.LeaderBoardMain">
+   <children>
+      <Label layoutX="275.0" layoutY="26.0" prefHeight="54.0" prefWidth="357.0" text="LEADERBOARD">
+         <font>
+            <Font name="Felix Titling" size="44.0" />
+         </font>
+      </Label>
+      <Label layoutX="351.0" layoutY="64.0" prefHeight="54.0" prefWidth="221.0" text="- Select a module -">
+         <font>
+            <Font name="Century" size="20.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="127.0" layoutY="106.0" prefHeight="326.0" prefWidth="641.0" style="-fx-border-color: transparent; -fx-background-color: transparent;">
+         <content>
+            <VBox>
+               <children>
+                  <GridPane fx:id="ModuleView" alignment="CENTER" hgap="10" prefHeight="0.0" prefWidth="641.0" vgap="10">
+                     <padding>
+                        <Insets bottom="5" left="5" right="5" top="10" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Label fx:id="title_" layoutX="626.0" layoutY="83.0" prefHeight="36.0" prefWidth="157.0" text="Label">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
