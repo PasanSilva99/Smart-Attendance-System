@@ -146,6 +146,7 @@ public class SplashScreen implements Initializable {
 
                         System.out.println("Starting Login Progress");
                         LoginTimer.schedule(LoginTask, 3000);
+
                     }
                 }
 
