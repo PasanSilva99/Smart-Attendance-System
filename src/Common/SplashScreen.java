@@ -1,5 +1,7 @@
 package Common;
 
+import AdminPanel.MainPageAdmin;
+import StudentApplication.MainPage;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -219,7 +221,7 @@ public class SplashScreen implements Initializable {
             fxmlLoader.setLocation(getClass().getResource("../AdminPanel/MainPageAdmin.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1100, 600);
             Stage stage = new Stage();
-            MainPage controler = fxmlLoader.getController();
+            MainPageAdmin controler = fxmlLoader.getController();
             controler.setUser(user);
             stage.setTitle("MainPage");
             stage.setScene(scene);
@@ -291,7 +293,7 @@ public class SplashScreen implements Initializable {
         System.out.println("Starting Student Application");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("MainPage.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("../StudentApplication/MainPage.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1100, 600);
             Stage stage = new Stage();
             MainPage controler = fxmlLoader.getController();
