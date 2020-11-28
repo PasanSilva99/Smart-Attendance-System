@@ -163,7 +163,7 @@ public class DeviceDAO {
             //SQL Connection
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             //SQL Quarry
-            String sql = "INSERT INTO device_ip (device_mac_address, device_ip_address, date, logged_email) VALUES(?, ?, ?, ?)";
+            String sql = "INSERT INTO device_ip (device_mac_address, device_ip_address, date, logged_email) VALUES(?, ?, ?, ?) ";
             // Preparing the statement
             PreparedStatement statement = con.prepareStatement(sql);
             // setting the sql variables

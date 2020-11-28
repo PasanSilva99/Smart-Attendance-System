@@ -4,22 +4,6 @@
 
 #Generated Binary Files
 *.class
-*.class
-out/production/Smart-Attendance-System/SmartAttendanceSystem/ViewItem$1.class
 
 #Generated Output
 /out/
-*.class
-*.class
-/out/
-/.idea/
-out/production/Smart-Attendance-System/SmartAttendanceSystem/MainPage.class
-*.class
-*.class
-out/production/Smart-Attendance-System/SmartAttendanceSystem/Module.class
-*.class
-*.class
-out/production/Smart-Attendance-System/SmartAttendanceSystem/User.class
-out/production/Smart-Attendance-System/SmartAttendanceSystem/Module.class
-*.class
-*.class
