@@ -216,7 +216,7 @@ public class SplashScreen implements Initializable {
         System.out.println("Starting Student Application");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("MainPage.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("../AdminPanel/MainPageAdmin.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1100, 600);
             Stage stage = new Stage();
             MainPage controler = fxmlLoader.getController();

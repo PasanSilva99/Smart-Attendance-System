@@ -1,5 +1,6 @@
-package SmartAttendanceSystem;
+package AdminPanel;
 
+import Common.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
