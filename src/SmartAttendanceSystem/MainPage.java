@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -17,11 +19,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainPage implements Initializable {
 
-    public ComboBox cmb_menu;
+    public MenuButton cmb_menu;
     @FXML
     AnchorPane topBar;
     @FXML
@@ -53,12 +57,25 @@ public class MainPage implements Initializable {
 
     String UserName;
 
+    public User user;
+
+    public void setUser(User user){
+        this.user = user;
+        if(user != null){
+            cmb_menu.setText(user.getFirst_name() + " " + user.getLast_name());
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set a clip to apply rounded border to the original image.
         Rectangle clip = new Rectangle(
                 img_Pic.getFitWidth(), img_Pic.getFitHeight()
         );
+
+        if(user != null){
+            cmb_menu.setText(user.getFirst_name() + user.getLast_name());
+        }
 
         clip.setArcWidth(img_Pic.getFitHeight());
         clip.setArcHeight(img_Pic.getFitHeight());
@@ -78,16 +95,12 @@ public class MainPage implements Initializable {
         // store the rounded image in the imageView.
         img_Pic.setImage(image);
 
-        ObservableList<String> options =
-                FXCollections.observableArrayList(
-                        "Login",
-                        "SignUp",
-                        "Register Device",
-                        "Settings",
-                        "Logout"
-                );
+        List<MenuItem> options = new ArrayList<>();
+        options.add(new MenuItem("Device Settings"));
+        options.add(new MenuItem("Logout"));
+        options.add(new MenuItem("Exit"));
 
-        cmb_menu.setItems(options);
+        cmb_menu.getItems().addAll(options);
 
     }
 

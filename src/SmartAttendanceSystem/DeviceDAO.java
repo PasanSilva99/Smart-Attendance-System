@@ -16,7 +16,7 @@ public class DeviceDAO {
     DateTimeFormatter Format_TimeSTamp = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
 
-    public void RegisterDevice(String macAddress, String deviceName) throws SQLException {
+    public void RegisterDevice(String macAddress, String deviceName, String emailAddress) throws SQLException {
         //SQL Connection
         Connection con =null;
         try{
@@ -25,7 +25,7 @@ public class DeviceDAO {
             // SQL COnnection
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             // SQL Statement
-            String sql = "INSERT INTO device (mac_address, device_name) VALUES (?, ?)";
+            String sql = "INSERT INTO device (mac_address, device_name, owner_email) VALUES (?, ?, ?)";
 
             // Preparing a statemment
             PreparedStatement statement = con.prepareStatement(sql);
@@ -33,7 +33,7 @@ public class DeviceDAO {
             //                                (1, 2, 3)
             statement.setString(1, macAddress); // mac_address
             statement.setString(2, deviceName); // device_name
-
+            statement.setString(3, emailAddress); // owner_email
             // Executing the statement with a variable to get how many records were updated
             int rowsInserted = statement.executeUpdate();
 
@@ -47,7 +47,7 @@ public class DeviceDAO {
 
 
         }catch (Exception e){
-            System.out.println("ERROR ! Registering teh Device !!!");
+            System.out.println("ERROR ! Registering the Device !!!" + e.getMessage());
 
         }finally {
             // if the connection is not null and the connection is not closed
@@ -150,7 +150,7 @@ public class DeviceDAO {
      * @param ipAddress Current IP Address
      * @param timeStamp TimeStamp on the login instance
      */
-    public void RecordLogin(String mac_address, String ipAddress, String timeStamp) throws SQLException {
+    public void RecordLogin(String mac_address, String ipAddress, String userEmailAddress, Timestamp timeStamp) throws SQLException {
         // SQL Connection
         Connection con =null;
         try{
@@ -159,13 +159,20 @@ public class DeviceDAO {
             //SQL Connection
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
             //SQL Quarry
-            String sql = "INSERT INTO device_ip (device_mac_address, device_ip_address, date) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO device_ip (device_mac_address, device_ip_address, date, logged_email) VALUES(?, ?, ?, ?)";
             // Preparing the statement
             PreparedStatement statement = con.prepareStatement(sql);
             // setting the sql variables
             statement.setString(1, mac_address);
             statement.setString(2, ipAddress);
-            statement.setString(3, timeStamp);
+            statement.setTimestamp(3, timeStamp);
+            statement.setString(4, userEmailAddress);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected>0){
+                System.out.println("Login successful");
+            }
 
         }catch (Exception e){
             System.out.println("ERROR <!> Recording Attendance !!! " + e.getMessage());
@@ -178,26 +185,67 @@ public class DeviceDAO {
     }
 
     /**
-     * Records a known device login
-     * @param device Device
-     * @param ipAddress Current IP address
+     * This function returns the Auto logged in user's information
+     * @param emailAddress
+     * @param deviceMacAddress
+     * @return
      */
-    public void RecordLogin(Device device, String ipAddress) throws SQLException {
-        LocalDateTime now = LocalDateTime.now();
-        RecordLogin(device.Mac_address, ipAddress, Format_TimeSTamp.format(now));
-        device.UpdateIPList();
+    public User AutoLogin(String emailAddress, String deviceMacAddress) throws SQLException {
+        System.out.println("Auto Login Sequence Start");
+
+        User user = null;
+        
+        // SQL Connection variable;
+        Connection con = null;
+        try{
+
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            System.out.println("Auto Login Connection Established");
+            String sql = "SELECT * FROM device WHERE owner_email=? AND mac_address=?";
+            
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, emailAddress);
+            statement.setString(2, deviceMacAddress);
+            
+            int rowsFound = statement.executeUpdate();
+            
+            if (rowsFound>0){
+                // Valid User
+                user = new UserDAO().getUser(emailAddress);
+                System.out.println("Auto Login User Identified");
+            }
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            UserLogin userLogin = new UserLogin();
+            RecordLogin(userLogin.getDeviceMacAddress(), userLogin.getDeviceIPAddress().toString(), emailAddress, timestamp);
+            System.out.println("Auto Login Successful");
+
+        }catch (Exception e){
+            System.out.println("ERROR <!> Auto Login !!!" + e.getMessage());
+            user = null;
+
+        }finally {
+            assert con != null;
+            con.close();
+        }
+
+
+        return user;
     }
 
     /**
-     * Search Device NickName By Mac Address
-     * @param macAddress Mac Address of the logged in device
-     *
-     * @return Device
+     * Confirms the ownership of the device.
+     * @param emailAddress Users Email address
+     * @param macAddress Logged in Mac Address
+     * @return Boolean Confirmation
      */
-    public Device GetDeviceNamebyMac(String macAddress) throws SQLException {
-        Device device = null;
+    public boolean checkOwnership(String emailAddress, String macAddress) throws SQLException {
+        System.out.println("Ownership Confirmation Start");
 
-        //SQL Connection
+        // SQL Connection Variable
         Connection con = null;
         try{
             // SQL Driver Class
@@ -205,78 +253,33 @@ public class DeviceDAO {
             // SQL Connection
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
 
-            // SQL Statement
-            String sql = "SELECT * FROM device WHERE mac_address=?";
+            // SQL Quarry
+            String sql = "SELECT COUNT(*) FROM device WHERE mac_address=? AND owner_email=?";
 
             // SQL Statement
-            PreparedStatement statement = con.prepareStatement(sql);
+            PreparedStatement statement= con.prepareStatement(sql);
             statement.setString(1, macAddress);
+            statement.setString(2, emailAddress);
 
-            // Executing the statement while saving to a result set
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()){
-                String MacAddress = resultSet.getString(1);
-                String DeviceName = resultSet.getString(2);
-                device = new Device(MacAddress, DeviceName);
-                System.out.println("Fetching: "+device+" --> "+MacAddress);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next())
+                {
+                    int count = resultSet.getInt(1);
+                    if(count > 0 )
+                    {
+                        System.out.println("OwnerShip Confirmed");
+                        return true;
+                    }
+                }
             }
 
         }catch (Exception e){
-            System.out.println("ERROR <!> Finding Device for "+ macAddress+ " !!! ");
+            System.out.println("ERROR <!> Ownership Confirmation Error !!!" + e.getMessage());
         }finally {
-            // if the connection is not null and the connection is not closed
-            if(con!=null&&!con.isClosed()){
-                con.close();  // Close the Connection
-            }
+            con.close();
         }
-
-        return device;
-    }
-
-    /** 
-     * Search Device Mac Address by NickName
-     * @param deviceName Name of the Device
-     * @return Device
-     */
-    public Device GetDeviceMacByName(String deviceName) throws SQLException {
-        Device device = null;
-
-        //SQL Connection
-        Connection con = null;
-        try{
-            // SQL Driver Class
-            Class.forName(DAO.SqlDriverClass);
-            // SQL Connection
-            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
-
-            // SQL Statement
-            String sql = "SELECT * FROM device WHERE mac_address=?";
-
-            // SQL Statement
-            PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, deviceName);
-
-            // Executing the statement while saving to a result set
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()){
-                String MacAddress = resultSet.getString(1);
-                String DeviceName = resultSet.getString(2);
-                device = new Device(MacAddress, DeviceName);
-                System.out.println("Fetching: "+device+" --> "+MacAddress);
-            }
-
-        }catch (Exception e){
-            System.out.println("ERROR <!> Finding Device for "+ deviceName+ " !!! ");
-        }finally {
-            // if the connection is not null and the connection is not closed
-            if(con!=null&&!con.isClosed()){
-                con.close();  // Close the Connection
-            }
-        }
-
-        return device;
+        System.out.println(macAddress + " is not a owned by " + emailAddress);
+        return false;
     }
 }
 

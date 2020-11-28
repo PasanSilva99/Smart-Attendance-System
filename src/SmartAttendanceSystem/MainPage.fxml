@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -41,9 +42,9 @@
                   <Image url="@Images/profile.jpg" />
                </image>
             </ImageView>
-            <ComboBox fx:id="cmb_menu" layoutX="114.0" layoutY="59.0" prefHeight="25.0" prefWidth="187.0" promptText="User Name" style="-fx-background-color: #BFC0C4;" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="59.0" >
+            <MenuButton fx:id="cmb_menu" layoutX="115.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="MenuButton">
 
-            </ComboBox>
+            </MenuButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pnl_search" layoutX="187.0" layoutY="27.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="27.0">
