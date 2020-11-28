@@ -25,7 +25,10 @@ import java.util.ResourceBundle;
 
 public class MainPage implements Initializable {
 
+    @FXML
     public MenuButton cmb_menu;
+    @FXML
+    public ImageView btn_bell;
     @FXML
     AnchorPane topBar;
     @FXML

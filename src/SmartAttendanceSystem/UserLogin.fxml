@@ -35,7 +35,7 @@
       </Text>
       <Text fill="#545252" layoutX="62.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
       <Button fx:id="btn_login" defaultButton="true" layoutX="294.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: #008a00;" text="Login" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="26.5" onAction="#btn_login_click"/>
-      <Button fx:id="btn_cancel" cancelButton="true" layoutX="235.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: #a20025;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="79.5" />
+      <Button fx:id="btn_cancel" cancelButton="true" layoutX="235.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: #a20025;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="79.5" onAction="#btn_cancel_click"/>
       <PasswordField fx:id="tb_password" layoutX="57.0" layoutY="164.0" prefHeight="25.0" prefWidth="224.0" />
    </children>
 </AnchorPane>

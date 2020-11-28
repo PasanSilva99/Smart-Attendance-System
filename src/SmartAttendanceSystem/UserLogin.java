@@ -1,12 +1,17 @@
 package SmartAttendanceSystem;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.awt.*;
 import java.io.*;
@@ -60,6 +65,17 @@ public class UserLogin {
             FileWriter writer = new FileWriter(file);
             writer.write(UserEmailAddress);
             writer.close();
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("SplashScreen.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 300);
+            Stage stage = new Stage();
+            stage.setTitle(" ");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.show();
+
+            closeApp(btn_login);
         }
         else {
             Alert.AlertType alertAlertType = AlertType.ERROR;
@@ -70,6 +86,10 @@ public class UserLogin {
             alert.show();
         }
 
+    }
+
+    public void btn_cancel_click(){
+        exitApp();
     }
     public InetAddress getDeviceIPAddress() throws UnknownHostException {
         InetAddress ip = InetAddress.getLocalHost();
@@ -182,7 +202,8 @@ public class UserLogin {
         Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
-    public void btnClose_Click(){
-        closeApp(btn_cancel);
+    public void exitApp(){
+        Platform.exit();
+        System.exit(0);
     }
 }
