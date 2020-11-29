@@ -35,58 +35,63 @@ public class AddNewEvent implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        try {
+            // Populate combo boxes
+            ObservableList<String> EventTypesList = FXCollections.observableArrayList(
+                    "Lecture",
+                    "Lab",
+                    "Other"
+            );
 
-        // Populate combo boxes
-        ObservableList<String> EventTypesList= FXCollections.observableArrayList(
-                "Lecture",
-                "Lab",
-                "Other"
-        );
+            // Populate Event Type ComboBox
+            cmb_eventType.setItems(EventTypesList);
+            cmb_eventType.getSelectionModel().selectFirst();
 
-        // Populate Event Type ComboBox
-        cmb_eventType.setItems(EventTypesList);
-        cmb_eventType.getSelectionModel().selectFirst();
+            // Get ad save all the module codes
+            ObservableList<String> ModuleList = ModulesDAO.getModuleCodesOL();
+            // Populate cmb_module
+            cmb_module.setItems(ModuleList);
+            cmb_module.getSelectionModel().selectFirst();
+            SelectedModuleCode = cmb_module.getSelectionModel().getSelectedItem().toString();
+            cmb_module_SelectionCchanged(SelectedModuleCode);
+            // Get all Batches
+            ObservableList<String> BatchList = FXCollections.observableArrayList(BatchDAO.getBatchList());
 
-        // Get ad save all the module codes
-        ObservableList<String> ModuleList = ModulesDAO.getModuleCodesOL();
-        // Populate cmb_module
-        cmb_module.setItems(ModuleList);
-        cmb_module.getSelectionModel().selectFirst();
-        SelectedModuleCode = cmb_module.getSelectionModel().getSelectedItem().toString();
-        cmb_module_SelectionCchanged(SelectedModuleCode);
-        // Get all Batches
-        ObservableList<String> BatchList = FXCollections.observableArrayList(BatchDAO.getBatchList());
+            cmb_batch.setItems(BatchList);
+            cmb_batch.getSelectionModel().selectFirst();
 
-        cmb_batch.setItems(BatchList);
-        cmb_batch.getSelectionModel().selectFirst();
+            // Generate Time Selections
+            List<String> TimeSelectionsList = new ArrayList<>();
+            for (int h = 0; h < 24; h++) {
+                for (int m = 0; m < 60; m += 30) {
+                    String Hours = Integer.toString(h),
+                            Minutes = Integer.toString(m);
+                    if (h < 10) Hours = "0" + Hours;
+                    if (m < 10) Minutes = "0" + Minutes;
 
-        // Generate Time Selections
-        List<String>TimeSelectionsList = new ArrayList<>();
-        for(int h=0; h<24; h++){
-            for(int m=0; m<60; m+=30){
-                String Hours = Integer.toString(h),
-                        Minutes = Integer.toString(m);
-                if(h<10) Hours = "0"+Hours;
-                if(m<10) Minutes = "0"+Minutes;
+                    TimeSelectionsList.add(Hours + ":" + Minutes);
 
-                TimeSelectionsList.add(Hours+":"+Minutes);
-
+                }
             }
+
+            // List Fir the Time Selections for ComboBox
+            ObservableList<String> TimeSelections = FXCollections.observableArrayList(TimeSelectionsList);
+            // Populate Start Time Combo Box
+            cmb_startTime.setItems(TimeSelections);
+            cmb_startTime.getSelectionModel().select(18);
+            cmb_endTime.setItems(TimeSelections);
+            cmb_endTime.getSelectionModel().select(24);
+
+            cmb_module.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+                        System.out.println(newValue);
+                        Platform.runLater(() -> cmb_module_SelectionCchanged(newValue.toString()));
+                    }
+            );
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
         }
 
-        // List Fir the Time Selections for ComboBox
-        ObservableList<String> TimeSelections = FXCollections.observableArrayList(TimeSelectionsList);
-        // Populate Start Time Combo Box
-        cmb_startTime.setItems(TimeSelections);
-        cmb_startTime.getSelectionModel().select(18);
-        cmb_endTime.setItems(TimeSelections);
-        cmb_endTime.getSelectionModel().select(24);
-
-        cmb_module.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
-                    System.out.println(newValue);
-            Platform.runLater(()-> cmb_module_SelectionCchanged(newValue.toString()));
-                }
-        );
 
     }
 
