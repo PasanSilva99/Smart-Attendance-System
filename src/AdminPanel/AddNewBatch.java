@@ -1,6 +1,6 @@
 package AdminPanel;
 
-import StudentApplication.BatchDAO;
+import Common.BatchDAO;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
