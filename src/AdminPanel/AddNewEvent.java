@@ -34,8 +34,6 @@ public class AddNewEvent implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        try {
             // Populate combo boxes
             ObservableList<String> EventTypesList = FXCollections.observableArrayList(
                     "Lecture",
@@ -43,23 +41,36 @@ public class AddNewEvent implements Initializable {
                     "Other"
             );
 
-            // Populate Event Type ComboBox
-            cmb_eventType.setItems(EventTypesList);
-            cmb_eventType.getSelectionModel().selectFirst();
+            try {
+                // Populate Event Type ComboBox
+                cmb_eventType.setItems(EventTypesList);
+                cmb_eventType.getSelectionModel().selectFirst();
+            }catch (Exception e){
+                System.out.println("FIll Event Types error.");
+            }
 
-            // Get ad save all the module codes
-            ObservableList<String> ModuleList = ModulesDAO.getModuleCodesOL();
-            // Populate cmb_module
-            cmb_module.setItems(ModuleList);
-            cmb_module.getSelectionModel().selectFirst();
-            SelectedModuleCode = cmb_module.getSelectionModel().getSelectedItem().toString();
-            cmb_module_SelectionCchanged(SelectedModuleCode);
-            // Get all Batches
-            ObservableList<String> BatchList = FXCollections.observableArrayList(BatchDAO.getBatchList());
+            try {
+                // Get ad save all the module codes
+                ObservableList<String> ModuleList = ModulesDAO.getModuleCodesOL();
+                // Populate cmb_module
+                cmb_module.setItems(ModuleList);
+                cmb_module.getSelectionModel().selectFirst();
+                SelectedModuleCode = cmb_module.getSelectionModel().getSelectedItem().toString();
+                cmb_module_SelectionCchanged(SelectedModuleCode);
+            }catch (Exception e){
+                System.out.println("Error in fill Modules" + e.getMessage());
+            }
 
-            cmb_batch.setItems(BatchList);
-            cmb_batch.getSelectionModel().selectFirst();
+            try {
+                // Get all Batches
+                ObservableList<String> BatchList = FXCollections.observableArrayList(BatchDAO.getBatchList());
 
+                cmb_batch.setItems(BatchList);
+                cmb_batch.getSelectionModel().selectFirst();
+
+            }catch (Exception e){
+                System.out.println("Error loading batches"+e.getMessage());
+            }
             // Generate Time Selections
             List<String> TimeSelectionsList = new ArrayList<>();
             for (int h = 0; h < 24; h++) {
@@ -74,23 +85,24 @@ public class AddNewEvent implements Initializable {
                 }
             }
 
-            // List Fir the Time Selections for ComboBox
-            ObservableList<String> TimeSelections = FXCollections.observableArrayList(TimeSelectionsList);
-            // Populate Start Time Combo Box
-            cmb_startTime.setItems(TimeSelections);
-            cmb_startTime.getSelectionModel().select(18);
-            cmb_endTime.setItems(TimeSelections);
-            cmb_endTime.getSelectionModel().select(24);
+            try {
+                // List Fir the Time Selections for ComboBox
+                ObservableList<String> TimeSelections = FXCollections.observableArrayList(TimeSelectionsList);
+                // Populate Start Time Combo Box
+                cmb_startTime.setItems(TimeSelections);
+                cmb_startTime.getSelectionModel().select(18);
+                cmb_endTime.setItems(TimeSelections);
+                cmb_endTime.getSelectionModel().select(24);
 
-            cmb_module.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-                        System.out.println(newValue);
-                        Platform.runLater(() -> cmb_module_SelectionCchanged(newValue.toString()));
-                    }
-            );
-        }
-        catch (Exception ex){
-            System.out.println(ex.getMessage());
-        }
+                cmb_module.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+                            System.out.println(newValue);
+                            Platform.runLater(() -> cmb_module_SelectionCchanged(newValue.toString()));
+                        }
+                );
+            }catch (Exception e){
+                System.out.println("Error fetching Lecturer");
+            }
+
 
 
     }
