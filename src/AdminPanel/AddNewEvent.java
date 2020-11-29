@@ -118,8 +118,7 @@ public class AddNewEvent implements Initializable {
         System.out.println(generatedString);
         return generatedString;
     }
-
-    }
+    
 
 
     public void btn_saveClick(ActionEvent actionEvent) {
