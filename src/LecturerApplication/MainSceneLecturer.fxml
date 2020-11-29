@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LecturerApplication.MainSceneLecturer">
+   <children>
+      <Label layoutX="321.0" layoutY="130.0" prefHeight="60.0" prefWidth="414.0" text="This is Lecturer Home Page">
+         <font>
+            <Font name="Century Gothic" size="28.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
