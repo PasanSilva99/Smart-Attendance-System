@@ -2,6 +2,7 @@ package AdminPanel;
 
 import Common.BatchDAO;
 import Common.ModulesDAO;
+import Common.UniEventDAO;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,10 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.nio.charset.Charset;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,98 +31,118 @@ public class AddNewEvent implements Initializable {
     public Button btn_save;
     public TextField tb_lecturer;
     public Button btn_cancel;
+    public DatePicker dtp_date;
 
     String SelectedModuleCode = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-            // Populate combo boxes
-            ObservableList<String> EventTypesList = FXCollections.observableArrayList(
-                    "Lecture",
-                    "Lab",
-                    "Other"
+        updateID();
+        dtp_date.setValue(LocalDate.now());
+        // Populate combo boxes
+        ObservableList<String> EventTypesList = FXCollections.observableArrayList(
+                "Lecture",
+                "Lab",
+                "Other"
+        );
+
+        try {
+            // Populate Event Type ComboBox
+            cmb_eventType.setItems(EventTypesList);
+            cmb_eventType.getSelectionModel().selectFirst();
+        } catch (Exception e) {
+            System.out.println("FIll Event Types error.");
+        }
+
+        try {
+            // Get ad save all the module codes
+            ObservableList<String> ModuleList = ModulesDAO.getModuleCodesOL();
+            // Populate cmb_module
+            cmb_module.setItems(ModuleList);
+            cmb_module.getSelectionModel().selectFirst();
+            SelectedModuleCode = cmb_module.getSelectionModel().getSelectedItem().toString();
+            cmb_module_SelectionCchanged(SelectedModuleCode);
+        } catch (Exception e) {
+            System.out.println("Error in fill Modules" + e.getMessage());
+        }
+
+        try {
+            // Get all Batches
+            ObservableList<String> BatchList = FXCollections.observableArrayList(BatchDAO.getBatchList());
+
+            cmb_batch.setItems(BatchList);
+            cmb_batch.getSelectionModel().selectFirst();
+
+        } catch (Exception e) {
+            System.out.println("Error loading batches" + e.getMessage());
+        }
+        // Generate Time Selections
+        List<String> TimeSelectionsList = new ArrayList<>();
+        for (int h = 0; h < 24; h++) {
+            for (int m = 0; m < 60; m += 30) {
+                String Hours = Integer.toString(h),
+                        Minutes = Integer.toString(m);
+                if (h < 10) Hours = "0" + Hours;
+                if (m < 10) Minutes = "0" + Minutes;
+
+                TimeSelectionsList.add(Hours + ":" + Minutes);
+
+            }
+        }
+
+        try {
+            // List Fir the Time Selections for ComboBox
+            ObservableList<String> TimeSelections = FXCollections.observableArrayList(TimeSelectionsList);
+            // Populate Start Time Combo Box
+            cmb_startTime.setItems(TimeSelections);
+            cmb_startTime.getSelectionModel().select(18);
+            cmb_endTime.setItems(TimeSelections);
+            cmb_endTime.getSelectionModel().select(24);
+
+            cmb_module.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+                        System.out.println(newValue);
+                        Platform.runLater(() -> cmb_module_SelectionCchanged(newValue.toString()));
+                    }
             );
-
-            try {
-                // Populate Event Type ComboBox
-                cmb_eventType.setItems(EventTypesList);
-                cmb_eventType.getSelectionModel().selectFirst();
-            }catch (Exception e){
-                System.out.println("FIll Event Types error.");
-            }
-
-            try {
-                // Get ad save all the module codes
-                ObservableList<String> ModuleList = ModulesDAO.getModuleCodesOL();
-                // Populate cmb_module
-                cmb_module.setItems(ModuleList);
-                cmb_module.getSelectionModel().selectFirst();
-                SelectedModuleCode = cmb_module.getSelectionModel().getSelectedItem().toString();
-                cmb_module_SelectionCchanged(SelectedModuleCode);
-            }catch (Exception e){
-                System.out.println("Error in fill Modules" + e.getMessage());
-            }
-
-            try {
-                // Get all Batches
-                ObservableList<String> BatchList = FXCollections.observableArrayList(BatchDAO.getBatchList());
-
-                cmb_batch.setItems(BatchList);
-                cmb_batch.getSelectionModel().selectFirst();
-
-            }catch (Exception e){
-                System.out.println("Error loading batches"+e.getMessage());
-            }
-            // Generate Time Selections
-            List<String> TimeSelectionsList = new ArrayList<>();
-            for (int h = 0; h < 24; h++) {
-                for (int m = 0; m < 60; m += 30) {
-                    String Hours = Integer.toString(h),
-                            Minutes = Integer.toString(m);
-                    if (h < 10) Hours = "0" + Hours;
-                    if (m < 10) Minutes = "0" + Minutes;
-
-                    TimeSelectionsList.add(Hours + ":" + Minutes);
-
-                }
-            }
-
-            try {
-                // List Fir the Time Selections for ComboBox
-                ObservableList<String> TimeSelections = FXCollections.observableArrayList(TimeSelectionsList);
-                // Populate Start Time Combo Box
-                cmb_startTime.setItems(TimeSelections);
-                cmb_startTime.getSelectionModel().select(18);
-                cmb_endTime.setItems(TimeSelections);
-                cmb_endTime.getSelectionModel().select(24);
-
-                cmb_module.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
-                            System.out.println(newValue);
-                            Platform.runLater(() -> cmb_module_SelectionCchanged(newValue.toString()));
-                        }
-                );
-            }catch (Exception e){
-                System.out.println("Error fetching Lecturer");
-            }
-
+        } catch (Exception e) {
+            System.out.println("Error fetching Lecturer");
+        }
 
 
     }
 
-    public void cmb_module_SelectionCchanged(String selectedValue){
+    /**
+     * This event will handle the Module Selection changed Event
+     *
+     * @param selectedValue
+     */
+    public void cmb_module_SelectionCchanged(String selectedValue) {
+        // Save the value
         SelectedModuleCode = selectedValue;
         // get lecturer name according to selected module
         String LecturerName = ModulesDAO.getLecturerName(SelectedModuleCode);
         tb_lecturer.setText(LecturerName);
-        updateID();
     }
 
-    public void updateID(){
-       String newID = generateNewID();
-       boolean isDuplicate = ModulesDAO.CheckDuplicateID(newID);
+    /**
+     * This will get a unique key for the event
+     */
+    public void updateID() {
+        String newID = generateNewID();
+        boolean isDuplicate = new UniEventDAO().CheckDuplicateID(newID);
+        if (!isDuplicate) {
+            tb_id.setText(newID);
+        } else {
+            updateID();
+        }
     }
 
-    public String generateNewID(){
+    /**
+     * This returns a Random Alphanumeric String
+     *
+     * @return Random Alphanumeric String
+     */
+    public String generateNewID() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 10;
@@ -135,15 +157,20 @@ public class AddNewEvent implements Initializable {
         System.out.println(generatedString);
         return generatedString;
     }
-    
 
 
     public void btn_saveClick(ActionEvent actionEvent) {
-
+        String event_id = tb_id.getText();
+        String event_name = tb_EventName.getText();
+        String module_code = cmb_module.getSelectionModel().getSelectedItem().toString();
+       // String start_time =
     }
 
     public void btn_cancel_click(ActionEvent actionEvent) {
     }
 
 
+    public void dateChanged(ActionEvent actionEvent) {
+        System.out.println(dtp_date.getValue());
+    }
 }
