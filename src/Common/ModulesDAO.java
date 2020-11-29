@@ -43,8 +43,10 @@ public class ModulesDAO {
             statement.setString(1, moduleCode);
 
             ResultSet resultSet = statement.executeQuery();
-
-            return resultSet.getString(1);
+            while (resultSet.next())
+            {
+                return resultSet.getString(1);
+            }
 
         }catch (Exception e){
             e.printStackTrace();
