@@ -1,4 +1,4 @@
-package StudentApplication;
+package Common;
 
 public class DegreeDAO {
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="415.0" prefWidth="380.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.AddNewEvent">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="161.0" layoutX="166.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@Images/ShapeUp.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="120.0" fitWidth="120.0" layoutX="52.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <image>
+            <Image url="@Images/ShapeDown.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="25.0" layoutY="25.0" text="Add new Event">
+         <font>
+            <Font name="Felix Titling" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="289.0" text="EventID">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tb_id" alignment="CENTER" editable="false" layoutX="36.0" layoutY="309.0" prefHeight="41.0" prefWidth="308.0" style="-fx-background-color: transparent;" text="Auto Text">
+         <font>
+            <Font name="Felix Titling" size="18.0" />
+         </font>
+      </TextField>
+      <Label layoutX="31.0" layoutY="71.0" text="Event Name">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tb_EventName" layoutX="34.0" layoutY="89.0" prefHeight="27.0" prefWidth="151.0" promptText="Event Name" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" text="New Event" />
+      <Label layoutX="32.0" layoutY="126.0" text="Module Code">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="33.0" layoutY="180.0" text="Start Time">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="180.0" text="End Time">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="235.0" text="Lecturer">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="190.0" layoutY="125.0" text="Batch">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="191.0" layoutY="71.0" text="Type">
+         <font>
+            <Font name="Century" size="12.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmb_eventType" layoutX="192.0" layoutY="89.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Type" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
+      <ComboBox fx:id="cmb_module" layoutX="35.0" layoutY="143.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Module" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
+      <ComboBox fx:id="cmb_batch" layoutX="193.0" layoutY="143.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Batch" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
+      <ComboBox fx:id="cmb_startTime" layoutX="36.0" layoutY="198.0" prefHeight="27.0" prefWidth="151.0" promptText="09:00" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
+      <ComboBox fx:id="cmb_endTime" layoutX="193.0" layoutY="198.0" prefHeight="27.0" prefWidth="151.0" promptText="11:00" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
+      <Button fx:id="btn_save" layoutX="303.0" layoutY="376.0" mnemonicParsing="false" onAction="#btn_saveClick" style="-fx-background-color: #008a00;" text="Save" textFill="WHITE" />
+      <Button fx:id="btn_cancel" layoutX="247.0" layoutY="376.0" mnemonicParsing="false" onAction="#btn_cancel_click" style="-fx-background-color: #a20025;" text="Cancel" textFill="WHITE" />
+      <TextField fx:id="tb_lecturer" layoutX="36.0" layoutY="250.0" prefHeight="27.0" prefWidth="308.0" promptText="Lecturer (Optional)" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
+   </children>
+   <effect>
+      <DropShadow height="38.79" radius="14.4475" spread="0.26" />
+   </effect>
+</AnchorPane>

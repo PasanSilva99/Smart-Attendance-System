@@ -1,6 +1,7 @@
 package Common;
 
-import StudentApplication.DAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +12,47 @@ public class ModulesDAO {
     public static List<ViewItem> ModuleList;
     public static boolean isConnected = false;
 
+    public static ObservableList<String> getModuleCodesOL() {
+        List<String> listModule = FXCollections.observableArrayList();
+
+        fetchModules();
+
+        for (ViewItem item:ModuleList) {
+            if(item!=null)
+                listModule.add(item.ModuleCode);
+        }
+
+        return FXCollections.observableArrayList(listModule);
+    }
+
+    public static String getLecturerName(String moduleCode) {
+
+        Connection con = null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "SELECT lecturer_name FROM module WHERE module_code=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, moduleCode);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            return resultSet.getString(1);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public List<ViewItem> getModules() throws SQLException {
         if (ModuleList == null) {
             fetchModules();
@@ -18,7 +60,7 @@ public class ModulesDAO {
         return ModuleList;
     }
 
-    public static void fetchModules() throws SQLException {
+    public static void fetchModules(){
         ModuleList = new ArrayList<>();
 
         Connection con = null;
@@ -55,8 +97,12 @@ public class ModulesDAO {
             System.out.println("SEVER ERROR!!! Connection to SAS_DB Failed!\n"+e);
             isConnected = false;
         }  finally {
-            assert con != null;
-            con.close();
+            try {
+                assert con != null;
+                con.close();
+            }catch (Exception ignored){
+                
+            }
         }
 
     }

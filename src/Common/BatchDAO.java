@@ -1,4 +1,4 @@
-package StudentApplication;
+package Common;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -79,7 +79,7 @@ public class BatchDAO {
 
     }
 
-    public List<String> getBatchList() throws SQLException {
+    public static List<String> getBatchList() {
         List<String> BatchList  = new ArrayList<>();
 
         // SQL Connection Variable
@@ -110,8 +110,12 @@ public class BatchDAO {
             System.out.println("ERROR <!> Retrieving Batch List !!! "+e.getMessage());
         }finally {
             // if the connection is not null and the connection is not closed
-            if(con!=null&&!con.isClosed()){
-                con.close();  // Close the Connection
+            try {
+                if (con != null && !con.isClosed()) {
+                    con.close();  // Close the Connection
+                }
+            }catch (Exception ignored){
+
             }
         }
         return BatchList;

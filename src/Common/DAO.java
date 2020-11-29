@@ -1,4 +1,4 @@
-package StudentApplication;
+package Common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
