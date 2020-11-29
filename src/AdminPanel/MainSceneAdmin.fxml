@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.MainSceneAdmin">
+   <children>
+      <Label fx:id="lbl_greeting" alignment="CENTER" layoutX="423.0" layoutY="49.0" text="Hello, Admin!" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Century" size="48.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="475.0" layoutY="74.0" text="- Ongoing Lectures Now -" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+         <font>
+            <Font name="Century" size="24.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="33.0" layoutY="154.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="130.0">
+         <content>
+            <GridPane fx:id="grid_lectureViewAdmin" alignment="TOP_CENTER" prefWidth="575.0">
+
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
