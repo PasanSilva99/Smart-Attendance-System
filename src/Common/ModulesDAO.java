@@ -53,6 +53,31 @@ public class ModulesDAO {
         return null;
     }
 
+    public static boolean CheckDuplicateID(String newID) {
+        // SQL COnnection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            try {
+                con.close();
+            }catch (Exception ignore)
+            {
+
+            }
+        }
+
+
+
+    }
+
     public List<ViewItem> getModules() throws SQLException {
         if (ModuleList == null) {
             fetchModules();

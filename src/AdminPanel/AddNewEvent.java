@@ -11,8 +11,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class AddNewEvent implements Initializable {
@@ -76,14 +78,47 @@ public class AddNewEvent implements Initializable {
         cmb_endTime.setItems(TimeSelections);
         cmb_endTime.getSelectionModel().select(24);
 
+        cmb_module.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
+                    System.out.println(newValue);
+            Platform.runLater(()-> cmb_module_SelectionCchanged(newValue.toString()));
+                }
+        );
 
+    }
 
+    public void cmb_module_SelectionCchanged(String selectedValue){
+        SelectedModuleCode = selectedValue;
         // get lecturer name according to selected module
         String LecturerName = ModulesDAO.getLecturerName(SelectedModuleCode);
+        tb_lecturer.setText(LecturerName);
+        updateID();
+    }
+
+    public void updateID(){
+       String newID = generateNewID();
+       boolean isDuplicate = ModulesDAO.CheckDuplicateID(newID);
+    }
+
+    public String generateNewID(){
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        System.out.println(generatedString);
+        return generatedString;
+    }
 
     }
 
     public void btn_saveClick(ActionEvent actionEvent) {
+
     }
 
     public void btn_cancel_click(ActionEvent actionEvent) {

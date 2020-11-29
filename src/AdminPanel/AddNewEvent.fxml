@@ -32,17 +32,11 @@
             <Font name="Century" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="tb_id" alignment="CENTER" editable="false" layoutX="36.0" layoutY="309.0" prefHeight="41.0" prefWidth="308.0" style="-fx-background-color: transparent;" text="Auto Text">
-         <font>
-            <Font name="Felix Titling" size="18.0" />
-         </font>
-      </TextField>
       <Label layoutX="31.0" layoutY="71.0" text="Event Name">
          <font>
             <Font name="Century" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="tb_EventName" layoutX="34.0" layoutY="89.0" prefHeight="27.0" prefWidth="151.0" promptText="Event Name" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" text="New Event" />
       <Label layoutX="32.0" layoutY="126.0" text="Module Code">
          <font>
             <Font name="Century" size="12.0" />
@@ -73,6 +67,12 @@
             <Font name="Century" size="12.0" />
          </font>
       </Label>
+      <TextField fx:id="tb_id" alignment="CENTER" editable="false" layoutX="36.0" layoutY="309.0" prefHeight="41.0" prefWidth="308.0" style="-fx-background-color: transparent;" text="Auto Text">
+         <font>
+            <Font name="Felix Titling" size="18.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="tb_EventName" layoutX="34.0" layoutY="89.0" prefHeight="27.0" prefWidth="151.0" promptText="Event Name" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" text="New Event" />
       <ComboBox fx:id="cmb_eventType" layoutX="192.0" layoutY="89.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Type" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
       <ComboBox fx:id="cmb_module" layoutX="35.0" layoutY="143.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Module" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
       <ComboBox fx:id="cmb_batch" layoutX="193.0" layoutY="143.0" prefHeight="27.0" prefWidth="151.0" promptText="Select Batch" style="-fx-background-color: #F5F5F5; -fx-background-radius: 5; -fx-border-color: #9AA7B0; -fx-border-radius: 5;" />
