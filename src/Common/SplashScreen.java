@@ -110,24 +110,7 @@ public class SplashScreen implements Initializable {
                         // Ownership is Invalid
                         // Re login to record
                         updateProgress("Auto Login Failed. Re-Login", 0.0);
-                        pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
-                        pgi_ind.setStyle("-fx-accent: yellow;");
-
-                        Timer LoginTimer = new Timer();
-                        TimerTask LoginTask = new TimerTask() {
-                            @Override
-                            public void run() {
-                                if (progress <= 1) {
-                                    Platform.runLater(() -> startLoginProcess());
-                                    Platform.runLater(() -> closeApp(pgb_status));
-                                    LoginTimer.cancel();
-                                }
-
-                            }
-                        };
-
-                        System.out.println("Starting Login Progress");
-                        LoginTimer.schedule(LoginTask, 3000);
+                        ErrorProgress();
                     }
 
                 }
@@ -136,47 +119,13 @@ public class SplashScreen implements Initializable {
                     // Login Again to Record the Device with the User
                     // Re login to record
                     updateProgress("Auto Login Failed. Re-Login", 0.0);
-                    pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
-                    pgi_ind.setStyle("-fx-accent: yellow;");
-
-                    Timer LoginTimer = new Timer();
-                    TimerTask LoginTask = new TimerTask() {
-                        @Override
-                        public void run() {
-                            if (progress <= 1) {
-                                Platform.runLater(() -> startLoginProcess());
-                                Platform.runLater(() -> closeApp(pgb_status));
-                                LoginTimer.cancel();
-                            }
-
-                        }
-                    };
-
-                    System.out.println("Starting Login Progress");
-                    LoginTimer.schedule(LoginTask, 3000);
+                    ErrorProgress();
 
                 }
             }
             else {
                 updateProgress("No User Logged in", 0.0);
-                pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
-                pgi_ind.setStyle("-fx-accent: yellow;");
-
-                Timer LoginTimer = new Timer();
-                TimerTask LoginTask = new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (progress <= 1) {
-                            Platform.runLater(() -> startLoginProcess());
-                            Platform.runLater(() -> closeApp(pgb_status));
-                            LoginTimer.cancel();
-                        }
-
-                    }
-                };
-
-                System.out.println("Starting Login Progress");
-                LoginTimer.schedule(LoginTask, 3000);
+                ErrorProgress();
             }
 
 
@@ -212,6 +161,27 @@ public class SplashScreen implements Initializable {
         }
 
 
+    }
+
+    private void ErrorProgress() {
+        pgb_status.setStyle("-fx-accent: yellow; -fx-border-color: white;");
+        pgi_ind.setStyle("-fx-accent: yellow;");
+
+        Timer LoginTimer = new Timer();
+        TimerTask LoginTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (progress <= 1) {
+                    Platform.runLater(() -> startLoginProcess());
+                    Platform.runLater(() -> closeApp(pgb_status));
+                    LoginTimer.cancel();
+                }
+
+            }
+        };
+
+        System.out.println("Starting Login Progress");
+        LoginTimer.schedule(LoginTask, 3000);
     }
 
     private void startAdminApplication(User user) {
