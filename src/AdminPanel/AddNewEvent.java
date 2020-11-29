@@ -2,6 +2,7 @@ package AdminPanel;
 
 import Common.BatchDAO;
 import Common.ModulesDAO;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,9 +30,11 @@ public class AddNewEvent implements Initializable {
     public TextField tb_lecturer;
     public Button btn_cancel;
 
+    String SelectedModuleCode = null;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String SelectedModuleCode = null;
+
 
         // Populate combo boxes
         ObservableList<String> EventTypesList= FXCollections.observableArrayList(
@@ -49,7 +52,8 @@ public class AddNewEvent implements Initializable {
         // Populate cmb_module
         cmb_module.setItems(ModuleList);
         cmb_module.getSelectionModel().selectFirst();
-
+        SelectedModuleCode = cmb_module.getSelectionModel().getSelectedItem().toString();
+        cmb_module_SelectionCchanged(SelectedModuleCode);
         // Get all Batches
         ObservableList<String> BatchList = FXCollections.observableArrayList(BatchDAO.getBatchList());
 
@@ -116,6 +120,7 @@ public class AddNewEvent implements Initializable {
     }
 
     }
+
 
     public void btn_saveClick(ActionEvent actionEvent) {
 
