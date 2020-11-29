@@ -1,9 +1,16 @@
 package LecturerApplication;
 
 import Common.User;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -14,7 +21,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -101,14 +113,88 @@ public class MainPageLecturer implements Initializable {
         // store the rounded image in the imageView.
         img_Lecturer.setImage(image);
 
-        List<MenuItem> optionsAdmin = new ArrayList<>();
-        optionsAdmin.add(new MenuItem("Device Settings"));
-        optionsAdmin.add(new MenuItem("Logout"));
-        optionsAdmin.add(new MenuItem("Exit"));
 
-        cmb_MenuLecturer.getItems().addAll(optionsAdmin);
+        /** Below code section will add items for the combolist and assign them to Logout and Exit
+         */
+
+        List<MenuItem> optionsLecturer = new ArrayList<>();
+        optionsLecturer.add(new MenuItem("Logout"));
+        optionsLecturer.add(new MenuItem("Exit"));
+
+
+        //UniEvent Handler for Menu Item Logout
+        EventHandler<ActionEvent> logoutClicked = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                try {
+                    logoutApplication(cmb_MenuLecturer);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        // UniEvent Handler for Menu Item Exit
+        EventHandler<ActionEvent> exitClicked = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                exitApplication();
+            }
+        };
+
+        // Assigning the event handlers to the menu items
+        optionsLecturer.get(0).setOnAction(logoutClicked);
+        optionsLecturer.get(1).setOnAction(exitClicked);
+
+        // Populating the menu button with the menu items
+        cmb_MenuLecturer.getItems().addAll(optionsLecturer);
 
     }
+
+    /**
+     * This will remove the login details from the file and restart the app
+     * @param node Any Control In the Stage
+     * @throws IOException
+     */
+    public void logoutApplication(Node node) throws IOException {
+        try {
+            File file = new File("User.bin");
+            FileWriter writer = new FileWriter(file);
+            writer.write("");
+            writer.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        // ReStart
+        FXMLLoader loder = new FXMLLoader();
+        loder.setLocation(getClass().getResource("../Common/SplashScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../Common/SplashScreen.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Lecturer");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setScene(new Scene(root, 600, 300));
+        primaryStage.show();
+
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+        primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+
+        // Close this Window
+        Stage thisStage = (Stage) node.getScene().getWindow();
+        thisStage.close();
+    }
+
+    /**
+     * Closes and Exists the Application.
+     */
+    public void exitApplication(){
+        Platform.exit();
+        System.exit(0);
+    }
+
+
 
     //Following events will added xml loaders and animations to the navigation panel
     //NavHomeLecturer
