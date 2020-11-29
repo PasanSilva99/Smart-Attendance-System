@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="ap_baseDegree" prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.AdminDegreePage">
+   <children>
+      <Label layoutX="326.0" layoutY="135.0" prefHeight="108.0" prefWidth="432.0" text="This is Degree Main Scene">
+         <font>
+            <Font name="Century Gothic" size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
