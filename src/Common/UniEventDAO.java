@@ -57,4 +57,56 @@ public class UniEventDAO {
         return lectureList;
     }
 
+    /**
+     * This function checks whether the event ID Is duplicate and returns true if duplicate
+     * @param newID ID that you want to validate
+     * @return if it is a duplicate - True --> If not - False
+     */
+    public boolean CheckDuplicateID(String newID) {
+        // SQL COnnection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "SELECT COUNT(*) FROM event WHERE event_id=?";
+            //SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, newID);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                int count = resultSet.getInt(1);
+
+                if(!(count >0))
+                {
+                    System.out.println("Hooray! No duplicate ID. Valid Event ID");
+                    return false;
+                }else {
+                    System.out.println("Duplicate ID Detected Re Generate a New ID");
+                    return true;
+                }
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            try {
+                con.close();
+            }catch (Exception ignore)
+            {
+
+            }
+        }
+        return true;
+
+
+    }
+
 }
