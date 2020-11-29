@@ -1,6 +1,7 @@
 package AdminPanel;
 
 import Common.BatchDAO;
+import Common.LocationDAO;
 import Common.ModulesDAO;
 import Common.UniEventDAO;
 import javafx.application.Platform;
@@ -8,17 +9,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AddNewEvent implements Initializable {
     public TextField tb_id;
@@ -32,6 +29,7 @@ public class AddNewEvent implements Initializable {
     public TextField tb_lecturer;
     public Button btn_cancel;
     public DatePicker dtp_date;
+    public ComboBox cmb_lectureHall;
 
     String SelectedModuleCode = null;
 
@@ -108,6 +106,16 @@ public class AddNewEvent implements Initializable {
             System.out.println("Error fetching Lecturer");
         }
 
+        // Populate locations
+        try{
+            ObservableList<String> locations = FXCollections.observableArrayList(new LocationDAO().getLocationCodeList());
+            cmb_lectureHall.setItems(locations);
+            cmb_lectureHall.getSelectionModel().selectFirst();
+
+        }catch (Exception e){
+            System.out.println("Error loading location or No locations registered" + e.getMessage());
+        }
+
 
     }
 
@@ -163,10 +171,28 @@ public class AddNewEvent implements Initializable {
         String event_id = tb_id.getText();
         String event_name = tb_EventName.getText();
         String module_code = cmb_module.getSelectionModel().getSelectedItem().toString();
-       // String start_time =
+        String start_time = dtp_date.getValue() + " " + cmb_startTime.getSelectionModel().getSelectedItem().toString();
+        String end_time = dtp_date.getValue() + " " + cmb_endTime.getSelectionModel().getSelectedItem().toString();
+        String lecturer = tb_lecturer.getText();
+        String batch = cmb_batch.getSelectionModel().getSelectedItem().toString();
+        String event_type = cmb_eventType.getSelectionModel().getSelectedItem().toString();
+        String location = cmb_lectureHall.getSelectionModel().getSelectedItem().toString();
+
+
+        new UniEventDAO().AddEvent(event_id, event_name, module_code, start_time, end_time, lecturer, batch, event_type, location);
+
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setContentText("Event "+event_id+ " Saved Successfully");
+        alert.setTitle("✔ Success");
+        alert.show();
+
+        Stage stage = (Stage) tb_id.getScene().getWindow();
+        stage.close();
     }
 
     public void btn_cancel_click(ActionEvent actionEvent) {
+        Stage stage = (Stage) tb_id.getScene().getWindow();
+        stage.close();
     }
 
 
