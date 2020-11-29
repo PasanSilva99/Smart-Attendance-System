@@ -115,7 +115,7 @@ public class MainPage implements Initializable {
         options.add(new MenuItem("Logout"));
         options.add(new MenuItem("Exit"));
 
-        //Event Handler for Menu Item Logout
+        //UniEvent Handler for Menu Item Logout
         EventHandler<ActionEvent> logoutClicked = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -127,7 +127,7 @@ public class MainPage implements Initializable {
             }
         };
 
-        // Event Handler for Menu Item Exit
+        // UniEvent Handler for Menu Item Exit
         EventHandler<ActionEvent> exitClicked = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {

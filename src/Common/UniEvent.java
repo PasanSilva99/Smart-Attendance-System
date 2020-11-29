@@ -2,7 +2,7 @@ package Common;
 
 import java.util.List;
 
-public class Event {
+public class UniEvent {
     private Module ModuleO;
     private String StartTime;
     private String EndTime;
