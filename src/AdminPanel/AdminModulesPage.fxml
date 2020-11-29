@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:id="ap_baseModules" prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.AdminModulesPage">
+   <children>
+      <Label layoutX="343.0" layoutY="134.0" prefHeight="108.0" prefWidth="432.0" text="This is Modules Main Scene">
+         <font>
+            <Font name="Century Gothic" size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

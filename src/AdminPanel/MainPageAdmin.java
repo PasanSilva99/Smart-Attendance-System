@@ -157,7 +157,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavStudentClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("StudentAdmin.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminStudentPage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
@@ -174,7 +174,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavLecturerClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("LecturerAdmin.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminLecturerPage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
@@ -191,7 +191,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavDegreeClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("DegreeAdmin.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminDegreePage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
@@ -208,7 +208,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavModulesClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("ModulesAdmin.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminModulesPage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
@@ -225,7 +225,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavEventsClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("EventsAdmin.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminEventsPage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
