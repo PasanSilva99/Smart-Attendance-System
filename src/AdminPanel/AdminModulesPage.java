@@ -28,7 +28,7 @@ public class AdminModulesPage implements Initializable {
     public GridPane grid_moduleView;
     public Button btn_addModule;
 
-    List<Module> ModuleList = new ArrayList<>();
+    List<Module> ModulesList = new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         RefreshModuleList();
@@ -36,10 +36,10 @@ public class AdminModulesPage implements Initializable {
     }
 
     public void RefreshModuleList() {
-        ModuleList = new ModulesDAO().getModuleList();
+        ModulesList = new ModulesDAO().getModulesList();
 
         int c=0, r=0;
-        for (Module module:ModuleList) {
+        for (Module module:ModulesList) {
             r++;
 
             AnchorPane moduleView = module.getModuleView();

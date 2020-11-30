@@ -199,8 +199,8 @@ public class ModulesDAO {
     }
 
 
-    public List<Module> getModuleList() {
-        List<Module> ModuleList = new ArrayList<>();
+    public List<Module> getModulesList() {
+        List<Module> ModulesList = new ArrayList<>();
 
         // SQL Connection con
         Connection con = null;
@@ -226,7 +226,7 @@ public class ModulesDAO {
 
 
 
-                ModuleList.add( new Module(module_code,module_name,lecturer_name,degree_program));
+                ModulesList.add( new Module(module_code,module_name,lecturer_name,degree_program));
                 System.out.println("Fetching: Module  "+module_code+" " +module_name+" ");
 
             }
@@ -239,10 +239,10 @@ public class ModulesDAO {
                 con.close();
             }catch (Exception ignored){}
         }
-        return ModuleList;
+        return ModulesList;
     }
 
-    }
+
 
 
     public Module getModuleByID(String moduleO) {
