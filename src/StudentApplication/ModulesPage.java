@@ -62,7 +62,6 @@ public class ModulesPage implements Initializable {
             crModule.addEventFilter(MouseEvent.MOUSE_CLICKED, ItemClickedEvent);
 
 
-
             ModuleView.add(crModule, c, r);
             ModuleView.setMargin(crModule, new Insets(0,40,20,0));
             if(c>1) {
