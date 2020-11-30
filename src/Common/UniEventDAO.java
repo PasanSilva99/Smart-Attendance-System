@@ -1,5 +1,7 @@
 package Common;
 
+import javafx.scene.control.Alert;
+
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -203,5 +205,96 @@ public class UniEventDAO {
 
             }
         }
+    }
+    public boolean removeEvent(String event_id) {
+        // SQL COnnection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "DELETE FROM event WHERE event_id=?";
+            //SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, event_id);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if(rowsAffected>0) {
+                System.out.println("Successfully Deleted event " + event_id);
+                return true;
+            }
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!");
+            alert.setHeaderText("Error !");
+            alert.setContentText("Error Deleting event "+event_id);
+            alert.show();
+            return false;
+
+        }finally {
+
+            try {
+                con.close();
+            }catch (Exception ignore)
+            {
+
+            }
+        }
+        return false;
+    }
+
+    public UniEvent getEventByID(String eventID) {
+        UniEvent uniEvent = null;
+
+        // SQL COnnection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "SELECT * FROM event WHERE event_id=?";
+            //SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, eventID);
+            ResultSet resultSet  = statement.executeQuery();
+
+            while (resultSet.next()){
+                String event_id = resultSet.getString(1);
+                String event_name = resultSet.getString(2);
+                String module_code = resultSet.getString(3);
+                String start_time = resultSet.getString(4);
+                String end_time = resultSet.getString(5);
+                String lecturer = resultSet.getString(6);
+                String batch = resultSet.getString(7);
+                String event_type = resultSet.getString(8);
+                String location = resultSet.getString(9);
+
+                uniEvent = new UniEvent(event_id, event_name, module_code, start_time, end_time, lecturer, batch, event_type, location);
+            }
+
+            return uniEvent;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception ignored){
+
+            }
+        }
+
+        return null;
     }
 }

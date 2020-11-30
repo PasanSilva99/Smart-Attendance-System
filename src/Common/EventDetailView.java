@@ -5,12 +5,14 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.UncheckedIOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -53,13 +55,18 @@ public class EventDetailView implements Initializable {
         String event_type = cmb_eventType.getSelectionModel().getSelectedItem().toString();
         String location = cmb_lectureHall.getSelectionModel().getSelectedItem().toString();
 
-
         new UniEventDAO().updateEvent(event_id, event_name, module_code, start_time, end_time, lecturer, batch, event_type, location);
+        uniEvent = new UniEvent(event_id, event_name, module_code, start_time, end_time, lecturer, batch, event_type, location);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Event "+event_id+ " Saved Successfully");
         alert.setTitle("✔ Success");
         alert.show();
+      
+        // Lock Controls
+        tb_eventName.setEditable(false);
+        cmb_module.getItems().clear();
+        cmb_module.getItems().add(uniEvent.getModuleO());
     }
 
     public void btn_addQuiz_Click(ActionEvent actionEvent) {
@@ -158,6 +165,22 @@ public class EventDetailView implements Initializable {
     }
 
     public void btn_delete_Click(ActionEvent actionEvent) {
+        if(new UniEventDAO().removeEvent(tb_eventCode.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Successfully Deleted Event");
+            alert.setTitle("Success");
+            alert.setHeaderText("Delete Success");
+            alert.show();
+
+            btn_goBack_Click();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Error Deleting Event");
+            alert.setTitle("Error");
+            alert.setHeaderText("Delete Failed");
+            alert.show();
+        }
     }
 
     public void setEvent(UniEvent event){
@@ -240,8 +263,7 @@ public class EventDetailView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
-    public void btn_goBack_Click(ActionEvent actionEvent) {
+    public void btn_goBack_Click() {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../AdminPanel/MainSceneAdmin.fxml"));
