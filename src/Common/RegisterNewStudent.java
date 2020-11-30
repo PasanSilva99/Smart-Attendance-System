@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.security.MessageDigest;
@@ -162,6 +163,7 @@ public class RegisterNewStudent implements Initializable {
                 confirmation.setContentText("Student "+nsbm_id+" successfully registered");
                 confirmation.show();
                 clearAll();
+                AdminStudentPage.RefreshStudentList();
 
             }catch (Exception e){
                 e.printStackTrace();
@@ -192,6 +194,8 @@ public class RegisterNewStudent implements Initializable {
     }
 
     public void btn_cancel_click(ActionEvent actionEvent) {
+        Stage stage = (Stage) btn_cancel.getScene().getWindow();
+        stage.close();
     }
 
     public void btn_reset_click(ActionEvent actionEvent) {
