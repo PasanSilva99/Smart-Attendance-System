@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Common.EventDetailView">
+   <children>
+      <Label fx:id="lbl_eventName" layoutX="457.0" layoutY="14.0" prefHeight="30.0" prefWidth="370.0" text="Event Name" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Felix Titling" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_delete" accessibleHelp="Delete Event" accessibleText="Delete" layoutX="446.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" style="-fx-background-color: #D7D7D7;">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_delete1" accessibleHelp="Edit Event" accessibleText="Edit" layoutX="402.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" style="-fx-background-color: #D7D7D7;">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/edit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="37.0" layoutY="90.0" text="Module">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="123.0" text="Batch">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="114.0" layoutY="87.0" prefHeight="25.0" prefWidth="370.0" />
+      <ComboBox layoutX="114.0" layoutY="120.0" prefHeight="25.0" prefWidth="191.0" />
+      <Label layoutX="37.0" layoutY="57.0" text="Event">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="113.0" layoutY="54.0" prefHeight="25.0" prefWidth="248.0" />
+      <TextField layoutX="367.0" layoutY="54.0" prefHeight="25.0" prefWidth="116.0" />
+      <DatePicker layoutX="113.0" layoutY="154.0" prefHeight="25.0" prefWidth="191.0" />
+      <Label layoutX="38.0" layoutY="157.0" text="Date">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="191.0" text="Start Time">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="114.0" layoutY="188.0" prefHeight="25.0" prefWidth="135.0" />
+      <Label layoutX="277.0" layoutY="191.0" text="End Time">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="347.0" layoutY="188.0" prefHeight="25.0" prefWidth="135.0" />
+      <Label layoutX="38.0" layoutY="224.0" text="Lecturer">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="113.0" layoutY="221.0" prefHeight="25.0" prefWidth="370.0" />
+      <Label layoutX="37.0" layoutY="258.0" text="Type">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="113.0" layoutY="255.0" prefHeight="25.0" prefWidth="135.0" />
+      <Label layoutX="260.0" layoutY="259.0" text="Lecture Hall">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="347.0" layoutY="255.0" prefHeight="25.0" prefWidth="135.0" />
+      <Separator layoutX="495.0" orientation="VERTICAL" prefHeight="463.0" prefWidth="6.0" />
+      <Label fx:id="lbl_eventName1" layoutX="510.0" layoutY="10.0" prefHeight="30.0" prefWidth="370.0" text="Quizzes" textAlignment="CENTER" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Felix Titling" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_delete11" accessibleHelp="Edit Event" accessibleText="Edit" layoutX="926.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="33.0" style="-fx-background-color: #D7D7D7;">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ScrollPane layoutX="509.0" layoutY="45.0" prefHeight="406.0" prefWidth="454.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="509.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="45.0">
+         <content>
+            <VBox fx:id="vbox_quizView" alignment="TOP_CENTER" prefWidth="446.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
