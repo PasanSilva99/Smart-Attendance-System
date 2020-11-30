@@ -78,7 +78,7 @@ public class MainPageLecturer implements Initializable {
     public void setUserLecturer(User userLecturer){
         this.userLecturer = userLecturer;
         if(userLecturer.getNsbm_id() != null){
-            cmb_MenuLecturer.setText(userLecturer.getFirst_name() + " " + userLecturer.getLast_name());
+            cmb_MenuLecturer.setText(userLecturer.getPrefix() + " " + userLecturer.getName());
         }
     }
 
@@ -92,7 +92,7 @@ public class MainPageLecturer implements Initializable {
         );
 
         if(userLecturer != null){
-            cmb_MenuLecturer.setText(userLecturer.getFirst_name() + userLecturer.getLast_name());
+            cmb_MenuLecturer.setText(userLecturer.getPrefix() + userLecturer.getName());
         }
 
         clipLecturer.setArcWidth(img_Lecturer.getFitHeight());

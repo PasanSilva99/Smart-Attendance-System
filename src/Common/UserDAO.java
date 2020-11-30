@@ -37,8 +37,8 @@ public class UserDAO {
 
                 //Fetch Details
                 String NSBM_ID = rs.getString(1);
-                String FirstName = rs.getString(2);
-                String LastName = rs.getString(3);
+                String Prefix = rs.getString(2);
+                String Name = rs.getString(3);
                 String Email = rs.getString(4);
                 String PasswordHash = rs.getString(5);
                 String DegreeProgram = rs.getString(6);
@@ -46,10 +46,10 @@ public class UserDAO {
                 String PrivilegeLevel = rs.getString(8);
 
                 if(!(NSBM_ID==null)) {
-                    System.out.println("Fetching Users : " + NSBM_ID + "  " + FirstName + "  " + LastName + "  " + Email + "  " + DegreeProgram + "  " + Batch + "  " + PrivilegeLevel);
+                    System.out.println("Fetching Users : " + NSBM_ID + "  " + Prefix + "  " + Name + "  " + Email + "  " + DegreeProgram + "  " + Batch + "  " + PrivilegeLevel);
 
 
-                    UsersList.add(new User(NSBM_ID, FirstName, LastName, Email, PasswordHash, DegreeProgram, Batch, PrivilegeLevel));
+                    UsersList.add(new User(NSBM_ID, Prefix, Name, Email, PasswordHash, DegreeProgram, Batch, PrivilegeLevel));
                 }
             }
             isConnected = true;
@@ -111,12 +111,12 @@ public class UserDAO {
         try {
             Class.forName(DAO.SqlDriverClass);
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
-            String sql = "INSERT INTO user (nsbm_id, first_name, last_name, nsbm_email, password_hash, degree_program, batch, privilege_level) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO user (nsbm_id, prefix, name, nsbm_email, password_hash, degree_program, batch, privilege_level) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, user.getNsbm_id());
-            statement.setString(2, user.getFirst_name());
-            statement.setString(3, user.getLast_name());
+            statement.setString(2, user.getPrefix());
+            statement.setString(3, user.getName());
             statement.setString(4, user.getNsbm_email());
             statement.setString(5, user.getPassword_hash());
             statement.setString(6, user.getDegree_program());
@@ -166,8 +166,8 @@ public class UserDAO {
             String sql = "UPDATE user SET first_name=?, last_name=?, nsbm_email=?, password_hash=?, degree_program=?, batch=?, privilege_level=? WHERE nsbm_id=?";
 
             PreparedStatement statement = con.prepareStatement(sql);
-            statement.setString(1, user.getFirst_name());
-            statement.setString(2, user.getLast_name());
+            statement.setString(1, user.getPrefix());
+            statement.setString(2, user.getName());
             statement.setString(3, user.getNsbm_email());
             statement.setString(4, user.getPassword_hash());
             statement.setString(5, user.getDegree_program());
@@ -261,15 +261,15 @@ public class UserDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
               while (resultSet.next()){
                   String nsbm_id = resultSet.getString(1);
-                  String first_name = resultSet.getString(2);
-                  String last_name = resultSet.getString(3);
+                  String prefix = resultSet.getString(2);
+                  String name = resultSet.getString(3);
                   String nsbm_emails = resultSet.getString(4);
                   String password_hash = resultSet.getString(5);
                   String degree_program = resultSet.getString(6);
                   String batch = resultSet.getString(7);
                   String privilege_level = resultSet.getString(8);
 
-                  user = new User(nsbm_id, first_name, last_name, nsbm_emails, password_hash, degree_program, batch, privilege_level);
+                  user = new User(nsbm_id, prefix, name, nsbm_emails, password_hash, degree_program, batch, privilege_level);
               }
             }
 
@@ -304,15 +304,15 @@ public class UserDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()){
                     String nsbm_id = resultSet.getString(1);
-                    String first_name = resultSet.getString(2);
-                    String last_name = resultSet.getString(3);
+                    String prefix = resultSet.getString(2);
+                    String name = resultSet.getString(3);
                     String nsbm_emails = resultSet.getString(4);
                     String password_hash = resultSet.getString(5);
                     String degree_program = resultSet.getString(6);
                     String batch = resultSet.getString(7);
                     String privilege_level = resultSet.getString(8);
 
-                    user = new User(nsbm_id, first_name, last_name, nsbm_emails, password_hash, degree_program, batch, privilege_level);
+                    user = new User(nsbm_id, prefix, name, nsbm_emails, password_hash, degree_program, batch, privilege_level);
                 }
             }
 
@@ -348,16 +348,16 @@ public class UserDAO {
 
             while (resultSet.next()){
                 String nsbm_id = resultSet.getString(1);
-                String first_name = resultSet.getString(2);
-                String last_name = resultSet.getString(3);
+                String prefix = resultSet.getString(2);
+                String name = resultSet.getString(3);
                 String nsbm_email = resultSet.getString(4);
                 String password_hash = resultSet.getString(5);
                 String degree_program = resultSet.getString(6);
                 String batch = resultSet.getString(7);
                 String privilege_level = resultSet.getString(8);
 
-                StudentList.add( new User(nsbm_id, first_name, last_name, nsbm_email, password_hash, degree_program, batch, privilege_level));
-                System.out.println("Fetching: Student "+nsbm_id+" " +first_name+" "+last_name);
+                StudentList.add( new User(nsbm_id, prefix, name, nsbm_email, password_hash, degree_program, batch, privilege_level));
+                System.out.println("Fetching: Student "+nsbm_id+" " +prefix+" "+name);
 
             }
 

@@ -1,7 +1,6 @@
 package StudentApplication;
 
 import Common.User;
-import StudentApplication.ModulesPage;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,7 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -78,7 +76,7 @@ public class MainPage implements Initializable {
     public void setUser(User user){
         this.user = user;
         if(user.getNsbm_id() != null){
-            cmb_menu.setText(user.getFirst_name() + " " + user.getLast_name());
+            cmb_menu.setText(user.getPrefix() + " " + user.getName());
         }
     }
 
@@ -90,7 +88,7 @@ public class MainPage implements Initializable {
         );
 
         if(user != null){
-            cmb_menu.setText(user.getFirst_name() + user.getLast_name());
+            cmb_menu.setText(user.getPrefix() + user.getName());
         }
 
         clip.setArcWidth(img_Pic.getFitHeight());

@@ -16,8 +16,7 @@ import java.util.ResourceBundle;
 
 public class RegisterNewStudent implements Initializable {
     public TextField tb_StudentID;
-    public TextField tb_FirstName;
-    public TextField tb_LastName;
+    public TextField tb_Name;
     public TextField txtEmail;
     public ComboBox cmb_Degree;
     public ComboBox cmb_Batch;
@@ -26,6 +25,8 @@ public class RegisterNewStudent implements Initializable {
     public PasswordField tb_password;
     public PasswordField tb_confirmPassword;
     public TextField tb_Email;
+    public Button btn_reset;
+    public ComboBox cmb_prefix;
 
     AdminStudentPage AdminStudentPage;
     
@@ -47,6 +48,20 @@ public class RegisterNewStudent implements Initializable {
             ObservableList<String> DegreeList = FXCollections.observableArrayList(new DegreeDAO().getAllDegreePrograms());
 
             cmb_Degree.setItems(DegreeList);
+
+        } catch (Exception e) {
+            System.out.println("Error loading degree programs" + e.getMessage());
+        }
+
+        try {
+            // Prifixes
+            ObservableList<String> PrefixList = FXCollections.observableArrayList(
+                    "Mr.",
+                    "Mrs.",
+                    "Miss."
+            );
+
+            cmb_prefix.setItems(PrefixList);
 
         } catch (Exception e) {
             System.out.println("Error loading degree programs" + e.getMessage());
@@ -93,8 +108,8 @@ public class RegisterNewStudent implements Initializable {
         boolean isErrorFree=true;
 
         String nsbm_id = "";
-        String first_name = "";
-        String last_name = "";
+        String prefix = "";
+        String name = "";
         String nsbm_email = "";
         String password = "";
         String confirm_password = "";
@@ -110,14 +125,14 @@ public class RegisterNewStudent implements Initializable {
             message = message+" PLease enter the NSBM ID\n";
             isErrorFree=false;
         }
-        if(!tb_FirstName.getText().equals("")) {
-            first_name = tb_FirstName.getText();
+        if(cmb_prefix.getSelectionModel().getSelectedItem()!=null) {
+            prefix = cmb_prefix.getSelectionModel().getSelectedItem().toString();
         }else {
-            message = message+" Please enter the First Name\n";
+            message = message+" Please select the Name Prefix\n";
             isErrorFree=false;
         }
-        if(!tb_LastName.getText().equals("")) {
-            last_name = tb_LastName.getText();
+        if(!tb_Name.getText().equals("")) {
+            name = tb_Name.getText();
         }else {
             message = message+" Please enter the Last Name\n";
             isErrorFree=false;
@@ -152,7 +167,7 @@ public class RegisterNewStudent implements Initializable {
             message = "Student "+nsbm_id+" Registration Successful";
 
             try{
-                User user = new User(nsbm_id, first_name, last_name, nsbm_email, password, degree_program, batch, privilege_level);
+                User user = new User(nsbm_id, prefix, name, nsbm_email, password, degree_program, batch, privilege_level);
 
                 new UserDAO().AddUser(user);
 
@@ -184,8 +199,8 @@ public class RegisterNewStudent implements Initializable {
 
     public void clearAll(){
         tb_StudentID.setText("");
-        tb_FirstName.setText("");
-        tb_LastName.setText("");
+        cmb_prefix.getSelectionModel().clearSelection();
+        tb_Name.setText("");
         tb_Email.setText("");
         tb_password.setText("");
         tb_confirmPassword.setText("");
