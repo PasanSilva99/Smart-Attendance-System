@@ -55,7 +55,6 @@ public class EventDetailView implements Initializable {
         String event_type = cmb_eventType.getSelectionModel().getSelectedItem().toString();
         String location = cmb_lectureHall.getSelectionModel().getSelectedItem().toString();
 
-
         new UniEventDAO().updateEvent(event_id, event_name, module_code, start_time, end_time, lecturer, batch, event_type, location);
         uniEvent = new UniEvent(event_id, event_name, module_code, start_time, end_time, lecturer, batch, event_type, location);
 
@@ -63,7 +62,7 @@ public class EventDetailView implements Initializable {
         alert.setContentText("Event "+event_id+ " Saved Successfully");
         alert.setTitle("✔ Success");
         alert.show();
-
+      
         // Lock Controls
         tb_eventName.setEditable(false);
         cmb_module.getItems().clear();
@@ -264,7 +263,6 @@ public class EventDetailView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
     public void btn_goBack_Click() {
         try {
             FXMLLoader loader = new FXMLLoader();

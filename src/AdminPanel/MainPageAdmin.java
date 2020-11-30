@@ -223,7 +223,11 @@ public class MainPageAdmin implements Initializable {
     @FXML
     public void NavHomeClickAdmin(MouseEvent mouseEvent) throws IOException
     {
-        AnchorPane page = FXMLLoader.load(getClass().getResource("MainSceneAdmin.fxml"));
+        FXMLLoader loder = new FXMLLoader();
+        loder.setLocation(getClass().getResource("MainSceneAdmin.fxml"));
+        AnchorPane page = loder.load();
+        MainSceneAdmin controler = loder.getController();
+        controler.setMainPage(this.baseAdmin);
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
@@ -240,7 +244,10 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavStudentClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminStudentPage.fxml"));
+
+        FXMLLoader loder = new FXMLLoader();
+        loder.setLocation(getClass().getResource("AdminStudentPage.fxml"));
+        AnchorPane page = loder.load();
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
@@ -274,7 +281,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavDegreeClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminDegreePage.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("../AdminPanel/AdminDegreePage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }

@@ -206,7 +206,6 @@ public class UniEventDAO {
             }
         }
     }
-
     public boolean removeEvent(String event_id) {
         // SQL COnnection Variable
         Connection con = null;
