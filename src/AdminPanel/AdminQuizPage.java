@@ -3,12 +3,20 @@ package AdminPanel;
 import Common.Quiz;
 import Common.QuizDAO;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +47,17 @@ public class AdminQuizPage implements Initializable {
         }
     }
 
-    public void btn_createQuiz_Click(ActionEvent actionEvent) {
+    public void btn_createQuiz_Click(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loder = new FXMLLoader();
+        loder.setLocation(getClass().getResource("AdminCreateQuiz.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AdminCreateQuiz.fxml"));
+        Stage primaryStage = new Stage();
+        primaryStage.setTitle("Student");
+        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.show();
+
+        Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+        primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
     }
 }
