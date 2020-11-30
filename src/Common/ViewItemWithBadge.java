@@ -138,7 +138,7 @@ public class ViewItemWithBadge extends AnchorPane {
                 "               -fx-border-width: 0px 0px 2px 0px; \n" +
                 "               -fx-border-color: #545454;");
 
-        control.setPrefSize(250,100);
+        control.setPrefSize(350,100);
 
         // This will be the heading Label
         Label lbl_heading = new Label(Heading);

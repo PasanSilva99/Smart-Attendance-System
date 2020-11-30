@@ -1106,67 +1106,75 @@ SELECT|sys.sys_config:null
       <Position>2</Position>
       <DataType>longtext|0s</DataType>
     </column>
-    <key id="339" parent="295" name="PRIMARY">
+    <column id="339" parent="295" name="quiz_id">
+      <Position>3</Position>
+      <DataType>varchar(15)|0s</DataType>
+    </column>
+    <key id="340" parent="295" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>q_number</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="340" parent="296" name="quiz_id">
+    <column id="341" parent="296" name="quiz_id">
       <Position>1</Position>
       <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="341" parent="296" name="quiz_name">
+    <column id="342" parent="296" name="quiz_name">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <column id="342" parent="296" name="date">
+    <column id="343" parent="296" name="date">
       <Position>3</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="343" parent="296" name="start_time">
+    <column id="344" parent="296" name="start_time">
       <Position>4</Position>
       <DataType>time|0s</DataType>
     </column>
-    <column id="344" parent="296" name="end_time">
+    <column id="345" parent="296" name="end_time">
       <Position>5</Position>
       <DataType>time|0s</DataType>
     </column>
-    <column id="345" parent="297" name="nsbm_id">
+    <column id="346" parent="296" name="event_id">
+      <Position>6</Position>
+      <DataType>varchar(15)|0s</DataType>
+    </column>
+    <column id="347" parent="297" name="nsbm_id">
       <Position>1</Position>
       <DataType>varchar(45)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="346" parent="297" name="first_name">
+    <column id="348" parent="297" name="prefix">
       <Position>2</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(7)|0s</DataType>
     </column>
-    <column id="347" parent="297" name="last_name">
+    <column id="349" parent="297" name="name">
       <Position>3</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="348" parent="297" name="nsbm_email">
+    <column id="350" parent="297" name="nsbm_email">
       <Position>4</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="349" parent="297" name="password_hash">
+    <column id="351" parent="297" name="password_hash">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="350" parent="297" name="degree_program">
+    <column id="352" parent="297" name="degree_program">
       <Position>6</Position>
       <DataType>varchar(80)|0s</DataType>
     </column>
-    <column id="351" parent="297" name="batch">
+    <column id="353" parent="297" name="batch">
       <Position>7</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <column id="352" parent="297" name="privilege_level">
+    <column id="354" parent="297" name="privilege_level">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
     </column>
-    <key id="353" parent="297" name="PRIMARY">
+    <key id="355" parent="297" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>nsbm_id</ColNames>
       <Primary>1</Primary>

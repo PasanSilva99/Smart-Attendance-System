@@ -163,4 +163,45 @@ public class UniEventDAO {
         }
 
     }
+
+    public void updateEvent(String event_id, String event_name, String module_code, String start_time, String end_time, String lecturer, String batch, String event_type, String location) {
+        // SQL COnnection Variable
+        Connection con = null;
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "UPDATE event SET event_name=?, module_code=?, start_time=?, end_time=?, lecturer=?, batch=?, event_type=?, location=? WHERE event_id=?";
+            //SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, event_name);
+            statement.setString(2, module_code);
+            statement.setString(3, start_time);
+            statement.setString(4, end_time);
+            statement.setString(5, lecturer);
+            statement.setString(6, batch);
+            statement.setString(7, event_type);
+            statement.setString(8, location);
+            statement.setString(9, event_id);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if(rowsAffected>0)
+                System.out.println("Successfully updated event " + event_id);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+
+            try {
+                con.close();
+            }catch (Exception ignore)
+            {
+
+            }
+        }
+    }
 }
