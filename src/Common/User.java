@@ -11,13 +11,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 import java.io.File;
-import java.lang.annotation.Retention;
 import java.util.List;
 
 public class User {
     private String nsbm_id;
-    private String first_name;
-    private String last_name;
+    private String prefix;
+    private String name;
     private String nsbm_email;
     private String password_hash;
     private String degree_program;
@@ -25,12 +24,12 @@ public class User {
     private String priviladgeLevel;
     public List<Module> moduleList;
 
-    public User(String nsbm_id, String first_name, String last_name,
+    public User(String nsbm_id, String prefix, String name,
                 String nsbm_email, String password_hash, String degree_program,
                 String batch, String priviladgeLevel) {
         this.nsbm_id = nsbm_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.prefix = prefix;
+        this.name = name;
         this.nsbm_email = nsbm_email;
         this.password_hash = password_hash;
 
@@ -48,20 +47,20 @@ public class User {
         this.nsbm_id = nsbm_id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getPrefix() {
+        return prefix;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getName() {
+        return name;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getNsbm_email() {
@@ -129,7 +128,7 @@ public class User {
         AnchorPane.setLeftAnchor(img_student, 7.0);
         AnchorPane.setTopAnchor(img_student, 10.0);
 
-        Label lbl_details = new Label( nsbm_id+ "\t" +first_name+" "+last_name + "\t"+nsbm_email);
+        Label lbl_details = new Label( nsbm_id+ "\t" + prefix +" "+ name + "\t"+nsbm_email);
         lbl_details.setFont(new Font("Century", 14.0));
         AnchorPane.setLeftAnchor(lbl_details,65.0);
         AnchorPane.setTopAnchor(lbl_details, 23.0);

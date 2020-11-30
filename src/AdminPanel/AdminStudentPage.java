@@ -33,7 +33,6 @@ public class AdminStudentPage implements Initializable {
         RefreshStudentList();
 
 
-
     }
 
     public void RefreshStudentList(){

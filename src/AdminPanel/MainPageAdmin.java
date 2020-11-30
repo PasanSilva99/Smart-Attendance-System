@@ -91,7 +91,7 @@ public class MainPageAdmin implements Initializable {
     public void setUserAdmin(User userAdmin){
         this.userAdmin = userAdmin;
         if(userAdmin.getNsbm_id() != null){
-            cmb_MenuAdmin.setText(userAdmin.getFirst_name() + " " + userAdmin.getLast_name());
+            cmb_MenuAdmin.setText(userAdmin.getPrefix() + " " + userAdmin.getName());
         }
     }
 
@@ -105,7 +105,7 @@ public class MainPageAdmin implements Initializable {
         );
 
         if(userAdmin != null){
-            cmb_MenuAdmin.setText(userAdmin.getFirst_name() + userAdmin.getLast_name());
+            cmb_MenuAdmin.setText(userAdmin.getPrefix() + userAdmin.getName());
         }
 
         clipAdmin.setArcWidth(img_Admin.getFitHeight());
