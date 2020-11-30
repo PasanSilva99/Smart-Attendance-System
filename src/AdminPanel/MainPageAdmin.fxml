@@ -100,12 +100,12 @@
             </AnchorPane>
             <AnchorPane fx:id="ap_ModulesAdmin" layoutX="33.0" layoutY="276.0" onMouseEntered="#NavModulesEnterAdmin" onMouseExited="#NavModulesExitAdmin" onMousePressed="#NavModulesClickAdmin" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
                <children>
-                  <ImageView fx:id="img_ModulesAdmin" fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="9.0">
+                  <ImageView fx:id="img_ModulesAdmin" fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="9.0" onMouseEntered="#NavModulesEnterAdmin" onMouseExited="#NavModulesExitAdmin" onMousePressed="#NavModulesClickAdmin" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="9.0">
                      <image>
                         <Image url="@Images/adminModules.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lbl_ModulesAdmin" layoutX="12.0" layoutY="41.0" text="Modules" textFill="WHITE" AnchorPane.bottomAnchor="5.399999999999999" />
+                  <Label fx:id="lbl_ModulesAdmin" layoutX="12.0" layoutY="41.0" onMouseEntered="#NavModulesEnterAdmin" onMouseExited="#NavModulesExitAdmin" onMousePressed="#NavModulesClickAdmin" text="Modules" textFill="WHITE" AnchorPane.bottomAnchor="5.399999999999999" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="ap_EventsAdmin" layoutX="33.0" layoutY="341.0" onMouseEntered="#NavEventsEnterAdmin" onMouseExited="#NavEventsExitAdmin" onMousePressed="#NavEventsClickAdmin" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
