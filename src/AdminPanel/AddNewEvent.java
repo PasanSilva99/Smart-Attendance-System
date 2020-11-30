@@ -31,6 +31,8 @@ public class AddNewEvent implements Initializable {
     public DatePicker dtp_date;
     public ComboBox cmb_lectureHall;
 
+    public MainSceneAdmin Admin;
+
     String SelectedModuleCode = null;
 
     @Override
@@ -166,6 +168,9 @@ public class AddNewEvent implements Initializable {
         return generatedString;
     }
 
+    public void setMainPage(MainSceneAdmin admin){
+        Admin = admin;
+    }
 
     public void btn_saveClick(ActionEvent actionEvent) {
         String event_id = tb_id.getText();
@@ -185,6 +190,8 @@ public class AddNewEvent implements Initializable {
         alert.setContentText("Event "+event_id+ " Saved Successfully");
         alert.setTitle("✔ Success");
         alert.show();
+
+        Admin.RefreshData();
 
         Stage stage = (Stage) tb_id.getScene().getWindow();
         stage.close();

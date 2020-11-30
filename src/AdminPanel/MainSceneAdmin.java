@@ -29,13 +29,17 @@ public class MainSceneAdmin implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        RefreshData();
 
+    }
+
+    public void RefreshData(){
         LectureList = new UniEventDAO().getLectureList();
 
         int c=0, r=0;
         for (UniEvent event:LectureList) {
             c++;
-            ViewItemWithBadge item = new ViewItemWithBadge(""+event.getEventName(),""+event.getStartTime().substring(10)+" - "+ event.getEndTime().substring(10),event.getLocation());
+            ViewItemWithBadge item = new ViewItemWithBadge( ""+event.getModuleO(),""+event.getEventName(),""+event.getStartTime().substring(10)+" - "+ event.getEndTime().substring(10), event.getBatch(), event.getLocation());
 
             AnchorPane lectureItem = item.getControl();
             grid_lectureViewAdmin.add(lectureItem, c, r);
@@ -52,7 +56,9 @@ public class MainSceneAdmin implements Initializable {
         try {
             FXMLLoader loder = new FXMLLoader();
             loder.setLocation(getClass().getResource("AddNewEvent.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("AddNewEvent.fxml"));
+            Parent root = loder.load();
+            AddNewEvent controller = loder.getController();
+            controller.setMainPage(this);
             Stage primaryStage = new Stage();
             primaryStage.setTitle("Add New Event");
             primaryStage.setScene(new Scene(root, 380, 550));
