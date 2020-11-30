@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="656.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Common.RegisterNewStudent">
+<AnchorPane prefHeight="656.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.RegisterNewStudent">
    <children>
       <AnchorPane layoutY="533.0" prefHeight="221.0" prefWidth="229.0">
          <children>
@@ -100,7 +100,7 @@
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/reset.png" />
+                        <Image url="@../Common/Images/reset.png" />
                      </image>
                   </ImageView>
                </graphic>

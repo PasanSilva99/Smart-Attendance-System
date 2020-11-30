@@ -1,6 +1,5 @@
 package AdminPanel;
 
-import Common.RegisterNewStudent;
 import Common.User;
 import Common.UserDAO;
 import javafx.event.ActionEvent;
@@ -55,7 +54,7 @@ public class AdminStudentPage implements Initializable {
 
         try {
             FXMLLoader loder = new FXMLLoader();
-            loder.setLocation(getClass().getResource("../Common/RegisterNewStudent.fxml"));
+            loder.setLocation(getClass().getResource("../AdminPanel/RegisterNewStudent.fxml"));
             Parent root = loder.load();
             RegisterNewStudent controller = loder.getController();
             controller.setMainPage(this);

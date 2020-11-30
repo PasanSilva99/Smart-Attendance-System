@@ -1,6 +1,10 @@
-package Common;
+package AdminPanel;
 
 import AdminPanel.AdminStudentPage;
+import Common.BatchDAO;
+import Common.DegreeDAO;
+import Common.User;
+import Common.UserDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
