@@ -116,4 +116,5 @@ public class UniEvent {
     public void removeConnectedQuiz(Quiz quiz) {
         ConnectedQuizzes.add(quiz);
     }
+
 }

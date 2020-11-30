@@ -40,6 +40,7 @@ public class MainPageAdmin implements Initializable {
     public MenuButton cmb_MenuAdmin;
     @FXML
     public ImageView btn_BellAdmin;
+    public AnchorPane ap_quizPage;
     @FXML
     AnchorPane topBarAdmin;
     @FXML
@@ -320,4 +321,21 @@ public class MainPageAdmin implements Initializable {
         baseAdmin.getChildren().setAll(page);
     }
 
+    public void NavQuizEnterAdmin(MouseEvent mouseEvent) {
+        ap_quizPage.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
+    }
+
+    public void NavQuizExitAdmin(MouseEvent mouseEvent) {
+        ap_quizPage.setStyle("-fx-background-color : #636363;");
+    }
+
+    public void NavQuizClickAdmin(MouseEvent mouseEvent) {
+        try {
+            AnchorPane page = FXMLLoader.load(getClass().getResource("AdminQuizPage.fxml"));
+            baseAdmin.getChildren().clear();
+            baseAdmin.getChildren().setAll(page);
+        }catch (Exception e){
+
+        }
+    }
 }

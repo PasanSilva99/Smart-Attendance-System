@@ -9,7 +9,8 @@ import java.util.List;
 
 public class ModulesDAO {
 
-    public static List<ViewItem> ModuleList;
+    public static List<ViewItem> ModuleViewItemList;
+    public static List<Module> ModuleList;
     public static boolean isConnected = false;
 
     public static ObservableList<String> getModuleCodesOL() {
@@ -17,7 +18,7 @@ public class ModulesDAO {
 
         fetchModules();
 
-        for (ViewItem item:ModuleList) {
+        for (ViewItem item: ModuleViewItemList) {
             if(item!=null)
                 listModule.add(item.ModuleCode);
         }
@@ -55,8 +56,14 @@ public class ModulesDAO {
         return null;
     }
 
+    public List<ViewItem> getModuleViewItemList() throws SQLException {
+        if (ModuleViewItemList == null) {
+            fetchModules();
+        }
+        return ModuleViewItemList;
+    }
 
-    public List<ViewItem> getModules() throws SQLException {
+    public List<Module> getModuleList(){
         if (ModuleList == null) {
             fetchModules();
         }
@@ -64,7 +71,7 @@ public class ModulesDAO {
     }
 
     public static void fetchModules(){
-        ModuleList = new ArrayList<>();
+        ModuleViewItemList = new ArrayList<>();
 
         Connection con = null;
 
@@ -83,14 +90,13 @@ public class ModulesDAO {
                 //Fetch Details
                 String ModuleCode = rs.getString(1);
                 String ModuleName = rs.getString(2);
-                String ImagePath = rs.getString(3);
+                String LecturerName = rs.getString(3);
+                String DegreeProgram = rs.getString(4);
 
-                System.out.println("Fetching : " + ModuleCode + "  " + ModuleName + "  " + ImagePath);
+                System.out.println("Fetching : " + ModuleCode + "  " + ModuleName + "  " + LecturerName + "  " + DegreeProgram);
 
-                if (ImagePath == null)
-                    ImagePath = "Images/modules.png";
+                ModuleViewItemList.add(new ViewItem(ModuleCode, ModuleName, "", "Images/modules.png"));
 
-                ModuleList.add(new ViewItem(ModuleCode, ModuleName, "", ImagePath));
 
             }
             isConnected = true;
@@ -191,4 +197,49 @@ public class ModulesDAO {
             }
         }
     }
+
+    public Module getModuleByID(String moduleO) {
+        Connection con = null;
+
+        try{
+
+            Class.forName(DAO.SqlDriverClass);
+
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            System.out.println("Connection to SAS_DB Succeeded.");
+
+            String sql = "SELECT * FROM module WHERE module_code=?";
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, moduleO);
+            ResultSet resultSet=statement.executeQuery();
+
+            while(resultSet.next()) {
+
+                //Fetch Details
+                String ModuleCode = resultSet.getString(1);
+                String ModuleName = resultSet.getString(2);
+                String LecturerName = resultSet.getString(3);
+                String DegreeProgram = resultSet.getString(4);
+
+                System.out.println("Fetching : " + ModuleCode + "  " + ModuleName + "  " + LecturerName + "   " + DegreeProgram);
+
+                return new Module(ModuleCode, ModuleName, LecturerName, DegreeProgram);
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("ERROR <!> Cannot fetch Modules\n"+e);
+        }  finally {
+            try {
+                assert con != null;
+                con.close();
+            }catch (Exception ignored){
+
+            }
+        }
+        return null;
+    }
+
 }
