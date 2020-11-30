@@ -371,4 +371,49 @@ public class UserDAO {
         }
         return StudentList;
     }
+
+    public List<User> getLecturerList() {
+        List<User> LecturerList = new ArrayList<>();
+
+        // SQL Connection con
+        Connection con=null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            // SQL Quarry
+            String sql = "SELECT * FROM user WHERE privilege_level='lecturer'";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                String nsbm_id = resultSet.getString(1);
+                String prefix = resultSet.getString(2);
+                String name = resultSet.getString(3);
+                String nsbm_email = resultSet.getString(4);
+                String password_hash = resultSet.getString(5);
+                String degree_program = resultSet.getString(6);
+                String batch = resultSet.getString(7);
+                String privilege_level = resultSet.getString(8);
+
+                LecturerList.add( new User(nsbm_id, prefix, name, nsbm_email, password_hash, degree_program, batch, privilege_level));
+                System.out.println("Fetching: Lecturer "+nsbm_id+" " +prefix+" "+name);
+
+            }
+
+
+        }catch (Exception e){
+
+        }finally {
+            try {
+                con.close();
+            }catch (Exception ignored){}
+        }
+        return LecturerList;
+    }
 }
