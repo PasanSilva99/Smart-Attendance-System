@@ -274,7 +274,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavDegreeClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminDegreePage.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("../AdminPanel/AdminDegreePage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
