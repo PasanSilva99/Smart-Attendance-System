@@ -109,4 +109,40 @@ public class DegreeDAO {
         }
         return DegreeList;
     }
+
+    public String getDegreeNameByID(String degreeProgram) {
+        // SQL Connection con
+        Connection con=null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            // SQL Quarry
+            String sql = "SELECT degree_name FROM degree_program WHERE degree_code=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, degreeProgram);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                String degree_code = resultSet.getString(1);
+
+                return degree_code;
+
+            }
+
+
+        }catch (Exception e){
+
+        }finally {
+            try {
+                con.close();
+            }catch (Exception ignored){}
+        }
+        return null;
+    }
 }
