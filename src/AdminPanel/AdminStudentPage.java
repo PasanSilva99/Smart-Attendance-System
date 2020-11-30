@@ -31,6 +31,9 @@ public class AdminStudentPage implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         RefreshStudentList();
+
+
+
     }
 
     public void RefreshStudentList(){
@@ -53,13 +56,13 @@ public class AdminStudentPage implements Initializable {
 
         try {
             FXMLLoader loder = new FXMLLoader();
-            loder.setLocation(getClass().getResource("RegisterNewStudent.fxml"));
+            loder.setLocation(getClass().getResource("../Common/RegisterNewStudent.fxml"));
             Parent root = loder.load();
             RegisterNewStudent controller = loder.getController();
             controller.setMainPage(this);
             Stage primaryStage = new Stage();
             primaryStage.setTitle("Add New Event");
-            primaryStage.setScene(new Scene(root, 380, 550));
+            primaryStage.setScene(new Scene(root, 600, 752));
             primaryStage.show();
 
             Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();

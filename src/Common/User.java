@@ -129,7 +129,7 @@ public class User {
         AnchorPane.setLeftAnchor(img_student, 7.0);
         AnchorPane.setTopAnchor(img_student, 10.0);
 
-        Label lbl_details = new Label( nsbm_id+"\t"+nsbm_email+ "\t" +first_name+" "+last_name);
+        Label lbl_details = new Label( nsbm_id+ "\t" +first_name+" "+last_name + "\t"+nsbm_email);
         lbl_details.setFont(new Font("Century", 14.0));
         AnchorPane.setLeftAnchor(lbl_details,65.0);
         AnchorPane.setTopAnchor(lbl_details, 23.0);
