@@ -22,9 +22,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="388.0" prefHeight="165.0" prefWidth="212.0">
+      <AnchorPane layoutX="388.0" prefHeight="165.0" prefWidth="212.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="161.0" fitWidth="212.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="161.0" fitWidth="212.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
                   <Image url="@../StudentApplication/Images/registerShapeUp.png" />
                </image>
@@ -40,20 +40,20 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="40.0" layoutY="168.0" prefHeight="559.0" prefWidth="522.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="168.0">
+      <AnchorPane layoutX="40.0" layoutY="168.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="522.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="168.0">
          <children>
             <TextField fx:id="tb_StudentID" layoutX="113.0" layoutY="52.0" prefHeight="30.0" prefWidth="308.0" promptText="Student ID" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="482.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
             <TextField fx:id="tb_FirstName" layoutX="167.0" layoutY="107.0" prefHeight="30.0" promptText="First Name" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="427.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
             <TextField fx:id="tb_LastName" layoutX="167.0" layoutY="160.0" prefHeight="30.0" promptText="Last Name" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="372.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
             <TextField fx:id="tb_Email" layoutX="167.0" layoutY="213.0" prefHeight="30.0" promptText="Email" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="317.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
-            <ComboBox fx:id="cmb_Degree" layoutX="113.0" layoutY="267.0" prefHeight="30.0" prefWidth="150.0" promptText="Degree" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="262.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="259.0" />
-            <ComboBox fx:id="cmb_Batch" layoutX="290.0" layoutY="267.0" prefHeight="30.0" prefWidth="131.0" promptText="Batch" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="262.0" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="101.0" />
-            <Button fx:id="btn_Register" layoutX="331.0" layoutY="454.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: #008a00; -fx-font-style: Bold; -fx-background-radius: 10;" text="Register" textFill="#fcf7f7" AnchorPane.bottomAnchor="75.0" AnchorPane.rightAnchor="102.0" onAction="#btn_Register_click">
+            <ComboBox fx:id="cmb_Degree" layoutX="113.0" layoutY="267.0" prefHeight="30.0" prefWidth="308.0" promptText="Select Degree Program" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="262.0" AnchorPane.leftAnchor="113.0" AnchorPane.rightAnchor="101.0" />
+            <ComboBox fx:id="cmb_Batch" layoutX="114.0" layoutY="323.0" prefHeight="30.0" prefWidth="308.0" promptText="Select Batch" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="206.0" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="100.0" />
+            <Button fx:id="btn_Register" layoutX="331.0" layoutY="472.0" mnemonicParsing="false" onAction="#btn_Register_click" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #008a00; -fx-background-radius: 10;" text="Register" textFill="#fcf7f7" AnchorPane.bottomAnchor="58.0" AnchorPane.rightAnchor="102.0">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btn_cancel" layoutX="233.0" layoutY="454.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="89.0" style="-fx-background-color: #a20025; -fx-font-style: Bold; -fx-background-radius: 10;" text="Cancel" textFill="#fcf7f7" onAction="#btn_cancel_click">
+            <Button fx:id="btn_cancel" layoutX="142.0" layoutY="472.0" mnemonicParsing="false" onAction="#btn_cancel_click" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #a20025; -fx-background-radius: 10;" text="Cancel" textFill="#fcf7f7">
                <font>
                   <Font size="13.0" />
                </font>
@@ -83,23 +83,28 @@
                   <Font name="Century" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="295.0" layoutY="249.0" text="Batch">
+            <Label layoutX="116.0" layoutY="305.0" text="Batch">
                <font>
                   <Font name="Century" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="115.0" layoutY="304.0" text="Password">
+            <Label layoutX="115.0" layoutY="360.0" text="Password">
                <font>
                   <Font name="Century" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="115.0" layoutY="359.0" text="Confirm Password">
+            <Label layoutX="115.0" layoutY="411.0" text="Confirm Password">
                <font>
                   <Font name="Century" size="12.0" />
                </font>
             </Label>
-            <PasswordField fx:id="tb_password" layoutX="114.0" layoutY="322.0" prefHeight="25.0" prefWidth="308.0" promptText="Password" style="-fx-background-color: #E3E3E3;" />
-            <PasswordField fx:id="tb_confirmPassword" layoutX="114.0" layoutY="377.0" prefHeight="25.0" prefWidth="308.0" promptText="Confirm Password" style="-fx-background-color: #E3E3E3;" />
+            <PasswordField fx:id="tb_password" layoutX="114.0" layoutY="378.0" prefHeight="25.0" prefWidth="308.0" promptText="Password" style="-fx-background-color: #E3E3E3;" />
+            <PasswordField fx:id="tb_confirmPassword" layoutX="114.0" layoutY="430.0" prefHeight="25.0" prefWidth="308.0" promptText="Confirm Password" style="-fx-background-color: #E3E3E3;" />
+            <Button fx:id="btn_reset" layoutX="236.0" layoutY="472.0" mnemonicParsing="false" onAction="#btn_reset_click" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #1ba1e2; -fx-background-radius: 10;" text="Reset" textFill="#fcf7f7">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
