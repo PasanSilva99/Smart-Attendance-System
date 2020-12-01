@@ -38,8 +38,6 @@ public class MainPageLecturer implements Initializable {
     @FXML
     public MenuButton cmb_MenuLecturer;
     @FXML
-    public ImageView btn_BellLecturer;
-    @FXML
     AnchorPane topBarLecturer;
     @FXML
     public AnchorPane baseLecturer;
@@ -48,25 +46,25 @@ public class MainPageLecturer implements Initializable {
     @FXML
     public AnchorPane ap_HomeLecturer;
     @FXML
-    public AnchorPane ap_LeaderboardLecturer;
-    @FXML
     public AnchorPane ap_ModulesLecturer;
+    @FXML
+    public AnchorPane ap_EventsLecturer;
     @FXML
     public AnchorPane ap_QuizLecturer;
     @FXML
     public ImageView img_HomeLecturer;
     @FXML
-    public ImageView img_LeaderboardLecturer;
-    @FXML
     public ImageView img_ModulesLecturer;
+    @FXML
+    public ImageView img_EventsLecturer;
     @FXML
     public ImageView img_QuizLecturer;
     @FXML
     javafx.scene.control.Label lbl_HomeLecturer;
     @FXML
-    javafx.scene.control.Label lbl_LeaderboardLecturer;
-    @FXML
     javafx.scene.control.Label lbl_ModulesLecturer;
+    @FXML
+    javafx.scene.control.Label lbl_EventsLecturer;
     @FXML
     javafx.scene.control.Label lbl_QuizLecturer;
 
@@ -218,23 +216,6 @@ public class MainPageLecturer implements Initializable {
         baseLecturer.getChildren().setAll(page);
     }
 
-    //NavLeaderboardLecturer
-
-    @FXML
-    public void NavLeaderboadEnterLecturer(MouseEvent mouseEvent)
-    {
-        ap_LeaderboardLecturer.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
-    }
-    @FXML
-    public void NavLeaderboardExitLecturer(MouseEvent mouseEvent) { ap_LeaderboardLecturer.setStyle("-fx-background-color : #636363;"); }
-
-    @FXML
-    public void NavLeaderboardClickLecturer(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("LecturerLeaderBoardPage.fxml"));
-        baseLecturer.getChildren().clear();
-        baseLecturer.getChildren().setAll(page);
-    }
-
     //NavModulesLecturer
 
     @FXML
@@ -248,6 +229,23 @@ public class MainPageLecturer implements Initializable {
     @FXML
     public void NavModulesClickLecturer(MouseEvent mouseEvent) throws IOException{
         AnchorPane page = FXMLLoader.load(getClass().getResource("LecturerModulesPage.fxml"));
+        baseLecturer.getChildren().clear();
+        baseLecturer.getChildren().setAll(page);
+    }
+
+    //NavEvents
+
+    @FXML
+    public void NavEventsEnterLecturer(MouseEvent mouseEvent)
+    {
+        ap_EventsLecturer.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
+    }
+    @FXML
+    public void NavEventsExitLecturer(MouseEvent mouseEvent) { ap_EventsLecturer.setStyle("-fx-background-color : #636363;"); }
+
+    @FXML
+    public void NavEventsClickLecturer(MouseEvent mouseEvent) throws IOException{
+        AnchorPane page = FXMLLoader.load(getClass().getResource("LecturerEventsPage.fxml"));
         baseLecturer.getChildren().clear();
         baseLecturer.getChildren().setAll(page);
     }

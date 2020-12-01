@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,17 +11,12 @@
    <children>
       <AnchorPane fx:id="topBarAdmin" layoutX="251.0" layoutY="100.0" prefHeight="100.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="120.0" fitWidth="159.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+            <ImageView fitHeight="135.0" fitWidth="197.0" layoutX="14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-27.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="-8.0">
                <image>
                   <Image url="@Images/javaLogo.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="btn_BellAdmin" fitHeight="38.0" fitWidth="34.0" layoutX="716.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="28.0">
-               <image>
-                  <Image url="@Images/bell.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lbl_DateAdmin" layoutX="451.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_DateAdmin" layoutX="370.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="42.0">
                <font>
                   <Font name="Felix Titling" size="14.0" />
                </font>
@@ -44,16 +38,6 @@
             <MenuButton fx:id="cmb_MenuAdmin" layoutX="115.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="MenuButton">
 
             </MenuButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="pnl_search" layoutX="187.0" layoutY="27.0" prefHeight="34.0" prefWidth="200.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="187.0" AnchorPane.topAnchor="27.0">
-         <children>
-            <ImageView fitHeight="24.0" fitWidth="21.0" layoutX="8.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="6.0">
-               <image>
-                  <Image url="@Images/search.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="tb_SearchAdmin" layoutX="38.0" layoutY="4.0" promptText="Search..." style="-fx-background-color: #C7C8CC;" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="4.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="151.0" prefHeight="505.0" prefWidth="122.0" style="-fx-background-color: #636363; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="-20.0">
