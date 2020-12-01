@@ -51,7 +51,7 @@ public class AddNewEvent implements Initializable {
             cmb_eventType.setItems(EventTypesList);
             cmb_eventType.getSelectionModel().selectFirst();
         } catch (Exception e) {
-            System.out.println("FIll Event Types error.");
+            System.out.println("Fill Event Types error.");
         }
 
         try {

@@ -42,4 +42,39 @@ public class QuizDAO {
         return quizz;
 
     }
+
+    public void addQuiz(String quizID, String quiz_name, String event_id) {
+
+        // SQL Connection Variable
+        Connection con = null;
+
+        try {
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "INSERT INTO quiz VALUES (?, ?, ?)";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, quizID);
+            statement.setString(2, quiz_name);
+            statement.setString(3, event_id);
+
+            int rowsInserted = statement.executeUpdate();
+
+            if(rowsInserted>0){
+                System.out.println("Quiz Saved Successfully");
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            try {
+                con.close();
+            }catch (Exception ignored){}
+        }
+    }
 }

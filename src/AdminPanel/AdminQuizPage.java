@@ -2,7 +2,9 @@ package AdminPanel;
 
 import Common.Quiz;
 import Common.QuizDAO;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -10,6 +12,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
@@ -40,10 +44,42 @@ public class AdminQuizPage implements Initializable {
             grid_quizView.add(item, col, row);
             GridPane.setMargin(item, new Insets(10,10,10,10));
 
+            EventHandler<MouseEvent> OnMouseCLick = new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    Platform.runLater(()-> quizViewClick(quiz));
+                }
+            };
+
+
+            item.addEventFilter(MouseEvent.MOUSE_CLICKED, OnMouseCLick);
             if(col>1){
                 col=0;
                 row++;
             }
+        }
+    }
+
+    private void quizViewClick(Quiz quiz) {
+        try {
+            FXMLLoader loder = new FXMLLoader();
+            loder.setLocation(getClass().getResource("AdminCreateQuiz.fxml"));
+            AnchorPane root = loder.load();
+            AdminCreateQuiz controller = loder.getController();
+            controller.QuizID = quiz.getQuizID();
+            controller.tb_quizName.setText(quiz.getQuizName());
+            controller.tb_eventID.setText(quiz.getEventID());
+            controller.reloadQuestions();
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Student");
+            primaryStage.setScene(new Scene(root, 600, 600));
+            primaryStage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+            primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

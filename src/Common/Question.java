@@ -1,20 +1,24 @@
 package Common;
 
+import AdminPanel.AdminCreateQuiz;
 import AdminPanel.QuestionDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class Question {
+public class Question implements Initializable {
     private int QuestionNumber;
     private String QuizID;
     private String Question;
@@ -22,8 +26,63 @@ public class Question {
     private int CorrectAnswerIndex;
     private boolean Editable = true;
 
+    public String Q_Number;
+
+    TextArea tb_question = new TextArea("Question");
+    TextField tb_answer1 = new TextField("Answer 1");
+    TextField tb_answer2 = new TextField("Answer 2");
+    TextField tb_answer3 = new TextField("Answer 3");
+    TextField tb_answer4 = new TextField("Answer 4");
+    Label lbl_answerLabel = new Label("Answers");
+    CheckBox chb_answerCheck1;
+    CheckBox chb_answerCheck2;
+    CheckBox chb_answerCheck3;
+    CheckBox chb_answerCheck4;
+
     Button btn_save;
     Button btn_cancel;
+
+    AdminCreateQuiz parent_admin;
+
+    public Question(int questionNumber, String quizID, String question, List<String> answerList) {
+        QuestionNumber = questionNumber;
+        QuizID = quizID;
+        AnswerList = answerList;
+    }
+
+    public Question() {
+
+    }
+
+    public Question(String q_number, String question, String answerList, String quizID) {
+        Q_Number = q_number;
+        System.out.println("Received:: " + Q_Number);
+        Question = question;
+        System.out.println("Received:: " + Question);
+        String[] RAWAnswerList = answerList.split("`");
+
+        for (String _answer:RAWAnswerList){
+            AnswerList.add(_answer);
+            System.out.println("Received Answer:: " + _answer);
+        }
+
+        tb_question.setText(Question);
+        tb_answer1.setText(AnswerList.get(0));
+        tb_answer2.setText(AnswerList.get(1));
+        tb_answer3.setText(AnswerList.get(2));
+        tb_answer4.setText(AnswerList.get(3));
+
+        QuizID = quizID;
+
+    }
+
+    /**
+     * This function gets the parent to save the settings
+     * @param parent
+     */
+    public void setParent(AdminCreateQuiz parent){
+        parent_admin = parent;
+    }
 
     public boolean isEditable() {
         return Editable;
@@ -58,11 +117,11 @@ public class Question {
         QuizID = quizID;
     }
 
-    public String getQuestion() {
+    public String getquestion() {
         return Question;
     }
 
-    public void setQuestion(String question) {
+    public void setquestion(String question) {
         Question = question;
     }
 
@@ -70,81 +129,56 @@ public class Question {
         return AnswerList;
     }
 
-    public void addAnswer(String answer) {
-        AnswerList.add(answer);
-    }
-
-    public void removeAnswer(String answer) {
-        AnswerList.remove(answer);
-    }
-
-    public int getCorrectAnswerIndex() {
-        return CorrectAnswerIndex;
-    }
-
-    public void setCorrectAnswerIndex(int correctAnswerIndex) {
-        CorrectAnswerIndex = correctAnswerIndex;
-    }
-
     public AnchorPane generateView(){
+        System.out.println("Generating View For "+Q_Number);
         AnchorPane base = new AnchorPane();
         base.setPrefSize(500, 265);
+        base.setStyle("-fx-border-width: 0px 0px 2px 0px; -fx-border-color: #3C3F41;");
 
-        TextArea question = new TextArea();
-        question.setPromptText("Type Your Question Here");
-        question.setLayoutX(13.0);
-        question.setLayoutY(14);
-        question.setPrefHeight(53.0);
-        question.setPrefWidth(493.0);
+        tb_question.setLayoutX(13.0);
+        tb_question.setLayoutY(14);
+        tb_question.setPrefHeight(53.0);
+        tb_question.setPrefWidth(493.0);
 
-        TextField answer1 = new TextField();
-        answer1.setPromptText("Answer 1");
-        answer1.setPrefWidth(304.0);
-        answer1.setLayoutX(31.0);
-        answer1.setLayoutY(101.0);
-        answer1.setFont(new Font("Century", 12));
+        tb_answer1.setPrefWidth(304.0);
+        tb_answer1.setLayoutX(31.0);
+        tb_answer1.setLayoutY(101.0);
+        tb_answer1.setFont(new Font("Century", 12));
 
-        TextField answer2 = new TextField();
-        answer2.setPromptText("Answer 2");
-        answer2.setPrefWidth(304.0);
-        answer2.setLayoutX(31.0);
-        answer2.setLayoutY(137.0);
-        answer2.setFont(new Font("Century", 12));
+        tb_answer2.setPrefWidth(304.0);
+        tb_answer2.setLayoutX(31.0);
+        tb_answer2.setLayoutY(137.0);
+        tb_answer2.setFont(new Font("Century", 12));
 
-        TextField answer3 = new TextField();
-        answer3.setPromptText("Answer 3");
-        answer3.setPrefWidth(304.0);
-        answer3.setLayoutX(31.0);
-        answer3.setLayoutY(173.0);
-        answer3.setFont(new Font("Century", 12));
+        tb_answer3.setPrefWidth(304.0);
+        tb_answer3.setLayoutX(31.0);
+        tb_answer3.setLayoutY(173.0);
+        tb_answer3.setFont(new Font("Century", 12));
 
-        TextField answer4 = new TextField();
-        answer4.setPromptText("Answer 4");
-        answer4.setPrefWidth(304.0);
-        answer4.setLayoutX(31.0);
-        answer4.setLayoutY(209.0);
-        answer4.setFont(new Font("Century", 12));
+        tb_answer4.setPrefWidth(304.0);
+        tb_answer4.setLayoutX(31.0);
+        tb_answer4.setLayoutY(209.0);
+        tb_answer4.setFont(new Font("Century", 12));
 
-        Label answerLabel = new Label("Multi Choice Answers");
-        answerLabel.setFont(new Font("Century", 12));
-        answerLabel.setLayoutX(31);
-        answerLabel.setLayoutY(72);
+        lbl_answerLabel.setFont(new Font("Century", 12));
+        lbl_answerLabel.setLayoutX(31);
+        lbl_answerLabel.setLayoutY(72);
 
-        CheckBox answerCheck1 = new CheckBox("Correct Answer");
-        answerCheck1.setLayoutX(357);
-        answerCheck1.setLayoutY(103.0);
+        chb_answerCheck1 = new CheckBox("Correct Answer");
+        chb_answerCheck1.setLayoutX(357);
+        chb_answerCheck1.setLayoutY(103.0);
 
-        CheckBox answerCheck2 = new CheckBox("Correct Answer");
-        answerCheck2.setLayoutX(357);
-        answerCheck2.setLayoutY(141.0);
+        chb_answerCheck2 = new CheckBox("Correct Answer");
+        chb_answerCheck2.setLayoutX(357);
+        chb_answerCheck2.setLayoutY(141.0);
 
-        CheckBox answerCheck3 = new CheckBox("Correct Answer");
-        answerCheck3.setLayoutX(357);
-        answerCheck3.setLayoutY(177.0);
+        chb_answerCheck3 = new CheckBox("Correct Answer");
+        chb_answerCheck3.setLayoutX(357);
+        chb_answerCheck3.setLayoutY(177.0);
 
-        CheckBox answerCheck4 = new CheckBox("Correct Answer");
-        answerCheck4.setLayoutX(357);
-        answerCheck4.setLayoutY(213.0);
+        chb_answerCheck4 = new CheckBox("Correct Answer");
+        chb_answerCheck4.setLayoutX(357);
+        chb_answerCheck4.setLayoutY(213.0);
 
 
         btn_save = new Button();
@@ -167,7 +201,7 @@ public class Question {
         EventHandler<ActionEvent> on_btn_save_Click = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                btn_save_Click(btn_save, question, answer1, answer2, answer3, answer4, answerCheck1, answerCheck2, answerCheck3, answerCheck4);
+                btn_save_Click(btn_save, tb_question, tb_answer1, tb_answer2, tb_answer3, tb_answer4, chb_answerCheck1, chb_answerCheck2, chb_answerCheck3, chb_answerCheck4);
             }
         };
 
@@ -177,7 +211,7 @@ public class Question {
         btn_cancel.setLayoutX(445.0);
         btn_cancel.setLayoutY(253.0);
         btn_cancel.setStyle("-fx-background-color: #DEDEDE;");
-        btn_cancel.setText("Cancel");
+        btn_cancel.setText("Delete");
         File file2 = new File("Images/cancel.png");
         Image img_c = new Image(file2.toURI().toString());
         ImageView img_cancel = new ImageView(img_c);
@@ -191,6 +225,8 @@ public class Question {
             btn_cancel.setVisible(false);
         }
 
+
+
         EventHandler<ActionEvent> on_btn_cancel_Click = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -199,21 +235,38 @@ public class Question {
         };
         btn_cancel.setOnAction(on_btn_cancel_Click);
 
-        base.getChildren().addAll(question, answer1, answer2, answer3, answer4, answerCheck1, answerCheck2, answerCheck3, answerCheck4, answerLabel, btn_save, btn_cancel);
+
+        base.getChildren().addAll(tb_question, tb_answer1, tb_answer2, tb_answer3, tb_answer4, chb_answerCheck1, chb_answerCheck2, chb_answerCheck3, chb_answerCheck4, lbl_answerLabel, btn_save, btn_cancel);
 
         return base;
     }
 
     private void btn_cancel_Click(Button btn_cancel) {
+        parent_admin.vbox_questionView.getChildren().remove(this);
     }
 
     private void btn_save_Click(Button btn_save, TextArea question, TextField answer1, TextField answer2, TextField answer3, TextField answer4, CheckBox answerCheck1, CheckBox answerCheck2, CheckBox answerCheck3, CheckBox answerCheck4) {
+
+        if(tb_question.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Empty Question");
+            alert.setContentText("Your question is empty");
+            alert.show();
+        } else {
+            Question = tb_question.getText(); // Save the Question to the Local Variable
+            System.out.println(Question);
+        }
+
+        // Marking the correct and wrong answers
         String Answer1 = answer1.getText();
         if(answerCheck1.isSelected()){
             Answer1 = Answer1+"<<X>>";
         }else {
             Answer1 = Answer1+"<<O>>";
         }
+
+        AnswerList.add(Answer1);
+        System.out.println(Answer1);
 
         String Answer2 = answer2.getText();
         if(answerCheck2.isSelected()){
@@ -222,12 +275,18 @@ public class Question {
             Answer2 = Answer2+"<<O>>";
         }
 
+        AnswerList.add(Answer2);
+        System.out.println(Answer2);
+
         String Answer3 = answer3.getText();
         if(answerCheck3.isSelected()){
             Answer3 = Answer3+"<<X>>";
         }else {
             Answer3 = Answer3+"<<O>>";
         }
+
+        AnswerList.add(Answer3);
+        System.out.println(Answer3);
 
         String Answer4 = answer4.getText();
         if(answerCheck4.isSelected()){
@@ -236,16 +295,16 @@ public class Question {
             Answer4 = Answer4+"<<O>>";
         }
 
-        AnswerList.add(Answer1);
-        AnswerList.add(Answer2);
-        AnswerList.add(Answer3);
-        AnswerList.add(Answer4);
+        Q_Number = QuizID+"_"+QuestionNumber;
+        System.out.println("Question Number created : "+ Q_Number);
 
-        new QuestionDAO().SaveNewQuestion(
-        /*q_number  */ QuizID+"_"+Integer.toString(QuestionNumber),
-        /*question  */ question.getText(),
-        /*answerList*/ joinAnswer(),
-        /*quizID    */  QuizID);
+        AnswerList.add(Answer4);
+        System.out.println(Answer4);
+
+        new QuestionDAO().SaveNewQuestion(Q_Number, Question, joinAnswer(), QuizID);
+
+        parent_admin.reloadQuestions();
+
     }
 
     public String joinAnswer(){
@@ -253,7 +312,7 @@ public class Question {
         for (String answer:AnswerList) {
 
             if(joinedAnswer!="")
-                joinedAnswer = joinedAnswer+","+answer;
+                joinedAnswer = joinedAnswer+"`"+answer;
             else
                 joinedAnswer = answer;
 
@@ -261,4 +320,8 @@ public class Question {
         return joinedAnswer;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }

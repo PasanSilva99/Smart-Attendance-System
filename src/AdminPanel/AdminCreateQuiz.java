@@ -1,6 +1,7 @@
 package AdminPanel;
 
 import Common.Question;
+import Common.QuizDAO;
 import Common.UniEventDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminCreateQuiz implements Initializable {
@@ -30,10 +33,11 @@ public class AdminCreateQuiz implements Initializable {
     public Label lbl_validation;
     public ImageView img_validation;
 
+    // How many questions added
     public int questionCount;
-    public String QuizID;
-
-    boolean isEventIDValid;
+    public String QuizID;  // Retrieved QuizID
+    public List<Question> QuestionList = new ArrayList<>(); // List Of Question Classes
+    boolean isEventIDValid;  // Is the Event ID valid
 
     public int getQuestionCount() {
         return questionCount;
@@ -43,17 +47,45 @@ public class AdminCreateQuiz implements Initializable {
         this.questionCount = questionCount;
     }
 
+    public void reloadQuestions(){
+        QuestionList.clear();
+        vbox_questionView.getChildren().clear();
+
+        System.out.println("Reloading Question");
+        QuestionList = new QuestionDAO().getQuestionList(QuizID);
+
+        System.out.println("Count QuestionList: "+ QuestionList.size());
+
+        for (Question q:QuestionList) {
+            AnchorPane item = q.generateView();
+            q.setParent(this);
+            System.out.println("Adding Question: "+q.Q_Number);
+            vbox_questionView.getChildren().add(item);
+        }
+    }
+
     public void btn_addQuestion_Click(ActionEvent actionEvent) {
 
-        questionCount++;
+        btn_check_Click(new ActionEvent());
 
-        Question question = new Question();
-        question.setQuestionNumber(questionCount);
-        question.setQuizID(QuizID);
-        System.out.println("Adding New Quiz. ID: "+QuizID+"_"+questionCount);
+        if(!(tb_quizName.getText().equals("")||tb_eventID.getText().equals("") || !isEventIDValid)) {
+            questionCount++;  // Increase the number of questions added
+            Question questionControl = new Question();  // Initialize a new question
+            questionControl.setQuizID(QuizID);  //  Send the current quiz id to the generated interface
+            questionControl.setQuestionNumber(questionCount); // sets the question number
+            questionControl.setParent(this);
+            AnchorPane questionView = questionControl.generateView(); // Generate Editing interface for the question
+            vbox_questionView.getChildren().add(questionView);  // Load the generated interface to the vbox.
 
-        vbox_questionView.getChildren().add(new Question().generateView());
+            new QuizDAO().addQuiz(QuizID, tb_quizName.getText(), tb_eventID.getText());
 
+        } else {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setContentText("PLease enter a Quiz name and a valid event ID");
+            alert.setHeaderText("Missing Values");
+            alert.setTitle("Warning");
+            alert.show();
+        }
     }
 
     public void btn_save_Click(ActionEvent actionEvent) {
@@ -61,10 +93,14 @@ public class AdminCreateQuiz implements Initializable {
         Alert alert = new Alert(alertAlertType);
         alert.setTitle("Error saving Quiz");
         alert.setHeaderText("Error occurred while saving the quiz");
-        if(tb_eventID.getText().equals(""))
+        if(tb_eventID.getText().equals("") && isEventIDValid)
         {
-            alert.setContentText("Please enter a EventID");
+            alert.setContentText("Please enter a valid EventID");
             alert.show();
+
+            new QuizDAO().addQuiz(QuizID, tb_quizName.getText(), tb_eventID.getText());
+
+
         }else
         if(tb_quizName.getText().equals("")){
             alert.setContentText("Please enter a quiz name");
@@ -75,6 +111,22 @@ public class AdminCreateQuiz implements Initializable {
             alert.setTitle("Confirmation");
             alert.setHeaderText("Confirm to save without questions");
             alert.setContentText("Are you sure to proceed with no questions");
+        }
+
+        for (Question q:QuestionList) {
+            // Check questions
+            System.out.println("Fetching Added Questions : "+q.getQuizID());
+
+            String q_number = q.Q_Number;
+            String Question = q.getquestion();
+            System.out.println(q_number+": "+Question);
+            List<String> AnswerList= q.getAnswerList();
+            for (String answer:AnswerList){
+                System.out.println("Fetching answers for " + q_number);
+                System.out.println(answer.substring(0, answer.length()-5));
+            }
+
+
         }
 
 
