@@ -299,7 +299,7 @@ public class MainPageAdmin implements Initializable {
 
     @FXML
     public void NavModulesClickAdmin(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("AdminModulesPage.fxml"));
+        AnchorPane page = FXMLLoader.load(getClass().getResource("../AdminPanel/AdminModulesPage.fxml"));
         baseAdmin.getChildren().clear();
         baseAdmin.getChildren().setAll(page);
     }
