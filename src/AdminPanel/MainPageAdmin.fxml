@@ -28,6 +28,7 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="baseAdmin" layoutX="106.0" layoutY="114.0" prefHeight="463.0" prefWidth="978.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="16.0" />
       <AnchorPane layoutX="793.0" prefHeight="120.0" prefWidth="344.0" style="-fx-background-color: #BFC0C4; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="-20.0">
          <children>
             <ImageView fx:id="img_Admin" fitHeight="70.0" fitWidth="70.0" layoutX="36.0" layoutY="36.0" pickOnBounds="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="36.0">
@@ -92,17 +93,7 @@
                   <Label fx:id="lbl_ModulesAdmin" layoutX="12.0" layoutY="41.0" onMouseEntered="#NavModulesEnterAdmin" onMouseExited="#NavModulesExitAdmin" onMousePressed="#NavModulesClickAdmin" text="Modules" textFill="WHITE" AnchorPane.bottomAnchor="5.399999999999999" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ap_EventsAdmin" layoutX="33.0" layoutY="341.0" onMouseEntered="#NavEventsEnterAdmin" onMouseExited="#NavEventsExitAdmin" onMousePressed="#NavEventsClickAdmin" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
-               <children>
-                  <ImageView fx:id="img_EventsAdmin" fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="9.0">
-                     <image>
-                        <Image url="@Images/adminEvents.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="lbl_EventsAdmin" layoutX="18.0" layoutY="41.0" text="Events" textFill="WHITE" AnchorPane.bottomAnchor="5.399999999999999" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="ap_quizPage" layoutX="33.0" layoutY="408.0" onMouseEntered="#NavQuizEnterAdmin" onMouseExited="#NavQuizExitAdmin" onMousePressed="#NavQuizClickAdmin" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
+            <AnchorPane fx:id="ap_quizPage" layoutX="33.0" layoutY="342.0" onMouseEntered="#NavQuizEnterAdmin" onMouseExited="#NavQuizExitAdmin" onMousePressed="#NavQuizClickAdmin" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
                <children>
                   <ImageView fx:id="img_QuizAdmin" fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="9.0">
                      <image>
@@ -123,7 +114,6 @@
             <Image url="@Images/shapeRight.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="baseAdmin" layoutX="106.0" layoutY="114.0" prefHeight="463.0" prefWidth="978.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="16.0" />
 
    </children>
 </AnchorPane>

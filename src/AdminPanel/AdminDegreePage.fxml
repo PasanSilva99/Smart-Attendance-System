@@ -21,7 +21,7 @@
             <GridPane fx:id="grid_degreeView" alignment="TOP_CENTER" prefWidth="676.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="btn_registerDegree" layoutX="696.0" layoutY="72.0" mnemonicParsing="false" onAction="#btn_registerDegree_Click" style="-fx-background-color: #DADADA;" text="Regiter new degree">
+      <Button fx:id="btn_registerDegree" layoutX="696.0" layoutY="72.0" mnemonicParsing="false" onAction="#btn_registerDegree_Click" style="-fx-background-color: #DADADA;" text="Register new degree">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>

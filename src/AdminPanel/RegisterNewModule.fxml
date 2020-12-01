@@ -48,7 +48,6 @@
                   <Font name="Century" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="cmb_ModuleLeader" layoutX="89.0" layoutY="206.0" prefHeight="30.0" prefWidth="308.0" promptText="Select Module Leader" style="-fx-background-color: #E3E3E3;" />
             <Label layoutX="92.0" layoutY="263.0" text="Degree Programme">
                <font>
                   <Font name="Century" size="12.0" />
@@ -77,6 +76,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
+            <TextField fx:id="tb_ModuleLeader" layoutX="91.0" layoutY="208.0" prefHeight="30.0" prefWidth="292.0" promptText="Enter Module Leader Name" style="-fx-background-color: #E3E3E3;" />
          </children>
       </AnchorPane>
       <AnchorPane layoutY="517.0" prefHeight="186.0" prefWidth="230.0">

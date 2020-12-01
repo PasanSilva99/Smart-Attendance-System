@@ -78,7 +78,7 @@ public class ModulesPage implements Initializable {
 
     public void ItemClickedF(ViewItem ClickedItem) throws IOException {
         FXMLLoader loder = new FXMLLoader();
-        loder.setLocation(getClass().getResource("SessionSelection.fxml"));
+        loder.setLocation(getClass().getResource("../Common/SessionSelection.fxml"));
         AnchorPane page = loder.load();
         SessionSelection Mpage = loder.getController();
         Mpage.getBase(mainPage);

@@ -1,11 +1,11 @@
 package StudentApplication;
 
+import Common.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -21,8 +21,11 @@ import java.util.ResourceBundle;
 
 public class MainScene  implements Initializable {
 
+    public User user;
+
+    public Label username;
     @FXML
-    GridPane ModuleView;
+    GridPane grid_ModuleView;
     @FXML
     ImageView testImage;
     @FXML
@@ -32,37 +35,34 @@ public class MainScene  implements Initializable {
     @FXML
     ImageView TopInfoImage;
 
+    List<UniEvent> uniEventsList = new ArrayList<>();
 
-    List<ViewItem2> Modules;
+    public void setUser(User user){
+        this.user = user;
 
+        uniEventsList = new UniEventDAO().getEventList();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        Modules = new ArrayList<ViewItem2>();
-        Modules.add(new ViewItem2("Web development PlatformsL", "9AM - 11AM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "ISEN2002"));
-        Modules.add(new ViewItem2("Network Security", "12PM - 2PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "SOFT255SL"));
-        Modules.add(new ViewItem2("Lab Session Java", "3PM - 4PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "ISEN253"));
-        Modules.add(new ViewItem2("It Leg And Ethics Tutorial", "4PM - 5PM ", System.getProperty("user.dir") + "\\src\\SmartAttendanceSystem\\Images\\ss.png", "PUSL233SL"));
+        username.setText(user.getName());
 
         int r = 0, c = 0;
-        for (ViewItem2 module : Modules) {
-            Node crModule = module.CreateModuleItem();
+        for (UniEvent event_: uniEventsList) {
+
+            AnchorPane eventView = event_.generateEventView();
             EventHandler<MouseEvent> OnMouseClick = new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
                     try {
-                        module_Click(module);
+                        module_Click(event_);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             };
-            crModule.addEventFilter(MouseEvent.MOUSE_CLICKED, OnMouseClick);
+            eventView.addEventFilter(MouseEvent.MOUSE_CLICKED, OnMouseClick);
             c++;
 
-            ModuleView.add(crModule, c, r);
-            ModuleView.setMargin(crModule, new Insets(20, 0, 0, 10));
+            grid_ModuleView.add(eventView, c, r);
+            grid_ModuleView.setMargin(eventView, new Insets(20, 0, 0, 10));
             if (c > 1) {
                 r++;
                 c = 0;
@@ -72,47 +72,30 @@ public class MainScene  implements Initializable {
 
     }
 
-    public void module_Click(ViewItem2 ClickedItem) throws IOException {
 
-        if (ClickedItem.id == "ISEN2002") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
-            AnchorPane pane =loader.load();
-            SecondController controller = (SecondController) loader.getController();
-            controller.setdate("ISEN2002","9AM-11PM","L102");
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
+    }
+
+    public void module_Click(UniEvent ClickedItem) throws IOException {
+
+        try{
+            FXMLLoader loder = new FXMLLoader();
+            loder.setLocation(getClass().getResource("MarkAttendance.fxml"));
+            AnchorPane scene = loder.load();
+            MarkAttendance controller = loder.getController();
+            controller.setUser(user);
+            controller.setEvent(ClickedItem);
             base2.getChildren().clear();
-            base2.getChildren().setAll(pane);
+            base2.getChildren().add(scene);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-
-        if (ClickedItem.id == "SOFT255SL") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
-            AnchorPane pane =loader.load();
-            SecondController controller = (SecondController) loader.getController();
-            controller.setdate("SOFT255","12PM-2PM","L101");
-            base2.getChildren().clear();
-            base2.getChildren().setAll(pane);
-
-
-        }
-        if (ClickedItem.id == "ISEN253") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
-            AnchorPane pane =loader.load();
-            SecondController controller = (SecondController) loader.getController();
-            controller.setdate("ISEN253","3PM-4PM","L001");
-            base2.getChildren().clear();
-            base2.getChildren().setAll(pane);
-
-
-        }
-        if (ClickedItem.id == "PUSL233SL") {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("QuizView1.fxml"));
-            AnchorPane pane =loader.load();
-            SecondController controller = (SecondController) loader.getController();
-            controller.setdate("SOFT253SL","4PM-5PM","L009");
-            base2.getChildren().clear();
-            base2.getChildren().setAll(pane);
-        }
-
     }
 
 
