@@ -52,7 +52,7 @@
          </graphic>
       </Button>
       <TextField fx:id="tb_eventID" layoutX="46.0" layoutY="70.0" prefHeight="25.0" prefWidth="203.0" promptText="Enter Event ID (Not Case Sensitive)" />
-      <Button fx:id="btn_check" layoutX="257.0" layoutY="69.0" mnemonicParsing="false" onAction="#btn_close_Click" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #E1E1E1;" text="Check">
+      <Button fx:id="btn_check" layoutX="257.0" layoutY="69.0" mnemonicParsing="false" onAction="#btn_check_Click" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #E1E1E1;" text="Check">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -63,5 +63,14 @@
       </Button>
       <Label fx:id="lbl_validation" layoutX="373.0" layoutY="74.0" />
       <ImageView fx:id="img_validation" fitHeight="25.0" fitWidth="25.0" layoutX="345.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btn_viewEvents" layoutX="460.0" layoutY="17.0" mnemonicParsing="false" onAction="#btn_ciewEvents_Click" prefHeight="32.0" prefWidth="131.0" style="-fx-background-color: #E1E1E1;" text="View All Events">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

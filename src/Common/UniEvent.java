@@ -2,7 +2,13 @@ package Common;
 
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 
+import java.io.File;
 import java.util.List;
 
 public class UniEvent {
@@ -115,6 +121,39 @@ public class UniEvent {
 
     public void removeConnectedQuiz(Quiz quiz) {
         ConnectedQuizzes.add(quiz);
+    }
+
+    public AnchorPane generateEventView(){
+        AnchorPane base = new AnchorPane();
+        base.setPrefSize(665, 60);
+        base.setStyle("" +
+                "-fx-background-color: #e3e3e3; " +
+                "-fx-border-color: #a4a4a4; " +
+                "-fx-border-radius: 5; " +
+                "-fx-background-radius: 5");
+
+        File file = new File("Images/event.png");
+        Image img = new Image(file.toURI().toString());
+        ImageView img_student = new ImageView(img);
+        img_student.setFitHeight(40);
+        img_student.setFitWidth(40);
+        AnchorPane.setLeftAnchor(img_student, 7.0);
+        AnchorPane.setTopAnchor(img_student, 10.0);
+
+        Label lbl_details = new Label( EventID+ ": " + EventName + "\n" +ModuleO+" " + Batch+"\n"+Location);
+        lbl_details.setFont(new Font("Century", 14.0));
+        AnchorPane.setLeftAnchor(lbl_details,65.0);
+        AnchorPane.setTopAnchor(lbl_details, 10.0);
+
+        base.getChildren().addAll(img_student, lbl_details);
+
+        return base;
+    }
+
+    public AnchorPane getEventView(){
+        AnchorPane view = generateEventView();
+
+        return view;
     }
 
 }

@@ -14,12 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class AdminQuizPage implements Initializable {
@@ -47,10 +47,49 @@ public class AdminQuizPage implements Initializable {
         }
     }
 
+    /**
+     * This function returns a generated quiz id if it is not duplicated. (Recursive until finds a unique)
+     * @return
+     */
+    public String getQuizID(){
+        String newQuizID = generateNewID();
+        boolean isDuplicated = new QuestionDAO().isDuplicated(newQuizID);
+        if(!isDuplicated){
+            // if the new is is not duplicated return it
+            return newQuizID;
+        } else {
+            // if teh new id is already in the table, re run generation (Recursive)
+            return getQuizID();
+        }
+    }
+
+    /** This function Generates a Quiz ID
+     *
+     * @return
+     */
+    public String generateNewID() {
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        System.out.println(generatedString);
+        return generatedString;
+    }
+
+
     public void btn_createQuiz_Click(ActionEvent actionEvent) throws IOException {
         FXMLLoader loder = new FXMLLoader();
         loder.setLocation(getClass().getResource("AdminCreateQuiz.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("AdminCreateQuiz.fxml"));
+        AnchorPane root = loder.load();
+        AdminCreateQuiz controller = loder.getController();
+        controller.QuizID = getQuizID();
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Student");
         primaryStage.setScene(new Scene(root, 600, 600));
