@@ -24,7 +24,7 @@ public class RegisterNewModule implements Initializable {
 
     public TextField tb_ModuleCode;
     public TextField tb_ModuleName;
-    public ComboBox cmb_ModuleLeader;
+    public TextField tb_ModuleLeader;
     public ComboBox cmb_DegreeProgram;
     public Button btn_Register;
     public Button btn_cancel;
@@ -37,6 +37,9 @@ public class RegisterNewModule implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        ObservableList<String> DegreeList =FXCollections.observableArrayList(new DegreeDAO().getAllDegreePrograms());
+        cmb_DegreeProgram.setItems(DegreeList);
 
 }
 
@@ -73,19 +76,22 @@ public class RegisterNewModule implements Initializable {
             isErrorFree=false;
         }
 
-        //There need to add codes for  the cmb_ModuleLeader
-
-
-
+        if(!tb_ModuleLeader.getText().equals("")) {
+            lecturer_name = tb_ModuleLeader.getText();
+        }else {
+            message = message+" Please enter the Module Leaders Name\n";
+            isErrorFree=false;
+        }
 
 
         //There need to aadd codes for the cmb_DegreeProgram
 
-
-
-
-
-
+        if(cmb_DegreeProgram.getSelectionModel().getSelectedItem() != null) {
+            degree_program = cmb_DegreeProgram.getSelectionModel().getSelectedItem().toString();
+        }else {
+            message = message+" Please Select the degree program\n";
+            isErrorFree=false;
+        }
 
         if(isErrorFree)
         {

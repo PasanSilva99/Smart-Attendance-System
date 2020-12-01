@@ -203,4 +203,9 @@ public class UserLogin {
         Platform.exit();
         System.exit(0);
     }
+
+    public void markAttendance(User user, String module) throws IOException {
+        new UserDAO().markAttendance(user.getNsbm_id(), getDeviceMacAddress(), 100, getRouterMacAddress(), module);
+    }
+
 }

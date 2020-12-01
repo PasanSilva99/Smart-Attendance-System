@@ -55,7 +55,7 @@ public class AdminDegreePage implements Initializable {
 
         try {
             FXMLLoader loder = new FXMLLoader();
-            loder.setLocation(getClass().getResource("../AdminPanel/RegisterNewModule.fxml"));
+            loder.setLocation(getClass().getResource("../AdminPanel/RegisterNewDegree.fxml"));
             Parent root = loder.load();
             Stage primaryStage = new Stage();
             primaryStage.setTitle("Add New Event");

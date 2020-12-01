@@ -1,5 +1,8 @@
 package Common;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.*;
@@ -415,5 +418,45 @@ public class UserDAO {
             }catch (Exception ignored){}
         }
         return LecturerList;
+    }
+
+    public void markAttendance(String nsbm_id, String deviceMacAddress, float v, String routerMacAddress, String moduleCode) {
+
+        Connection con = null;
+        try {
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            String sql = "INSERT INTO attendance VALUES (?, ?, ?, ?, ?)";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, nsbm_id);
+            statement.setString(2, deviceMacAddress);
+            statement.setFloat(3, v);
+            statement.setString(4, routerMacAddress);
+            statement.setString(5, moduleCode);
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Attendance record added successfully!");
+                Alert.AlertType alertAlertType = AlertType.CONFIRMATION;
+                Alert alert = new Alert(alertAlertType);
+                alert.setContentText("Attendance Marked Successfully");
+                alert.setHeaderText("Attendance Marked");
+                alert.show();
+            }
+        }catch (Exception e){
+            System.out.println("Attendance record Failed");
+            Alert.AlertType alertAlertType = AlertType.ERROR;
+            Alert alert = new Alert(alertAlertType);
+            alert.setContentText("Attendance Marking Error");
+            alert.setHeaderText("Error");
+            alert.show();
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception ignored){}
+        }
+
     }
 }

@@ -140,6 +140,8 @@ public class MainPage implements Initializable {
         // Populating the menu button with the menu items
         cmb_menu.getItems().addAll(options);
 
+
+
     }
 
     /**
@@ -197,9 +199,13 @@ public class MainPage implements Initializable {
     }
 
     @FXML
-    public void NavHomeClick(MouseEvent mouseEvent) throws IOException
+    public void NavHomeClick() throws IOException
     {
-        AnchorPane page = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("MainScene.fxml"));
+        AnchorPane page = loader.load();
+        MainScene controler = loader.getController();
+        controler.setUser(user);
         base.getChildren().clear();
         base.getChildren().setAll(page);
     }

@@ -242,6 +242,50 @@ public class ModulesDAO {
         return ModulesList;
     }
 
+    public List<Module> getModulesList(String degreeProgram) {
+        List<Module> ModulesList = new ArrayList<>();
+
+        // SQL Connection con
+        Connection con = null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            // SQL Quarry
+            String sql = "SELECT * FROM module WHERE degree_program=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, degreeProgram);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                String module_code = resultSet.getString(1);
+                String module_name = resultSet.getString(2);
+                String lecturer_name = resultSet.getString(3);
+                String degree_program = resultSet.getString(4);
+
+
+
+                ModulesList.add( new Module(module_code,module_name,lecturer_name,degree_program));
+                System.out.println("Fetching: Module  "+module_code+" " +module_name+" ");
+
+            }
+
+
+        }catch (Exception e){
+
+        }finally {
+            try {
+                con.close();
+            }catch (Exception ignored){}
+        }
+        return ModulesList;
+    }
+
 
 
 
