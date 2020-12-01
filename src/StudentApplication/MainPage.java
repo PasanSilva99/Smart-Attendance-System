@@ -204,21 +204,6 @@ public class MainPage implements Initializable {
         base.getChildren().setAll(page);
     }
 
-
-    public void NavLeaderBoardEnter(MouseEvent mouseEvent)
-    {
-        ap_leaderBoard.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
-    }
-
-
-    public void NavLeaderBoardExit(MouseEvent mouseEvent) { ap_leaderBoard.setStyle("-fx-background-color : #636363;"); }
-    @FXML
-    public void NavLeaderBoardClick(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("LeaderBoardMain.fxml"));
-        base.getChildren().clear();
-        base.getChildren().setAll(page);
-    }
-
     public void NavModulesEnter(MouseEvent mouseEvent)
     {
         ap_modules.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
