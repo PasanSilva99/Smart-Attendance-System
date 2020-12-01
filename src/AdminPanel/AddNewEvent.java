@@ -155,7 +155,7 @@ public class AddNewEvent implements Initializable {
     public String generateNewID() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'
-        int targetStringLength = 10;
+        int targetStringLength = 5;
         Random random = new Random();
 
         String generatedString = random.ints(leftLimit, rightLimit + 1)

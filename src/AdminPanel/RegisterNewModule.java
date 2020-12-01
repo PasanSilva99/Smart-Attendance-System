@@ -45,6 +45,7 @@ public class RegisterNewModule implements Initializable {
         AdminModulesPage = adminModulesPage;
     }
 
+
     public void btn_Register_click(ActionEvent actionEvent) {
 
         Module newModule;
