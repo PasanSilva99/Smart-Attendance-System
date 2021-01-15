@@ -61,6 +61,8 @@ public class AdminDegreePage implements Initializable {
             primaryStage.setTitle("Add New Event");
             primaryStage.setScene(new Scene(root, 600, 480));
             primaryStage.show();
+            RegisterNewDegree controller = loder.getController();
+            controller.setMainPage(this);
 
             Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
             primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
