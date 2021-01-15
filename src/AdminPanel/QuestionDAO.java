@@ -25,7 +25,7 @@ public class QuestionDAO {
             // SQL Connection
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
 
-            String sql = "INSERT INTO question_answers VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE question=?, answerList=?, quizID=?";
+            String sql = "INSERT INTO question_answers VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE question=?, answerList=?, quiz_id=?";
 
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, q_number);
@@ -111,7 +111,7 @@ public class QuestionDAO {
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
 
             // SQL Quarry
-            String sql = "SELECT * FROM question_answers WHERE quizID=?";
+            String sql = "SELECT * FROM question_answers WHERE quiz_id=?";
 
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, quizID);
