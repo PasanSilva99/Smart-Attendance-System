@@ -6,12 +6,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap_baseStudent" prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.AdminStudentPage">
+<AnchorPane fx:id="ap_baseStudent" prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.AdminStudentPage">
    <children>
       <Label alignment="CENTER" layoutX="273.0" layoutY="14.0" prefWidth="432.0" text="Student Management" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="14.0">
          <font>
@@ -25,11 +23,20 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Button fx:id="btn_registerStudent" layoutX="676.0" layoutY="52.0" mnemonicParsing="false" onAction="#btn_registerStudent_Click" style="-fx-background-color: #DADADA;" text="Regiter new student">
+      <Button fx:id="btn_registerStudent" layoutX="538.0" layoutY="52.0" mnemonicParsing="false" onAction="#btn_registerStudent_Click" style="-fx-background-color: #DADADA;" text="Regiter new student">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_deleteStudent" layoutX="696.0" layoutY="52.0" mnemonicParsing="false" onAction="#btn_registerStudent_Click" style="-fx-background-color: #DADADA;" text="Remove student">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/delete.png" />
                </image>
             </ImageView>
          </graphic>
