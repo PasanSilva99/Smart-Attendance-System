@@ -177,4 +177,8 @@ public class AdminCreateQuiz implements Initializable {
             lbl_validation.setVisible(true);
         }
     }
+
+    private void generateQuistionView(String question, String answer1, String answer2, String answer3, String answer4){
+
+    }
 }
