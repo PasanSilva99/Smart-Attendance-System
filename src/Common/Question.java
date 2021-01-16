@@ -180,7 +180,6 @@ public class Question implements Initializable {
         chb_answerCheck4.setLayoutX(357);
         chb_answerCheck4.setLayoutY(213.0);
 
-
         btn_save = new Button();
         btn_save.setLayoutX(365.0);
         btn_save.setLayoutY(253.0);

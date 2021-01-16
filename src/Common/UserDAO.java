@@ -330,6 +330,50 @@ public class UserDAO {
 
     }
 
+    public User getStudent(String nsbmID) throws SQLException {
+        User user = null;
+        // SQL Connection Variable
+        Connection con = null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            // SQL Quarry
+            String sql = "SELECT * FROM user WHERE nsbm_id=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, nsbmID);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()){
+                    String nsbm_id = resultSet.getString(1);
+                    String prefix = resultSet.getString(2);
+                    String name = resultSet.getString(3);
+                    String nsbm_emails = resultSet.getString(4);
+                    String password_hash = resultSet.getString(5);
+                    String degree_program = resultSet.getString(6);
+                    String batch = resultSet.getString(7);
+                    String privilege_level = resultSet.getString(8);
+
+                    user = new User(nsbm_id, prefix, name, nsbm_emails, password_hash, degree_program, batch, privilege_level);
+                }
+            }
+
+        }catch (Exception e){
+
+        }finally {
+            assert con != null;
+            con.close();
+        }
+
+        return user;
+
+    }
+
     public List<User> getStudentList() {
         List<User> StudentList = new ArrayList<>();
 
@@ -458,5 +502,40 @@ public class UserDAO {
             }catch (Exception ignored){}
         }
 
+    }
+
+    public void removeUser(String id){
+        Connection con = null;
+
+        try {
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            String sql = "DELETE FROM user WHERE nsbm_id=?";
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, id);
+
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Student Removed successfully!");
+                Alert.AlertType alertAlertType = AlertType.CONFIRMATION;
+                Alert alert = new Alert(alertAlertType);
+                alert.setContentText("Student Removed Successfully");
+                alert.setHeaderText("Student Removed");
+                alert.show();
+            }
+        }catch (Exception e){
+            System.out.println("Removing Student Failed");
+            Alert.AlertType alertAlertType = AlertType.ERROR;
+            Alert alert = new Alert(alertAlertType);
+            alert.setContentText("Removing Student Error");
+            alert.setHeaderText("Error");
+            alert.show();
+            e.printStackTrace();
+        }finally {
+            try{
+                con.close();
+            }catch (Exception ignored){}
+        }
     }
 }

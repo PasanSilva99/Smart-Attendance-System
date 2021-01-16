@@ -24,6 +24,7 @@ public class AdminStudentPage implements Initializable {
     public AnchorPane ap_baseStudent;
     public GridPane grid_studentView;
     public Button btn_registerStudent;
+    public Button btn_deleteStudent;
 
     List<User> StudentList = new ArrayList<>();
 
@@ -70,5 +71,25 @@ public class AdminStudentPage implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void btn_deleteStudent_Click(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loder = new FXMLLoader();
+            loder.setLocation(getClass().getResource("../AdminPanel/RemoveStudent.fxml"));
+            Parent root = loder.load();
+            RemoveStudent controller = loder.getController();
+            controller.setMainPage(this);
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Remove Student");
+            primaryStage.setScene(new Scene(root, 434, 274));
+            primaryStage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+            primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
