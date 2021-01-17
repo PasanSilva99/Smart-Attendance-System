@@ -21,11 +21,20 @@
             <GridPane fx:id="grid_moduleView" alignment="TOP_CENTER" prefWidth="676.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="btn_addModule" layoutX="706.0" layoutY="82.0" mnemonicParsing="false" onAction="#btn_addModule_Click" style="-fx-background-color: #DADADA;" text="Add New Module">
+      <Button fx:id="btn_addModule" layoutX="558.0" layoutY="84.0" mnemonicParsing="false" onAction="#btn_addModule_Click" style="-fx-background-color: #DADADA;" text="Add New Module">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_deleteModule" layoutX="709.0" layoutY="84.0" mnemonicParsing="false" onAction="#btn_deleteModule_Click" style="-fx-background-color: #DADADA;" text="Remove Module">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/delete.png" />
                </image>
             </ImageView>
          </graphic>
