@@ -72,5 +72,25 @@ public class AdminModulesPage implements Initializable {
 
     }
 
+    public void btn_deleteModule_Click(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loder = new FXMLLoader();
+            loder.setLocation(getClass().getResource("../AdminPanel/RemoveModule.fxml"));
+            Parent root = loder.load();
+            RemoveModule controller = loder.getController();
+            controller.setMainPage(this);
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Remove Module");
+            primaryStage.setScene(new Scene(root, 434, 274));
+            primaryStage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+            primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
 }
