@@ -110,6 +110,26 @@ public class DegreeDAO {
         return DegreeList;
     }
 
+    public void RemoveDegree(String degree_code) throws SQLException {
+        Connection con = null;
+        try {
+            Class.forName(DAO.SqlDriverClass);
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            String sql = "DELETE FROM degree_program WHERE degree_code="+degree_code;
+
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.execute();
+            System.out.println("Degree Deleted Successfully");
+        }catch (Exception e){
+            System.out.println("Degree Deletion Failed");
+        }finally {
+            if(!con.isClosed())
+            {
+                con.close();
+            }
+        }
+    }
+
     public String getDegreeNameByID(String degreeProgram) {
         // SQL Connection con
         Connection con=null;

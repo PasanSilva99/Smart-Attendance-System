@@ -21,11 +21,20 @@
             <GridPane fx:id="grid_degreeView" alignment="TOP_CENTER" prefWidth="676.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="btn_registerDegree" layoutX="696.0" layoutY="72.0" mnemonicParsing="false" onAction="#btn_registerDegree_Click" style="-fx-background-color: #DADADA;" text="Register new degree">
+      <Button fx:id="btn_registerDegree" layoutX="532.0" layoutY="72.0" mnemonicParsing="false" onAction="#btn_registerDegree_Click" style="-fx-background-color: #DADADA;" text="Register New Degree">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_deleteDegree" layoutX="699.0" layoutY="72.0" mnemonicParsing="false" onAction="#btn_deleteDegree_Click" style="-fx-background-color: #DADADA;" text="Remove Degree">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/delete.png" />
                </image>
             </ImageView>
          </graphic>

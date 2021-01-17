@@ -47,7 +47,7 @@ public class AdminDegreePage implements Initializable {
 
             grid_degreeView.add(degreeView, 0,r);
             GridPane.setMargin(degreeView, new Insets(10,10,10,10));
-
+            System.out.println("Degree List Updated");
         }
     }
 
@@ -58,7 +58,7 @@ public class AdminDegreePage implements Initializable {
             loder.setLocation(getClass().getResource("../AdminPanel/RegisterNewDegree.fxml"));
             Parent root = loder.load();
             Stage primaryStage = new Stage();
-            primaryStage.setTitle("Add New Event");
+            primaryStage.setTitle("Add New Degree");
             primaryStage.setScene(new Scene(root, 600, 480));
             primaryStage.show();
             RegisterNewDegree controller = loder.getController();
@@ -71,5 +71,25 @@ public class AdminDegreePage implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void btn_deleteDegree_Click(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loder = new FXMLLoader();
+            loder.setLocation(getClass().getResource("../AdminPanel/RemoveDegree.fxml"));
+            Parent root = loder.load();
+            RemoveDegree controller = loder.getController();
+            controller.setMainPage(this);
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Remove Degree");
+            primaryStage.setScene(new Scene(root, 434, 274));
+            primaryStage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+            primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
