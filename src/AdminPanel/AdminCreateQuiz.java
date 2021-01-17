@@ -132,10 +132,6 @@ public class AdminCreateQuiz implements Initializable {
 
     }
 
-    public void btn_close_Click(ActionEvent actionEvent) {
-        Stage stage = (Stage) btn_close.getScene().getWindow();
-        stage.close();
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -178,7 +174,4 @@ public class AdminCreateQuiz implements Initializable {
         }
     }
 
-    private void generateQuistionView(String question, String answer1, String answer2, String answer3, String answer4){
-
-    }
 }

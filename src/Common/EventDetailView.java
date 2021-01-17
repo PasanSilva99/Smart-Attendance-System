@@ -35,7 +35,6 @@ public class EventDetailView implements Initializable {
     public ComboBox cmb_eventType;
     public ComboBox cmb_lectureHall;
     public Label lbl_eventName1;
-    public Button btn_addQuiz;
     public VBox vbox_quizView;
     public Button btn_save;
 
@@ -44,6 +43,10 @@ public class EventDetailView implements Initializable {
 
     public AnchorPane baseAdmin;
 
+    /**
+     * Save the Event
+     * @param actionEvent
+     */
     public void btn_save_Click(ActionEvent actionEvent) {
         String event_id = tb_eventCode.getText();
         String event_name = tb_eventName.getText();
@@ -64,12 +67,11 @@ public class EventDetailView implements Initializable {
         alert.show();
       
         // Lock Controls
+        lbl_eventName.setText(event_name);
+        btn_save.setVisible(false);
         tb_eventName.setEditable(false);
         cmb_module.getItems().clear();
         cmb_module.getItems().add(uniEvent.getModuleO());
-    }
-
-    public void btn_addQuiz_Click(ActionEvent actionEvent) {
     }
 
     public void btn_edit_Click(ActionEvent actionEvent) {
@@ -245,6 +247,16 @@ public class EventDetailView implements Initializable {
         tb_eventCode.setText(event.getEventID());
         cmb_module.getSelectionModel().select(event.getModuleO());
 
+        // Get the quizzes from the database
+        System.out.println("Initializing quizzes");
+        List<Quiz> AvailableQuizzes = new QuizDAO().getQuizListForModule(event.getEventID());
+
+        for (Quiz quiz: AvailableQuizzes) {
+            AnchorPane q = quiz.getQuizView();
+            System.out.println("Loading Quiz: " + q.getId());
+            vbox_quizView.getChildren().add(q);
+        }
+
         btn_save.setVisible(false);
 
     }
@@ -263,6 +275,7 @@ public class EventDetailView implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
     public void btn_goBack_Click() {
         try {
             FXMLLoader loader = new FXMLLoader();

@@ -5,6 +5,7 @@ import AdminPanel.QuestionDAO;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -126,6 +127,9 @@ public class Question implements Initializable {
     }
 
     /**
+     *
+     * @return
+     */
     public String getQuizID() {
         return QuizID;
     }
@@ -255,6 +259,25 @@ public class Question implements Initializable {
         base.getChildren().addAll(tb_question, tb_answer1, tb_answer2, tb_answer3, tb_answer4, chb_answerCheck1, chb_answerCheck2, chb_answerCheck3, chb_answerCheck4, lbl_answerLabel, btn_save, btn_cancel);
 
         return base;
+    }
+
+    public AnchorPane generateViewStudent(){
+
+        AnchorPane base = new AnchorPane();
+        base.prefHeight(192.0);
+        base.setPrefWidth(600.0);
+
+        Label lbl_question = new Label("");
+        lbl_question.setLayoutX(26.0);
+        lbl_question.setLayoutY(24.0);
+        lbl_question.setPrefWidth(552.0);
+        lbl_question.setWrapText(true);
+        lbl_question.setAlignment(Pos.TOP_LEFT);
+        lbl_question.setFont(new Font("Century", 14));
+
+        RadioButton answer1 = new RadioButton("");
+        RadioButton answer2 = new RadioButton("");
+        return null;
     }
 
     private void btn_cancel_Click(Button btn_cancel) {

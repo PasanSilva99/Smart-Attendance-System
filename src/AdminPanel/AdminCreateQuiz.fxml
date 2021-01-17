@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.AdminCreateQuiz">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.AdminCreateQuiz">
    <children>
       <TextField fx:id="tb_quizName" layoutX="19.0" layoutY="17.0" prefHeight="46.0" prefWidth="440.0" promptText="Quiz Name" style="-fx-background-color: #F3F3F3;">
          <font>
@@ -33,24 +33,6 @@
             <VBox fx:id="vbox_questionView" prefWidth="601.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="btn_save" layoutX="511.0" layoutY="550.0" mnemonicParsing="false" onAction="#btn_save_Click" prefHeight="32.0" prefWidth="81.0" style="-fx-background-color: #E1E1E1;" text="Save">
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Common/Images/save.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="btn_close" layoutX="419.0" layoutY="550.0" mnemonicParsing="false" onAction="#btn_close_Click" prefHeight="32.0" prefWidth="81.0" style="-fx-background-color: #E1E1E1;" text="Close">
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Common/Images/close.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <TextField fx:id="tb_eventID" layoutX="46.0" layoutY="70.0" prefHeight="25.0" prefWidth="203.0" promptText="Enter Event ID (Not Case Sensitive)" />
       <Button fx:id="btn_check" layoutX="257.0" layoutY="69.0" mnemonicParsing="false" onAction="#btn_check_Click" prefHeight="25.0" prefWidth="81.0" style="-fx-background-color: #E1E1E1;" text="Check">
          <graphic>
@@ -68,6 +50,15 @@
             <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Images/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_save" layoutX="495.0" layoutY="550.0" mnemonicParsing="false" onAction="#btn_save_Click" style="-fx-background-color: #E1E1E1;" text="Save Quiz">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Common/Images/save.png" />
                </image>
             </ImageView>
          </graphic>

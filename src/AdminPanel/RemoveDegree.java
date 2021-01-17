@@ -39,14 +39,14 @@ public class RemoveDegree {
 
         //Cannot get degree name to the label
         public void btn_fetch_Click(ActionEvent actionEvent) throws SQLException {
-            User degree = new UserDAO().getStudent(tb_degreeCode.getText());
+            String degreeName = new DegreeDAO().getDegreeNameByID(tb_degreeCode.getText());
 
-            if(degree == null){
-                lbl_degreeName.setText("Lecturer cannot be found");
+            if(degreeName == null){
+                lbl_degreeName.setText("Degree cannot be found");
 
             }
             else {
-                lbl_degreeName.setText(degree.getName());
+                lbl_degreeName.setText(degreeName);
             }
     }
 

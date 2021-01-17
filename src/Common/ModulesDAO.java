@@ -155,9 +155,10 @@ public class ModulesDAO {
         try {
             Class.forName(DAO.SqlDriverClass);
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
-            String sql = "DELETE FROM module WHERE module_code="+moduleCode;
+            String sql = "DELETE FROM module WHERE module_code=?";
 
             PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, moduleCode);
             statement.execute();
             System.out.println("Successfully Removed the module");
         }catch (Exception e){
