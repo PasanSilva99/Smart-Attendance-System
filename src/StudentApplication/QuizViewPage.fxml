@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="494.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentApplication.QuizViewPage">
+   <children>
+      <Label fx:id="lbl_quizName" layoutX="14.0" layoutY="11.0" prefHeight="35.0" prefWidth="583.0" text="Quiz Name">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_moduleBatch" layoutX="28.0" layoutY="49.0" text="Module And Batch" />
+      <Label fx:id="lbl_deadline" layoutX="28.0" layoutY="66.0" text="Deadline" />
+      <Line endX="580.0" layoutX="115.0" layoutY="95.0" startX="-100.0" stroke="#a9a6a6" />
+      <ImageView fitHeight="80.0" fitWidth="99.0" layoutX="598.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Images/quiz.png" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutX="15.0" layoutY="105.0" prefHeight="345.0" prefWidth="674.0">
+         <content>
+            <VBox fx:id="vbox_questions" prefHeight="200.0" prefWidth="671.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="btn_submit" layoutX="610.0" layoutY="455.0" mnemonicParsing="false" onAction="#btn_submit_Click" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #238636;" text="Submit" textFill="WHITE" />
+   </children>
+</AnchorPane>

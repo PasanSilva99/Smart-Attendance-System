@@ -84,10 +84,18 @@ public class Question implements Initializable {
         parent_admin = parent;
     }
 
+    /**
+     * Is the question editable/ Unlocked?
+     * @return Locked State
+     */
     public boolean isEditable() {
         return Editable;
     }
 
+    /**
+     * Set the Questions Lock state
+     * @param editable
+     */
     public void setEditable(boolean editable) {
         Editable = editable;
 
@@ -101,14 +109,23 @@ public class Question implements Initializable {
 
     }
 
+    /**
+     * Get the Question number for the view
+     * @return
+     */
     public int getQuestionNumber() {
         return QuestionNumber;
     }
 
+    /**
+     * Set The Question Number for the view
+     * @param questionNumber
+     */
     public void setQuestionNumber(int questionNumber) {
         QuestionNumber = questionNumber;
     }
 
+    /**
     public String getQuizID() {
         return QuizID;
     }
