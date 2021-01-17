@@ -60,7 +60,7 @@ public class AdminStudentPage implements Initializable {
             RegisterNewStudent controller = loder.getController();
             controller.setMainPage(this);
             Stage primaryStage = new Stage();
-            primaryStage.setTitle("Add New Event");
+            primaryStage.setTitle("Add New Student");
             primaryStage.setScene(new Scene(root, 600, 752));
             primaryStage.show();
 

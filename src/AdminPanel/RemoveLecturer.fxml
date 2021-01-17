@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="274.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.RemoveLecturer">
+   <children>
+      <AnchorPane layoutX="7.0" layoutY="7.0" prefHeight="61.0" prefWidth="420.0" style="-fx-background-color: #F59F95; -fx-background-radius: 10px;">
+         <children>
+            <Label layoutX="14.0" layoutY="6.0" prefHeight="48.0" prefWidth="388.0" text="Type the Lecturer ID below. Please note that you cannot recover deleted profiles." wrapText="true" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="14.0" layoutY="80.0" text="Lecturer ID" />
+      <TextField fx:id="tb_lecturerNumber" layoutX="82.0" layoutY="76.0" prefHeight="25.0" prefWidth="239.0" promptText="Ex: 18752" />
+      <Text layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecturer Name: " />
+      <Text layoutX="14.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lecturer Email: " />
+      <Text fx:id="lbl_lecturerName" layoutX="108.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type a Lecturer Number to Show" />
+      <Text fx:id="lbl_lecturerEmail" layoutX="108.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type a Lecturer Number to Show" />
+      <Line endX="307.0" layoutX="115.0" layoutY="112.0" startX="-100.0" stroke="#b09e9e" />
+      <Button fx:id="btn_confirmLecturer" layoutX="320.0" layoutY="235.0" mnemonicParsing="false" onAction="#btn_confirm_Click" style="-fx-background-color: #E7634D;" text="Confirm Deletion" textFill="WHITE" />
+      <Button fx:id="btn_cancelLecturer" layoutX="262.0" layoutY="235.0" mnemonicParsing="false" onAction="#btn_cancel_Click" style="-fx-background-color: #868C89;" text="Cancel" textFill="WHITE" />
+      <Button fx:id="btn_fetchLecturer" layoutX="328.0" layoutY="75.0" mnemonicParsing="false" onAction="#btn_fetch_Click" style="-fx-background-color: #D9D9D9;" text="Fetch Data">
+         <graphic>
+            <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/icons8_find_and_replace_96px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

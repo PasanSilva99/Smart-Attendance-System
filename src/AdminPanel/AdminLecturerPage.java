@@ -25,6 +25,8 @@ public class AdminLecturerPage implements Initializable {
     public AnchorPane ap_baseLecturer;
     public GridPane grid_lecturerView;
     public Button btn_registerLecturer;
+    public Button btn_deleteLecturer;
+
 
     List<User> LecturerList = new ArrayList<>();
 
@@ -46,7 +48,7 @@ public class AdminLecturerPage implements Initializable {
 
             grid_lecturerView.add(studentView, 0,r);
             GridPane.setMargin(studentView, new Insets(10,10,10,10));
-
+            System.out.println("Student List Updated");
         }
 
     }
@@ -60,7 +62,7 @@ public class AdminLecturerPage implements Initializable {
             RegisterNewLecturer controller = loder.getController();
             controller.setMainPage(this);
             Stage primaryStage = new Stage();
-            primaryStage.setTitle("Add New Event");
+            primaryStage.setTitle("Add New Lecturer");
             primaryStage.setScene(new Scene(root, 600, 752));
             primaryStage.show();
 
@@ -71,6 +73,26 @@ public class AdminLecturerPage implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void btn_deleteLecturer_Click(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loder = new FXMLLoader();
+            loder.setLocation(getClass().getResource("../AdminPanel/RemoveLecturer.fxml"));
+            Parent root = loder.load();
+            RemoveLecturer controller = loder.getController();
+            controller.setMainPage(this);
+            Stage primaryStage = new Stage();
+            primaryStage.setTitle("Remove Lecturer");
+            primaryStage.setScene(new Scene(root, 434, 274));
+            primaryStage.show();
+
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            primaryStage.setX((primScreenBounds.getWidth() - primaryStage.getWidth()) / 2);
+            primaryStage.setY((primScreenBounds.getHeight() - primaryStage.getHeight()) / 2);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 }
