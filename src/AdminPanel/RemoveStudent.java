@@ -25,7 +25,9 @@ public class RemoveStudent {
         tb_studentNumber.setText(null);
         lbl_studentName.setText("Type a Student Number to Show");
         lbl_studentEmail.setText("Type a Student Number to Show");
+        System.out.println("Student Removed");
         mainPage.RefreshStudentList();
+
     }
 
     public void btn_cancel_Click(ActionEvent actionEvent) {
