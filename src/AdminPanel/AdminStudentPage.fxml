@@ -23,7 +23,7 @@
             </GridPane>
          </content>
       </ScrollPane>
-      <Button fx:id="btn_registerStudent" layoutX="538.0" layoutY="52.0" mnemonicParsing="false" onAction="#btn_registerStudent_Click" style="-fx-background-color: #DADADA;" text="Register New Student">
+      <Button fx:id="btn_registerStudent" layoutX="531.0" layoutY="52.0" mnemonicParsing="false" onAction="#btn_registerStudent_Click" style="-fx-background-color: #DADADA;" text="Register New Student">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
