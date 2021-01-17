@@ -46,7 +46,7 @@ public class AdminStudentPage implements Initializable {
 
             grid_studentView.add(studentView, 0,r);
             GridPane.setMargin(studentView, new Insets(10,10,10,10));
-
+            System.out.println("Student List Updated");
         }
 
     }
