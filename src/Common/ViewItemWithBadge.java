@@ -19,7 +19,7 @@ public class ViewItemWithBadge extends AnchorPane {
     private String Heading = "Heading";
     private String Subheading1 = "Subheading";
     private String Subheading2 = "Subheading";
-    private String Batch = "";
+    private String Batch = " ";
     private String Other = "Other";
     private boolean isNew = true;
 

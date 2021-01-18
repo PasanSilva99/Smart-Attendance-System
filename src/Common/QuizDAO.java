@@ -130,4 +130,43 @@ public class QuizDAO {
             }catch (Exception ignored){}
         }
     }
+
+    public boolean checkSubmission(String quizID, String nsbm_id) {
+        // SQL Connection Variable
+        Connection con = null;
+
+        try{
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+            System.out.println("Searching Submissions of "+nsbm_id + " for "+quizID);
+            // SQL Quarry
+            String sql = "SELECT COUNT(*) FROM attendance WHERE nsbm_id=? AND quiz_id=?";
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, nsbm_id);
+            statement.setString(2, quizID);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()){
+                    int found = resultSet.getInt(1);
+
+                    if(found>0){
+                        return true;
+                    }
+                }
+            }
+
+        }catch (Exception e){
+
+        }finally {
+            try {
+                con.close();
+            }catch (Exception ignored){}
+        }
+
+        return false;
+    }
 }
