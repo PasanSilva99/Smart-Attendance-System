@@ -345,4 +345,60 @@ public class UniEventDAO {
 
         return UniEvents;
     }
+
+    public List<UniEvent> getEventListForToday() {
+        List<UniEvent> UniEvents = new ArrayList<>(); // Holds all evens
+
+        // SQL Connection Variable
+        Connection con = null;
+
+        try {
+            // SQL Driver Class
+            Class.forName(DAO.SqlDriverClass);
+            // SQL Connection
+            con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
+
+            long millis=System.currentTimeMillis();
+            java.sql.Date date=new java.sql.Date(millis);
+            String startdate = date.toString()+" 00:00:00";
+            String endDate = date.toString()+" 23:59:59";
+
+            // SQL Quarry
+            String sql = "SELECT * FROM event WHERE start_time>='"+startdate+"' AND end_time<='"+endDate+"'";
+
+
+
+            // SQL Statement
+            PreparedStatement statement = con.prepareStatement(sql);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()){
+                String event_id = resultSet.getString(1);
+                String event_name = resultSet.getString(2);
+                String module_code = resultSet.getString(3);
+                String start_time = resultSet.getString(4);
+                String end_time = resultSet.getString(5);
+                String lecturer = resultSet.getString(6);
+                String batch = resultSet.getString(7);
+                String event_type = resultSet.getString(8);
+                String location = resultSet.getString(9);
+
+                System.out.println("Fetching: " + event_id);
+                UniEvents.add(new UniEvent(event_id, event_name, module_code, start_time, end_time, lecturer, batch, event_type, location));
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            try{
+                assert con != null;
+                con.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+        return UniEvents;
+    }
 }

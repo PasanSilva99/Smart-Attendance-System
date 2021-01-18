@@ -129,7 +129,15 @@ public class AdminCreateQuiz implements Initializable {
 
         }
 
+        Alert.AlertType alertAlertType2 = AlertType.INFORMATION;
+        Alert confirmation = new Alert(alertAlertType2);
+        confirmation.setTitle("Saved");
+        confirmation.setHeaderText("Quiz Saved Successfully");
+        confirmation.setContentText("Quiz saved successfully");
+        confirmation.show();
 
+        Stage stage = (Stage) btn_save.getScene().getWindow();
+        stage.close();
     }
 
 

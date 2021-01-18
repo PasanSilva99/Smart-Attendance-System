@@ -40,10 +40,10 @@ public class Question implements Initializable {
     TextField tb_answer3 = new TextField("Answer 3");
     TextField tb_answer4 = new TextField("Answer 4");
     Label lbl_answerLabel = new Label("Answers");
-    CheckBox chb_answerCheck1;
-    CheckBox chb_answerCheck2;
-    CheckBox chb_answerCheck3;
-    CheckBox chb_answerCheck4;
+    CheckBox chb_answerCheck1 = new CheckBox("Correct Answer");
+    CheckBox chb_answerCheck2 = new CheckBox("Correct Answer");
+    CheckBox chb_answerCheck3 = new CheckBox("Correct Answer");
+    CheckBox chb_answerCheck4 = new CheckBox("Correct Answer");
 
     Button btn_save;
     Button btn_cancel;
@@ -72,11 +72,57 @@ public class Question implements Initializable {
             System.out.println("Received Answer:: " + _answer);
         }
 
+        // Sets the Question and answers
         tb_question.setText(Question);
-        tb_answer1.setText(AnswerList.get(0));
-        tb_answer2.setText(AnswerList.get(1));
-        tb_answer3.setText(AnswerList.get(2));
-        tb_answer4.setText(AnswerList.get(3));
+
+        /** If the answers are saved before, this will get the answer from the string and validate and fill them
+         * if not, Just fill them
+         */
+        if(AnswerList.get(0).contains("<<O>>") || AnswerList.get(0).contains("<<X>>"))
+        {
+            tb_answer1.setText(AnswerList.get(0).substring(0, AnswerList.get(0).indexOf("<<")));
+            if (AnswerList.get(0).contains("<<X>>"))
+                chb_answerCheck1.setSelected(true);
+            else{
+                chb_answerCheck1.setSelected(false);
+            }
+        }else {
+            tb_answer1.setText(AnswerList.get(0));
+        }
+        if(AnswerList.get(1).contains("<<O>>") || AnswerList.get(1).contains("<<X>>"))
+        {
+            tb_answer2.setText(AnswerList.get(1).substring(0, AnswerList.get(1).indexOf("<<")));
+            if (AnswerList.get(1).contains("<<X>>"))
+                chb_answerCheck2.setSelected(true);
+            else {
+                chb_answerCheck2.setSelected(false);
+            }
+        }else {
+            tb_answer2.setText(AnswerList.get(1));
+        }
+        if(AnswerList.get(2).contains("<<O>>") || AnswerList.get(2).contains("<<X>>"))
+        {
+            tb_answer3.setText(AnswerList.get(2).substring(0, AnswerList.get(2).indexOf("<<")));
+            if (AnswerList.get(2).contains("<<X>>"))
+                chb_answerCheck3.setSelected(true);
+            else {
+                chb_answerCheck3.setSelected(false);
+            }
+        }else {
+            tb_answer3.setText(AnswerList.get(2));
+        }
+        if(AnswerList.get(3).contains("<<O>>") || AnswerList.get(3).contains("<<X>>"))
+        {
+            tb_answer4.setText(AnswerList.get(3).substring(0, AnswerList.get(3).indexOf("<<")));
+            if (AnswerList.get(3).contains("<<X>>"))
+                chb_answerCheck4.setSelected(true);
+            else {
+                chb_answerCheck4.setSelected(false);
+            }
+        }else {
+            tb_answer4.setText(AnswerList.get(3));
+        }
+
 
         QuizID = quizID;
 
@@ -197,19 +243,15 @@ public class Question implements Initializable {
         lbl_answerLabel.setLayoutX(31);
         lbl_answerLabel.setLayoutY(72);
 
-        chb_answerCheck1 = new CheckBox("Correct Answer");
         chb_answerCheck1.setLayoutX(357);
         chb_answerCheck1.setLayoutY(103.0);
 
-        chb_answerCheck2 = new CheckBox("Correct Answer");
         chb_answerCheck2.setLayoutX(357);
         chb_answerCheck2.setLayoutY(141.0);
 
-        chb_answerCheck3 = new CheckBox("Correct Answer");
         chb_answerCheck3.setLayoutX(357);
         chb_answerCheck3.setLayoutY(177.0);
 
-        chb_answerCheck4 = new CheckBox("Correct Answer");
         chb_answerCheck4.setLayoutX(357);
         chb_answerCheck4.setLayoutY(213.0);
 
