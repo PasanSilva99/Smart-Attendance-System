@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LecturerApplication.EventDetailViewLecturer">
+   <children>
+      <Label fx:id="lbl_eventName" layoutX="55.0" layoutY="14.0" prefHeight="30.0" prefWidth="335.0" text="Event Name" textAlignment="CENTER" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Felix Titling" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btn_delete" accessibleHelp="Delete Event" accessibleText="Delete" layoutX="446.0" layoutY="10.0" mnemonicParsing="false" onAction="#btn_delete_Click" prefHeight="30.0" prefWidth="33.0" style="-fx-background-color: #D7D7D7;">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/delete.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_delete1" accessibleHelp="Edit Event" accessibleText="Edit" layoutX="402.0" layoutY="10.0" mnemonicParsing="false" onAction="#btn_edit_Click" prefHeight="30.0" prefWidth="33.0" style="-fx-background-color: #D7D7D7;">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/edit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="37.0" layoutY="90.0" text="Module">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="123.0" text="Batch">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmb_module" layoutX="114.0" layoutY="87.0" prefHeight="25.0" prefWidth="370.0" promptText="Module" style="-fx-background-color: #E2E2E2;" />
+      <ComboBox fx:id="cmb_batch" layoutX="114.0" layoutY="120.0" prefHeight="25.0" prefWidth="191.0" promptText="Batch" style="-fx-background-color: #E2E2E2;" />
+      <Label layoutX="37.0" layoutY="57.0" text="Event">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tb_eventName" editable="false" layoutX="113.0" layoutY="54.0" prefHeight="25.0" prefWidth="248.0" promptText="Event Name" style="-fx-background-color: #E2E2E2;" />
+      <TextField fx:id="tb_eventCode" editable="false" layoutX="367.0" layoutY="54.0" prefHeight="25.0" prefWidth="116.0" promptText="Event Code" style="-fx-background-color: #E2E2E2;" text="Auto Text" />
+      <DatePicker fx:id="dtp_date" layoutX="113.0" layoutY="154.0" prefHeight="25.0" prefWidth="191.0" promptText="Date" style="-fx-background-color: #E2E2E2;" />
+      <Label layoutX="38.0" layoutY="157.0" text="Date">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="191.0" text="Start Time">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmb_startTime" layoutX="114.0" layoutY="188.0" prefHeight="25.0" prefWidth="135.0" promptText="Start Time" style="-fx-background-color: #E2E2E2;" />
+      <Label layoutX="277.0" layoutY="191.0" text="End Time">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmb_endTime" layoutX="347.0" layoutY="188.0" prefHeight="25.0" prefWidth="135.0" promptText="End Time" style="-fx-background-color: #E2E2E2;" />
+      <Label layoutX="38.0" layoutY="224.0" text="Lecturer">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tb_lecturer" editable="false" layoutX="113.0" layoutY="221.0" prefHeight="25.0" prefWidth="370.0" promptText="Lecturer In Charge" style="-fx-background-color: #E2E2E2;" />
+      <Label layoutX="37.0" layoutY="258.0" text="Type">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmb_eventType" layoutX="113.0" layoutY="255.0" prefHeight="25.0" prefWidth="135.0" promptText="Module Type" style="-fx-background-color: #E2E2E2;" />
+      <Label layoutX="260.0" layoutY="259.0" text="Lecture Hall">
+         <font>
+            <Font name="Century" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmb_lectureHall" layoutX="347.0" layoutY="255.0" prefHeight="25.0" prefWidth="135.0" promptText="Lecture Hall" style="-fx-background-color: #E2E2E2;" />
+      <Separator layoutX="495.0" orientation="VERTICAL" prefHeight="463.0" prefWidth="6.0" />
+      <Label fx:id="lbl_eventName1" layoutX="510.0" layoutY="10.0" prefHeight="30.0" prefWidth="370.0" text="Quizzes" textAlignment="CENTER" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="Felix Titling" size="24.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="509.0" layoutY="45.0" prefHeight="406.0" prefWidth="454.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="509.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="45.0">
+         <content>
+            <VBox fx:id="vbox_quizView" alignment="TOP_CENTER" prefWidth="446.0" spacing="10.0" style="-fx-padding: 10px;" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="btn_save" accessibleHelp="Edit Event" accessibleText="Edit" defaultButton="true" layoutX="367.0" layoutY="298.0" mnemonicParsing="false" onAction="#btn_save_Click" prefHeight="30.0" prefWidth="116.0" style="-fx-background-color: #D7D7D7;" text="Save Changes">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btn_goBack" accessibleHelp="Edit Event" accessibleText="Edit" layoutX="-1.0" mnemonicParsing="false" onAction="#btn_goBack_Click" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: transparent; -fx-border-radius: 20; -fx-background-radius: 20;">
+         <graphic>
+            <ImageView fitHeight="61.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
