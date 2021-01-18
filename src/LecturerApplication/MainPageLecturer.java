@@ -147,6 +147,14 @@ public class MainPageLecturer implements Initializable {
         // Populating the menu button with the menu items
         cmb_MenuLecturer.getItems().addAll(optionsLecturer);
 
+        Platform.runLater(()-> {
+            try {
+                NavHomeClickLecturer();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     /**
@@ -209,7 +217,7 @@ public class MainPageLecturer implements Initializable {
     }
 
     @FXML
-    public void NavHomeClickLecturer(MouseEvent mouseEvent) throws IOException
+    public void NavHomeClickLecturer() throws IOException
     {
         AnchorPane page = FXMLLoader.load(getClass().getResource("MainSceneLecturer.fxml"));
         baseLecturer.getChildren().clear();

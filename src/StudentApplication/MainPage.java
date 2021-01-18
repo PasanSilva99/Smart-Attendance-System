@@ -82,32 +82,10 @@ public class MainPage implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // set a clip to apply rounded border to the original image.
-        Rectangle clip = new Rectangle(
-                img_Pic.getFitWidth(), img_Pic.getFitHeight()
-        );
 
         if(user != null){
             cmb_menu.setText(user.getPrefix() + user.getName());
         }
-
-        clip.setArcWidth(img_Pic.getFitHeight());
-        clip.setArcHeight(img_Pic.getFitHeight());
-        img_Pic.setClip(clip);
-
-        // snapshot the rounded image.
-        SnapshotParameters parameters = new SnapshotParameters();
-        parameters.setFill(Color.TRANSPARENT);
-        WritableImage image = img_Pic.snapshot(parameters, null);
-
-        // remove the rounding clip so that our effect can show through.
-        img_Pic.setClip(null);
-
-        // apply a shadow effect.
-        img_Pic.setEffect(new DropShadow(2, Color.BLACK));
-
-        // store the rounded image in the imageView.
-        img_Pic.setImage(image);
 
         List<MenuItem> options = new ArrayList<>();
         options.add(new MenuItem("Logout"));
@@ -141,6 +119,13 @@ public class MainPage implements Initializable {
         cmb_menu.getItems().addAll(options);
 
 
+        Platform.runLater(()-> {
+            try {
+                NavHomeClick();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
@@ -210,38 +195,5 @@ public class MainPage implements Initializable {
         base.getChildren().setAll(page);
     }
 
-    public void NavModulesEnter(MouseEvent mouseEvent)
-    {
-        ap_modules.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
-    }
 
-    public void NavModulesExit(MouseEvent mouseEvent)
-    {
-        ap_modules.setStyle("-fx-background-color : #636363;");
-    }
-    @FXML
-    public void NavModulesClick(MouseEvent mouseEvent) throws IOException {
-        FXMLLoader loder = new FXMLLoader();
-        loder.setLocation(getClass().getResource("../StudentApplication/ModulesPage.fxml"));
-        AnchorPane page = loder.load();
-        base.getChildren().clear();
-        base.getChildren().setAll(page);
-        ModulesPage Mpage = loder.getController();
-        Mpage.setMainPage(this);
-    }
-
-    public void NavAnalyticsEnter(MouseEvent mouseEvent)
-    {
-        ap_analytics.setStyle("-fx-background-color : #6B6B6B; -fx-background-radius: 20;");
-    }
-
-    public void NavAnalyticsExit(MouseEvent mouseEvent)
-    {
-        ap_analytics.setStyle("-fx-background-color : #636363;");
-    }
-
-    public void NavAnalyticsClick(MouseEvent mouseEvent)
-    {
-
-    }
 }

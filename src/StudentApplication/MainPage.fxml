@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1100.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentApplication.MainPage">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentApplication.MainPage">
    <children>
       <AnchorPane fx:id="topBar" layoutX="251.0" layoutY="100.0" prefHeight="100.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,9 +30,9 @@
       </AnchorPane>
       <AnchorPane layoutX="793.0" prefHeight="120.0" prefWidth="344.0" style="-fx-background-color: #BFC0C4; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.rightAnchor="-20.0" AnchorPane.topAnchor="-20.0">
          <children>
-            <ImageView fx:id="img_Pic" fitHeight="70.0" fitWidth="70.0" layoutX="36.0" layoutY="36.0" pickOnBounds="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="36.0">
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="36.0" layoutY="36.0" pickOnBounds="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="36.0">
                <image>
-                  <Image url="@Images/profile.jpg" />
+                  <Image url="@Images/profile.png" />
                </image>
             </ImageView>
             <MenuButton fx:id="cmb_menu" layoutX="115.0" layoutY="59.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" text="MenuButton">

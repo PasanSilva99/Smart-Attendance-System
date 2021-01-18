@@ -34,16 +34,6 @@ public class SessionSelection implements Initializable {
 
     }
 
-    public void BackRequested() throws IOException {
-        FXMLLoader loder = new FXMLLoader();
-        loder.setLocation(getClass().getResource("../StudentApplication/ModulesPage.fxml"));
-        AnchorPane page = loder.load();
-        base.base.getChildren().clear();
-        base.base.getChildren().setAll(page);
-        ModulesPage Mpage = loder.getController();
-        Mpage.setMainPage(base);
-    }
-
     public void setModule(ViewItem ClickedItem){
         this.ClickedItem=ClickedItem;
         lbl_selectedItem.setText(ClickedItem.ModuleName);

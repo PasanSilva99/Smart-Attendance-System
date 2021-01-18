@@ -82,10 +82,11 @@ public class UserDAO {
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
 
            // SQL Quarry
-            String sql = "SELECT COUNT(*) FROM user WHERE nsbm_email=?";
+            String sql = "SELECT COUNT(*) FROM user WHERE nsbm_email=? AND password_hash=?";
             // SQL Statement
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, email);
+            statement.setString(2, passwordHash);
 
             try (ResultSet resultSet = statement.executeQuery()) {
               while (resultSet.next())
