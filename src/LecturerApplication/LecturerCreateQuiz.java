@@ -1,5 +1,6 @@
-package AdminPanel;
+package LecturerApplication;
 
+import AdminPanel.QuestionDAO;
 import Common.Question;
 import Common.QuizDAO;
 import Common.UniEventDAO;
@@ -8,8 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -22,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AdminCreateQuiz implements Initializable {
+public class LecturerCreateQuiz implements Initializable {
     public TextField tb_quizName;
     public Button btn_addQuestion;
     public VBox vbox_questionView;
@@ -89,7 +93,7 @@ public class AdminCreateQuiz implements Initializable {
     }
 
     public void btn_save_Click(ActionEvent actionEvent) {
-        Alert.AlertType alertAlertType=AlertType.ERROR;
+        AlertType alertAlertType=AlertType.ERROR;
         Alert alert = new Alert(alertAlertType);
         alert.setTitle("Error saving Quiz");
         alert.setHeaderText("Error occurred while saving the quiz");
@@ -129,7 +133,7 @@ public class AdminCreateQuiz implements Initializable {
 
         }
 
-        Alert.AlertType alertAlertType2 = AlertType.INFORMATION;
+        AlertType alertAlertType2 = AlertType.INFORMATION;
         Alert confirmation = new Alert(alertAlertType2);
         confirmation.setTitle("Saved");
         confirmation.setHeaderText("Quiz Saved Successfully");

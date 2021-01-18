@@ -16,12 +16,12 @@
                   <Image url="@Images/javaLogo.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbl_date" layoutX="356.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="356.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_date" layoutX="277.0" layoutY="39.0" text="18/10/2020" AnchorPane.leftAnchor="277.0" AnchorPane.topAnchor="39.0">
                <font>
-                  <Font name="Felix Titling" size="14.0" />
+                  <Font name="Felix Titling" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lbl_time" layoutX="533.0" layoutY="42.0" text="08:56:03 AM" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_greeting" layoutX="682.0" layoutY="42.0" text="08:56:03 AM" AnchorPane.rightAnchor="338.5" AnchorPane.topAnchor="42.0">
                <font>
                   <Font name="Felix Titling" size="14.0" />
                </font>

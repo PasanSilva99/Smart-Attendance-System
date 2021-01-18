@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
@@ -29,6 +30,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,6 +40,8 @@ public class MainPageLecturer implements Initializable {
 
     @FXML
     public MenuButton cmb_MenuLecturer;
+    public Label lbl_DateLecturer;
+    public Label lbl_greeting;
     @FXML
     AnchorPane topBarLecturer;
     @FXML
@@ -77,12 +82,24 @@ public class MainPageLecturer implements Initializable {
         this.userLecturer = userLecturer;
         if(userLecturer.getNsbm_id() != null){
             cmb_MenuLecturer.setText(userLecturer.getPrefix() + " " + userLecturer.getName());
+
+            // set the lecturer name and greeting
+            lbl_greeting.setText("Hello, " + userLecturer.getPrefix()+" "+ userLecturer.getName());
+
         }
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // set the date
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter stdFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy");
+
+        String formattedDate = myDateObj.format(stdFormatObj);
+
+        lbl_DateLecturer.setText(formattedDate);
 
         // set a clip to apply rounded border to the original image.
         Rectangle clipLecturer = new Rectangle(
@@ -154,6 +171,16 @@ public class MainPageLecturer implements Initializable {
                 e.printStackTrace();
             }
         });
+
+        Platform.runLater(()-> {
+            try {
+                NavEventsClickLecturer();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
 
     }
 
@@ -252,10 +279,19 @@ public class MainPageLecturer implements Initializable {
     public void NavEventsExitLecturer(MouseEvent mouseEvent) { ap_EventsLecturer.setStyle("-fx-background-color : #636363;"); }
 
     @FXML
-    public void NavEventsClickLecturer(MouseEvent mouseEvent) throws IOException{
-        AnchorPane page = FXMLLoader.load(getClass().getResource("LecturerEventsPage.fxml"));
-        baseLecturer.getChildren().clear();
-        baseLecturer.getChildren().setAll(page);
+    public void NavEventsClickLecturer() throws IOException{
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("LecturerEventsPage.fxml"));
+            AnchorPane page = loader.load();
+            LecturerEventsPage controller = loader.getController();
+            controller.setMainPage(baseLecturer);
+            baseLecturer.getChildren().clear();
+            baseLecturer.getChildren().setAll(page);
+
+        }catch (Exception e){
+            System.out.println("Couldn't Load the Page");
+        }
     }
 
     //NavQuizLecturer

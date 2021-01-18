@@ -1,6 +1,5 @@
 package StudentApplication;
 
-import AdminPanel.AdminCreateQuiz;
 import Common.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;

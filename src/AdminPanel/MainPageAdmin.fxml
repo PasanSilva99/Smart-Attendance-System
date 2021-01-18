@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1100.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.MainPageAdmin">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" style="-fx-background-radius: 10px; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminPanel.MainPageAdmin">
    <children>
       <AnchorPane fx:id="topBarAdmin" layoutX="251.0" layoutY="100.0" prefHeight="100.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -16,12 +16,12 @@
                   <Image url="@Images/javaLogo.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbl_DateAdmin" layoutX="370.0" layoutY="42.0" text="18/10/2020" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_DateAdmin" layoutX="263.0" layoutY="40.0" text="18/10/2020" AnchorPane.leftAnchor="263.0" AnchorPane.topAnchor="40.0">
                <font>
-                  <Font name="Felix Titling" size="14.0" />
+                  <Font name="Felix Titling" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lbl_TimeAdmin" layoutX="533.0" layoutY="42.0" text="08:56:03 AM" AnchorPane.leftAnchor="533.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_TimeAdmin" layoutX="613.0" layoutY="41.0" text="Welcome, Admin" AnchorPane.leftAnchor="613.0" AnchorPane.topAnchor="41.0">
                <font>
                   <Font name="Felix Titling" size="14.0" />
                </font>

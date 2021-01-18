@@ -1,7 +1,8 @@
 package Common;
 
-import AdminPanel.AdminCreateQuiz;
 import AdminPanel.QuestionDAO;
+import LecturerApplication.LecturerCreateQuiz;
+import LecturerApplication.LecturerQuizPage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -12,9 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 
 import java.io.File;
 import java.net.URL;
@@ -48,7 +47,7 @@ public class Question implements Initializable {
     Button btn_save;
     Button btn_cancel;
 
-    AdminCreateQuiz parent_admin;
+    LecturerCreateQuiz parent_admin;
 
     public Question(int questionNumber, String quizID, String question, List<String> answerList) {
         QuestionNumber = questionNumber;
@@ -132,7 +131,7 @@ public class Question implements Initializable {
      * This function gets the parent to save the settings
      * @param parent
      */
-    public void setParent(AdminCreateQuiz parent){
+    public void setParent(LecturerCreateQuiz parent){
         parent_admin = parent;
     }
 

@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
@@ -29,6 +30,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -41,6 +44,7 @@ public class MainPageAdmin implements Initializable {
     @FXML
     public ImageView btn_BellAdmin;
     public AnchorPane ap_quizPage;
+    public Label lbl_DateAdmin;
     @FXML
     AnchorPane topBarAdmin;
     @FXML
@@ -99,6 +103,14 @@ public class MainPageAdmin implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // set the date
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter stdFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy");
+
+        String formattedDate = myDateObj.format(stdFormatObj);
+
+        lbl_DateAdmin.setText(formattedDate);
 
         // set a clip to apply rounded border to the original image.
         Rectangle clipAdmin = new Rectangle(

@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LecturerApplication.LecturerEventsPage">
+<AnchorPane prefHeight="463.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LecturerApplication.LecturerEventsPage">
    <children>
-      <Label fx:id="lbl_greeting" alignment="CENTER" layoutX="279.0" layoutY="14.0" text="Event Management">
+      <Label fx:id="lbl_greeting" alignment="CENTER" layoutX="269.0" layoutY="22.0" text="Lets Get the Day Started..">
          <font>
-            <Font name="Century" size="48.0" />
+            <Font name="Century" size="36.0" />
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="344.0" layoutY="68.0" text="- Ongoing Events Now -">

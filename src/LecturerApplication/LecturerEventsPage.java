@@ -72,7 +72,7 @@ public class LecturerEventsPage implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("EventDetailViewLecturer.fxml"));
             AnchorPane page = loader.load();
-            EventDetailView controler = loader.getController();
+            EventDetailViewLecturer controler = loader.getController();
             controler.setEvent(event);
             // This Is the main Anchor pane.
             // To go back we need to send it to the page that we load

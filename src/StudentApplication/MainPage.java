@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
@@ -30,6 +31,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -40,6 +43,8 @@ public class MainPage implements Initializable {
     public MenuButton cmb_menu;
     @FXML
     public ImageView btn_bell;
+    public Label lbl_date;
+    public Label lbl_greeting;
     @FXML
     AnchorPane topBar;
     @FXML
@@ -77,11 +82,24 @@ public class MainPage implements Initializable {
         this.user = user;
         if(user.getNsbm_id() != null){
             cmb_menu.setText(user.getPrefix() + " " + user.getName());
+
+            // set the Student name and greeting
+            lbl_greeting.setText("Hello, " + user.getPrefix()+" "+ user.getName());
+
         }
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        // set the date
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter stdFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy");
+
+        String formattedDate = myDateObj.format(stdFormatObj);
+
+        lbl_date.setText(formattedDate);
 
         if(user != null){
             cmb_menu.setText(user.getPrefix() + user.getName());
