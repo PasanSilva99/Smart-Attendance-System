@@ -464,20 +464,23 @@ public class UserDAO {
         return LecturerList;
     }
 
-    public void markAttendance(String nsbm_id, String deviceMacAddress, float v, String routerMacAddress, String moduleCode) {
+    public void markAttendance(String nsbm_id, String deviceMacAddress, double marks, String routerMacAddress, String moduleCode, String event_id, String quiz_id) {
 
         Connection con = null;
         try {
             Class.forName(DAO.SqlDriverClass);
             con = DriverManager.getConnection(DAO.DatabaseUrl, DAO.DBuser, DAO.DBpass);
-            String sql = "INSERT INTO attendance VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO attendance VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setString(1, nsbm_id);
             statement.setString(2, deviceMacAddress);
-            statement.setFloat(3, v);
+            statement.setDouble(3, marks);
             statement.setString(4, routerMacAddress);
             statement.setString(5, moduleCode);
+            statement.setString(6, event_id);
+            statement.setString(7, quiz_id);
+            statement.setTimestamp(8, new Timestamp(System.currentTimeMillis()));
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted > 0) {

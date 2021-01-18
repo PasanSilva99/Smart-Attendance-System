@@ -51,7 +51,7 @@ public class Quiz {
 
     public AnchorPane getQuizView(){
         System.out.println("Generating View For Quiz: "+getQuizID());
-        ViewItemWithBadge paneA = new ViewItemWithBadge(QuizName, Module_.ModuleCode + " "+ UniEvent_.getBatch(), UniEvent_.getStartTime().substring(11, 16)+UniEvent_.getEndTime().substring(11,16), new DegreeDAO().getDegreeNameByID(Module_.getDegreeProgram()), UniEvent_.getLocation());
+        ViewItemWithBadge paneA = new ViewItemWithBadge(QuizName, Module_.ModuleCode + " "+ UniEvent_.getBatch(), UniEvent_.getStartTime().substring(11, 16)+UniEvent_.getEndTime().substring(11,16), " ", UniEvent_.getLocation());
 
         AnchorPane pane = paneA.getControl();
 

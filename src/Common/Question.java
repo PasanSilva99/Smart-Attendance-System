@@ -2,6 +2,8 @@ package Common;
 
 import AdminPanel.AdminCreateQuiz;
 import AdminPanel.QuestionDAO;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
@@ -10,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
@@ -26,6 +29,8 @@ public class Question implements Initializable {
     private List<String> AnswerList = new ArrayList<>();
     private int CorrectAnswerIndex;
     private boolean Editable = true;
+    private String selectedValue = "<<O>>";
+    private boolean isCorrect = false;
 
     public String Q_Number;
 
@@ -127,6 +132,14 @@ public class Question implements Initializable {
     }
 
     /**
+     * ge the selected answer
+     * @return
+     */
+    public String getSelectedValue() {
+        return selectedValue;
+    }
+
+    /**
      *
      * @return
      */
@@ -160,7 +173,6 @@ public class Question implements Initializable {
         tb_question.setLayoutY(14);
         tb_question.setPrefHeight(53.0);
         tb_question.setPrefWidth(493.0);
-
         tb_answer1.setPrefWidth(304.0);
         tb_answer1.setLayoutX(31.0);
         tb_answer1.setLayoutY(101.0);
@@ -263,11 +275,12 @@ public class Question implements Initializable {
 
     public AnchorPane generateViewStudent(){
 
+        System.out.println("Generating view for Question: "+ QuestionNumber);
         AnchorPane base = new AnchorPane();
         base.prefHeight(192.0);
         base.setPrefWidth(600.0);
 
-        Label lbl_question = new Label("");
+        Label lbl_question = new Label(Question);
         lbl_question.setLayoutX(26.0);
         lbl_question.setLayoutY(24.0);
         lbl_question.setPrefWidth(552.0);
@@ -275,9 +288,92 @@ public class Question implements Initializable {
         lbl_question.setAlignment(Pos.TOP_LEFT);
         lbl_question.setFont(new Font("Century", 14));
 
-        RadioButton answer1 = new RadioButton("");
-        RadioButton answer2 = new RadioButton("");
-        return null;
+        RadioButton answer1 = new RadioButton(AnswerList.get(0).substring(0, AnswerList.get(0).indexOf("<<")));
+        System.out.println("Answer: " + answer1.getText());
+        RadioButton answer2 = new RadioButton(AnswerList.get(1).substring(0, AnswerList.get(1).indexOf("<<")));
+        System.out.println("Answer: " + answer2.getText());
+        RadioButton answer3 = new RadioButton(AnswerList.get(2).substring(0, AnswerList.get(2).indexOf("<<")));
+        System.out.println("Answer: " + answer3.getText());
+        RadioButton answer4 = new RadioButton(AnswerList.get(3).substring(0, AnswerList.get(3).indexOf("<<")));
+        System.out.println("Answer: " + answer4.getText());
+
+        ToggleGroup answerToggle = new ToggleGroup();
+
+        answerToggle.selectToggle(answer1);
+        answerToggle.selectToggle(answer2);
+        answerToggle.selectToggle(answer3);
+        answerToggle.selectToggle(answer4);
+
+        answer1.setToggleGroup(answerToggle);
+        answer2.setToggleGroup(answerToggle);
+        answer3.setToggleGroup(answerToggle);
+        answer4.setToggleGroup(answerToggle);
+
+        // add a change listener
+        answerToggle.selectedToggleProperty().addListener(new ChangeListener<Toggle>()
+        {
+            public void changed(ObservableValue<? extends Toggle> ob,
+                                Toggle o, Toggle n)
+            {
+
+                RadioButton rb = (RadioButton)answerToggle.getSelectedToggle();
+
+                if (rb != null) {
+                    String s = rb.getText();
+
+                    // set the selected value
+                    selectedValue = s;
+
+                    if(AnswerList.get(0).contains(s) && AnswerList.get(0).contains("<<X>>"))
+                    {
+                        //this is correct
+                        isCorrect = true;
+                        System.out.println("ans x ");
+                    } else
+                    if(AnswerList.get(1).contains(s) && AnswerList.get(1).contains("<<X>>"))
+                    {
+                        //this is correct
+                        isCorrect = true;
+                        System.out.println("ans x ");
+                    } else
+                    if(AnswerList.get(2).contains(s) && AnswerList.get(2).contains("<<X>>"))
+                    {
+                        //this is correct
+                        isCorrect = true;
+                        System.out.println("ans x ");
+                    } else
+                    if(AnswerList.get(3).contains(s) && AnswerList.get(3).contains("<<X>>"))
+                    {
+                        //this is correct
+                        isCorrect = true;
+                        System.out.println("ans x ");
+                    }
+                    else {
+                        isCorrect = false;
+                        System.out.println("ans o");
+                    }
+
+                }
+            }
+        });
+
+        answer1.setLayoutX(26.0);
+        answer2.setLayoutX(26.0);
+        answer3.setLayoutX(26.0);
+        answer4.setLayoutX(26.0);
+
+        answer1.setLayoutY(73.0);
+        answer2.setLayoutY(99.0);
+        answer3.setLayoutY(125.0);
+        answer4.setLayoutY(151.0);
+
+        base.getChildren().addAll(lbl_question, answer1, answer2, answer3, answer4);
+
+        return base;
+    }
+
+    public boolean IsCorrect(){
+        return isCorrect;
     }
 
     private void btn_cancel_Click(Button btn_cancel) {

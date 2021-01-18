@@ -12,24 +12,24 @@
 
 <AnchorPane prefHeight="494.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StudentApplication.QuizViewPage">
    <children>
-      <Label fx:id="lbl_quizName" layoutX="14.0" layoutY="11.0" prefHeight="35.0" prefWidth="583.0" text="Quiz Name">
+      <Label fx:id="lbl_quizName" layoutX="14.0" layoutY="11.0" prefHeight="35.0" prefWidth="583.0" text="Quiz Name" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="11.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_moduleBatch" layoutX="28.0" layoutY="49.0" text="Module And Batch" />
-      <Label fx:id="lbl_deadline" layoutX="28.0" layoutY="66.0" text="Deadline" />
+      <Label fx:id="lbl_moduleBatch" layoutX="26.0" layoutY="48.0" text="Module And Batch" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="48.0" />
+      <Label fx:id="lbl_deadline" layoutX="26.0" layoutY="71.0" text="Deadline" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="71.0" />
       <Line endX="580.0" layoutX="115.0" layoutY="95.0" startX="-100.0" stroke="#a9a6a6" />
-      <ImageView fitHeight="80.0" fitWidth="99.0" layoutX="598.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="99.0" layoutX="598.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="8.0">
          <image>
             <Image url="@Images/quiz.png" />
          </image>
       </ImageView>
-      <ScrollPane layoutX="15.0" layoutY="105.0" prefHeight="345.0" prefWidth="674.0">
+      <ScrollPane layoutX="15.0" layoutY="105.0" prefHeight="345.0" prefWidth="674.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="104.0">
          <content>
-            <VBox fx:id="vbox_questions" prefHeight="200.0" prefWidth="671.0" />
+            <VBox fx:id="vbox_questions" prefHeight="200.0" prefWidth="671.0" spacing="20.0" style="-fx-padding: 20px;" />
          </content>
       </ScrollPane>
-      <Button fx:id="btn_submit" layoutX="610.0" layoutY="455.0" mnemonicParsing="false" onAction="#btn_submit_Click" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #238636;" text="Submit" textFill="WHITE" />
+      <Button fx:id="btn_submit" layoutX="610.0" layoutY="455.0" mnemonicParsing="false" onAction="#btn_submit_Click" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #238636;" text="Submit" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="15.0" />
    </children>
 </AnchorPane>
