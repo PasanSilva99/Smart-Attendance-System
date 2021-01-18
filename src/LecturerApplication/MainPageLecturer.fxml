@@ -42,17 +42,7 @@
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="151.0" prefHeight="505.0" prefWidth="122.0" style="-fx-background-color: #636363; -fx-background-radius: 20; -fx-border-radius: 20;" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="-20.0">
          <children>
-            <AnchorPane fx:id="ap_ModulesLecturer" layoutX="33.0" layoutY="103.0" onMouseEntered="#NavModulesEnterLecturer" onMouseExited="#NavModulesExitLecturer" onMousePressed="#NavModulesClickLecturer" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
-               <children>
-                  <ImageView fx:id="img_ModulesLecturer" fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="6.0" onMouseEntered="#NavModulesEnterLecturer" onMouseExited="#NavModulesExitLecturer" onMousePressed="#NavModulesClickLecturer" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="6.0">
-                     <image>
-                        <Image url="@Images/modules.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="lbl_ModulesLecturer" layoutX="12.0" layoutY="41.0" onMouseEntered="#NavModulesEnterLecturer" onMouseExited="#NavModulesExitLecturer" onMousePressed="#NavModulesClickLecturer" text="Modules" textFill="WHITE" AnchorPane.bottomAnchor="5.399999999999999" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="ap_HomeLecturer" layoutX="33.0" layoutY="14.0" onMouseEntered="#NavHomeEnterLecturer" onMouseExited="#NavHomeExitLecturer" onMousePressed="#NavHomeClickLecturer" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #6B6B6B; -fx-border-radius: 20; -fx-background-radius: 20;" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="14.0">
+            <AnchorPane fx:id="ap_HomeLecturer" layoutX="33.0" layoutY="47.0" onMouseEntered="#NavHomeEnterLecturer" onMouseExited="#NavHomeExitLecturer" onMousePressed="#NavHomeClickLecturer" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #6B6B6B; -fx-border-radius: 20; -fx-background-radius: 20;" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="47.0">
                <children>
                   <ImageView fx:id="img_HomeLecturer" fitHeight="26.0" fitWidth="33.0" layoutX="23.0" layoutY="11.0" onMouseEntered="#NavHomeEnterLecturer" onMouseExited="#NavHomeExitLecturer" onMousePressed="#NavHomeClickLecturer" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="11.0">
                      <image>
@@ -62,7 +52,7 @@
                   <Label fx:id="lbl_HomeLecturer" layoutX="20.0" layoutY="41.0" onMouseEntered="#NavHomeEnterLecturer" onMouseExited="#NavHomeExitLecturer" onMousePressed="#NavHomeClickLecturer" text="Home" textFill="WHITE" AnchorPane.bottomAnchor="11.800000000000004" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ap_EventsLecturer" layoutX="33.0" layoutY="183.0" onMouseEntered="#NavEventsEnterLecturer" onMouseExited="#NavEventsExitLecturer" onMousePressed="#NavEventsClickLecturer" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
+            <AnchorPane fx:id="ap_EventsLecturer" layoutX="33.0" layoutY="164.0" onMouseEntered="#NavEventsEnterLecturer" onMouseExited="#NavEventsExitLecturer" onMousePressed="#NavEventsClickLecturer" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
                <children>
                   <ImageView fx:id="img_EventsLecturer" fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="9.0" onMouseEntered="#NavEventsEnterLecturer" onMouseExited="#NavEventsExitLecturer" onMousePressed="#NavEventsClickLecturer" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="9.0">
                      <image>
@@ -72,7 +62,7 @@
                   <Label fx:id="lbl_EventsLecturer" layoutX="18.0" layoutY="43.0" onMouseEntered="#NavEventsEnterLecturer" onMouseExited="#NavEventsExitLecturer" onMousePressed="#NavEventsClickLecturer" text="Events" textFill="WHITE" AnchorPane.bottomAnchor="3.3999999999999986" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ap_QuizLecturer" layoutX="33.0" layoutY="262.0" onMouseEntered="#NavQuizEnterLecturer" onMouseExited="#NavQuizExitLecturer" onMousePressed="#NavQuizClickLecturer" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
+            <AnchorPane fx:id="ap_QuizLecturer" layoutX="33.0" layoutY="266.0" onMouseEntered="#NavQuizEnterLecturer" onMouseExited="#NavQuizExitLecturer" onMousePressed="#NavQuizClickLecturer" prefHeight="64.0" prefWidth="70.0" style="-fx-background-color: #636363; -fx-border-radius: 20; -fx-background-radius: 20;">
                <children>
                   <ImageView fx:id="img_QuizLecturer" fitHeight="44.0" fitWidth="35.0" layoutX="18.0" layoutY="9.0" onMouseEntered="#NavQuizEnterLecturer" onMouseExited="#NavQuizExitLecturer" onMousePressed="#NavQuizClickLecturer" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="9.0">
                      <image>
