@@ -40,7 +40,7 @@ public class MainScene  implements Initializable {
     public void setUser(User user){
         this.user = user;
 
-        uniEventsList = new UniEventDAO().getEventList();
+        uniEventsList = new UniEventDAO().getEventListForToday();
 
         username.setText(user.getName());
 
