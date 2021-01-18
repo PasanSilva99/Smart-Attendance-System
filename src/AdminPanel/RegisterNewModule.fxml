@@ -31,30 +31,11 @@
       </AnchorPane>
       <AnchorPane layoutX="58.0" layoutY="166.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="500.0">
          <children>
-            <Label layoutX="93.0" layoutY="26.0" text="Module Code">
-               <font>
-                  <Font name="Century" size="12.0" />
-               </font>
-            </Label>
             <TextField fx:id="tb_ModuleCode" layoutX="90.0" layoutY="51.000000000000036" prefHeight="30.0" prefWidth="292.0" promptText="Enter New Module Code" style="-fx-background-color: #E3E3E3;" AnchorPane.bottomAnchor="394.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="118.0" />
-            <Label layoutX="92.0" layoutY="103.0" text="Module Name">
-               <font>
-                  <Font name="Century" size="12.0" />
-               </font>
-            </Label>
             <TextField fx:id="tb_ModuleName" layoutX="90.0" layoutY="128.0" prefHeight="30.0" prefWidth="292.0" promptText="Enter New Module Name" style="-fx-background-color: #E3E3E3;" />
-            <Label layoutX="94.0" layoutY="181.0" text="Module Leader">
-               <font>
-                  <Font name="Century" size="12.0" />
-               </font>
-            </Label>
-            <Label layoutX="92.0" layoutY="263.0" text="Degree Programme">
-               <font>
-                  <Font name="Century" size="12.0" />
-               </font>
-            </Label>
+            <TextField fx:id="tb_ModuleLeader" layoutX="91.0" layoutY="208.0" prefHeight="30.0" prefWidth="292.0" promptText="Enter Module Leader Name" style="-fx-background-color: #E3E3E3;" />
             <ComboBox fx:id="cmb_DegreeProgram" layoutX="87.0" layoutY="286.0" prefHeight="30.0" prefWidth="308.0" promptText="Select Degree Program" style="-fx-background-color: #E3E3E3;" />
-            <Button fx:id="btn_cancel" layoutX="200.0" layoutY="364.0" mnemonicParsing="false" onAction="#btn_cancel_click" prefHeight="29.0" prefWidth="69.0" style="-fx-background-color: #a20025; -fx-background-radius: 10;" text="Cancel" textFill="#fcf7f7">
+            <Button fx:id="btn_Register" layoutX="330.0" layoutY="364.0" mnemonicParsing="false" onAction="#btn_Register_click" prefHeight="29.0" prefWidth="69.0" style="-fx-background-color: #008a00; -fx-background-radius: 10;" text="Register" textFill="#fcf7f7" AnchorPane.bottomAnchor="81.59999999999997" AnchorPane.rightAnchor="100.39999999999998">
                <font>
                   <Font size="13.0" />
                </font>
@@ -71,12 +52,31 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btn_Register" layoutX="330.0" layoutY="364.0" mnemonicParsing="false" onAction="#btn_Register_click" prefHeight="29.0" prefWidth="69.0" style="-fx-background-color: #008a00; -fx-background-radius: 10;" text="Register" textFill="#fcf7f7" AnchorPane.bottomAnchor="81.59999999999997" AnchorPane.rightAnchor="100.39999999999998">
+            <Button fx:id="btn_cancel" layoutX="200.0" layoutY="364.0" mnemonicParsing="false" onAction="#btn_cancel_click" prefHeight="29.0" prefWidth="69.0" style="-fx-background-color: #a20025; -fx-background-radius: 10;" text="Cancel" textFill="#fcf7f7">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
-            <TextField fx:id="tb_ModuleLeader" layoutX="91.0" layoutY="208.0" prefHeight="30.0" prefWidth="292.0" promptText="Enter Module Leader Name" style="-fx-background-color: #E3E3E3;" />
+            <Label layoutX="93.0" layoutY="26.0" text="Module Code">
+               <font>
+                  <Font name="Century" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="103.0" text="Module Name">
+               <font>
+                  <Font name="Century" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="181.0" text="Module Leader">
+               <font>
+                  <Font name="Century" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="92.0" layoutY="263.0" text="Degree Programme">
+               <font>
+                  <Font name="Century" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="517.0" prefHeight="186.0" prefWidth="230.0">

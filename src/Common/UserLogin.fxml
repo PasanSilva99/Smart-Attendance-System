@@ -28,14 +28,14 @@
          </font>
       </Label>
       <TextField fx:id="tb_email" layoutX="57.0" layoutY="111.0" prefHeight="25.0" prefWidth="224.0" />
+      <PasswordField fx:id="tb_password" layoutX="57.0" layoutY="164.0" prefHeight="25.0" prefWidth="224.0" />
       <Text fill="#545252" layoutX="62.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NSBM Email">
          <font>
             <Font name="Century" size="12.0" />
          </font>
       </Text>
       <Text fill="#545252" layoutX="62.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <Button fx:id="btn_login" defaultButton="true" layoutX="294.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: #008a00;" text="Login" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="26.5" onAction="#btn_login_click"/>
-      <Button fx:id="btn_cancel" cancelButton="true" layoutX="235.0" layoutY="253.0" mnemonicParsing="false" style="-fx-background-color: #a20025;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="79.5" onAction="#btn_cancel_click"/>
-      <PasswordField fx:id="tb_password" layoutX="57.0" layoutY="164.0" prefHeight="25.0" prefWidth="224.0" />
+      <Button fx:id="btn_login" defaultButton="true" layoutX="294.0" layoutY="253.0" mnemonicParsing="false" onAction="#btn_login_click" style="-fx-background-color: #008a00;" text="Login" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="26.5" />
+      <Button fx:id="btn_cancel" cancelButton="true" layoutX="235.0" layoutY="253.0" mnemonicParsing="false" onAction="#btn_cancel_click" style="-fx-background-color: #a20025;" text="Cancel" textFill="WHITE" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="79.5" />
    </children>
 </AnchorPane>
